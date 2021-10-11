@@ -181,14 +181,17 @@ Open HazardNuker.exe
 ### 🔻・Errors/Fixes
 
 pyinstaller is not recognized as an external command
-> open a cmd and type `pip install pyinstaller` or make sure python is added to PATH
+> open a cmd and type `pip install pyinstaller` or make sure [python](https://www.python.org/downloads/) is added to [PATH](https://datatofish.com/add-python-to-windows-path/)
 
 no module named psutil
 > open a cmd and type `pip install psutil`
 
-Errors like these: 
+Errors like these:
+<p align="left">
+ <img alt="err1" src="https://i.imgur.com/4Zm0AeF.png" width="45%">
+&nbsp; &nbsp; &nbsp; &nbsp;
+</p>
 
-https://imgur.com/4Zm0AeF
 > You probably have python 3.10 which is a bit buggy so downgrade to python 3.0 (https://www.python.org/downloads/release/python-397/)
 
 |🌟Star This Repository If You Liked Hazard Nuker!|
