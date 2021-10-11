@@ -160,7 +160,9 @@ Exit the program
 * Please Join the [discord server](https://rdimo.github.io/CheatAway/) or contact Rdimo#6969 on discord if you get any sort of major error with Hazard
 * Some people have made a version of Hazard Nuker that looks/works like this one just that it's malicious, please make sure you only download stuff from here to make sure your info doesn't get stolen
 
-### ⚙・Installation
+## Installation 
+
+#### 1st・Installation (source code)
 ```
 git clone https://github.com/Rdimo/Hazard-Nuker.git
 cd Hazard-Nuker
@@ -168,12 +170,33 @@ run install_requirements.cmd
 run run.bat
 ```
 
+#### 2nd・Installation (compiled)
+```
+https://github.com/Rdimo/Hazard-Nuker/releases
+Download the latest release (Hazard.zip)
+Drag it out to desktop and extract it
+Open HazardNuker.exe
+```
+
+### 🔻・Errors/Fixes
+
+pyinstaller is not recognized as an external command
+> open a cmd and type `pip install pyinstaller` or make sure python is added to PATH
+
+no module named psutil
+> open a cmd and type `pip install psutil`
+
+Errors like these: 
+
+https://imgur.com/4Zm0AeF
+> You probably have python 3.10 which is a bit buggy so downgrade to python 3.0 (https://www.python.org/downloads/release/python-397/)
+
 |🌟Star This Repository If You Liked Hazard Nuker!|
 |-------------------------------------------------|
 
 <a href="https://rdimo.github.io/CheatAway/" target="_blank"><img src="https://discordapp.com/api/guilds/864857288584724500/widget.png?style=banner2" alt="Cheataway"/></a>
 
 Created by Rdimo#6969 | https://rdimo.github.io/CheatAway
-|⚠️・ Hazard Nuker was made for educational purposes.・⚠️|
+|⚠️・Hazard Nuker was made for educational purposes・⚠️|
 |-------------------------------------------------|
 By using HazardNuker, you agree that you hold responsibility and accountability of any consequences caused by your actions
