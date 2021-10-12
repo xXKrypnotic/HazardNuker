@@ -192,7 +192,7 @@ Errors like these:
 &nbsp; &nbsp; &nbsp; &nbsp;
 </p>
 
-> You probably have python 3.10 which is a bit buggy so downgrade to python 3.0 (https://www.python.org/downloads/release/python-397/)
+> You probably have python 3.10 which is a bit buggy so downgrade to python 3.9 (https://www.python.org/downloads/release/python-397/)
 
 |🌟Star This Repository If You Liked Hazard Nuker!|
 |-------------------------------------------------|
