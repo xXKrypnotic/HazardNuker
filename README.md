@@ -190,7 +190,7 @@ Errors like these:
 <p align="left">
  <img alt="err1" src="https://i.imgur.com/4Zm0AeF.png" width="45%">
 &nbsp; &nbsp; &nbsp; &nbsp;
- <img alt="err2"src="https://i.imgur.com/4Zm0AeF.png" width="45%">
+ <img alt="err2"src="https://i.imgur.com/Inm6DV8.png" width="45%">
 </p>
 
 > You probably have python 3.10 which has some new shit so downgrade to python 3.9 (https://www.python.org/downloads/release/python-397/)
