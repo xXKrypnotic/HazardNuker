@@ -22,6 +22,7 @@ code ✅
 * ` Many options while being compact`
 * ` Auto update`
 * ` Easy and fast`
+* ` No proxies needed!`
 * ` Linux Support!`
 * ` Nuke a targetted account`
 * ` Unfriend all friends`
