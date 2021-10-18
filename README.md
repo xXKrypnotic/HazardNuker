@@ -3,7 +3,7 @@
 <img src="https://img.shields.io/github/languages/top/Rdimo/Hazard-Nuker?style=flat-square" </a>
 <img src="https://img.shields.io/github/last-commit/Rdimo/Hazard-Nuker?style=flat-square" </a>
  <img src="https://img.shields.io/github/license/Rdimo/Hazard-Nuker?style=flat-square" </a>
-<img src="https://img.shields.io/github/watchers/Rdimo/Hazard-Nuker?color=%23daff00&label=Watchers&style=flat-square" </a>
+<img src="https://img.shields.io/github/downloads/Rdimo/Hazard-Nuker/total?color=%23daff00&label=Downloads&style=flat-square" </a>
 <img src="https://img.shields.io/github/stars/Rdimo/Hazard-Nuker?color=%23daff00&label=Stars&style=flat-square" </a>
 <img src="https://img.shields.io/github/forks/Rdimo/Hazard-Nuker?color=%23daff00&label=Forks&style=flat-square" </a>
 </p>
@@ -40,7 +40,7 @@ code ✅
 * ` Webhook destroyer`
 
 <p align="center">
- <img alt="HazardNuker" src="https://cdn.discordapp.com/attachments/828047793619861557/889220130674991154/unknown.png" width="45%">
+ <img alt="HazardNuker" src="https://cdn.discordapp.com/attachments/895403117301084161/898926072014458960/unknown.png" width="45%">
 &nbsp; &nbsp; &nbsp; &nbsp;
  <img alt="HazardNukerUpdate" src="https://cdn.discordapp.com/attachments/853347983639052318/863399932240855060/unknown.png" width="45%">
 </p>
@@ -181,7 +181,9 @@ Exit the program
 * Please Join the [discord server](https://rdimo.github.io/CheatAway/) or contact Rdimo#6969 on discord if you get any sort of major error with Hazard
 * Some people have made a version of Hazard Nuker that looks/works like this one just that it's malicious, please make sure you only download stuff from here to make sure your info doesn't get stolen
 
-### ⚙・Installation
+## Installation 
+
+#### 1st・Installation (source code)
 ```
 git clone https://github.com/Rdimo/Hazard-Nuker.git
 cd Hazard-Nuker
@@ -189,12 +191,37 @@ run install_requirements.cmd
 run run.bat
 ```
 
+#### 2nd・Installation (compiled)
+```
+https://github.com/Rdimo/Hazard-Nuker/releases
+Download the latest release (Hazard.zip)
+Drag it out to desktop and extract it
+Open HazardNuker.exe
+```
+
+### 🔻・Errors/Fixes
+
+pyinstaller is not recognized as an external command
+> open a cmd and type `pip install pyinstaller` or make sure [python](https://www.python.org/downloads/) is added to [PATH](https://datatofish.com/add-python-to-windows-path/)
+
+no module named psutil
+> open a cmd and type `pip install psutil`
+
+Errors like these:
+<p align="left">
+ <img alt="err1" src="https://i.imgur.com/4Zm0AeF.png" width="45%">
+&nbsp; &nbsp; &nbsp; &nbsp;
+ <img alt="err2"src="https://i.imgur.com/Inm6DV8.png" width="45%">
+</p>
+
+> You probably have python 3.10 which has some new shit so downgrade to python 3.9 (https://www.python.org/downloads/release/python-397/)
+
 |🌟Star This Repository If You Liked Hazard Nuker!|
 |-------------------------------------------------|
 
 <a href="https://rdimo.github.io/CheatAway/" target="_blank"><img src="https://discordapp.com/api/guilds/864857288584724500/widget.png?style=banner2" alt="Cheataway"/></a>
 
 Created by Rdimo#6969 | https://rdimo.github.io/CheatAway
-|⚠️・ Hazard Nuker was made for educational purposes.・⚠️|
+|⚠️・Hazard Nuker was made for educational purposes・⚠️|
 |-------------------------------------------------|
 By using HazardNuker, you agree that you hold responsibility and accountability of any consequences caused by your actions
