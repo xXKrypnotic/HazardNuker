@@ -6,13 +6,13 @@ import json
 import Hazard
 from colorama import Fore
 
-from util.plugins.common import clear, print_slow, getheaders, THIS_VERSION
+from util.plugins.common import print_slow, getheaders
 
 def DmDeleter(token):
     channelIds = requests.get("https://discord.com/api/v9/users/@me/channels", headers=getheaders(token)).json()
     for channel in channelIds:
         try:
-            requests.delete(f'https://discord.com/api/v8/channels/'+channel['id'],
+            requests.delete(f'https://discord.com/api/v9/channels/'+channel['id'],
             headers=getheaders(token))
             print(f"{Fore.RED}Deleted DM: {Fore.WHITE}"+channel['id']+Fore.RESET)
         except Exception as e:

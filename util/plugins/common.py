@@ -1,10 +1,11 @@
 # Hazard was proudly coded by Rdimo (https://github.com/Rdimo).
 # Hazard Nuker under the GNU General Public Liscense v2 (1991).
 
-import os, requests, json, sys, platform, ctypes
+import os, sys, platform, ctypes
 from time import sleep
 
-THIS_VERSION = "1.3.0"
+THIS_VERSION = "1.3.1"
+
 
 def clear():
     system = platform.system()
@@ -16,8 +17,14 @@ def clear():
         print('\n')*120
     return
 
+
 def setTitle(str):
-    ctypes.windll.kernel32.SetConsoleTitleW(str+" | Made By Rdimo#6969")
+    system = platform.system()
+    if system == 'Windows':
+        ctypes.windll.kernel32.SetConsoleTitleW(f"{str} | Made By Rdimo#6969")
+    else:
+        os.system(f"\033]0;{str} | Made By Rdimo#6969\a")
+
 
 def print_slow(str):
     for letter in str:

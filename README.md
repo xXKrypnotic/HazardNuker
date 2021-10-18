@@ -22,6 +22,7 @@ code ✅
 * ` Many options while being compact`
 * ` Auto update`
 * ` Easy and fast`
+* ` Linux Support!`
 * ` Nuke a targetted account`
 * ` Unfriend all friends`
 * ` DM all friends`
@@ -137,20 +138,40 @@ Grabbs these Things upon running the exe :
 * their password for discord (you get their password if they update it)
 * all of their credit card info (if they put one in)
 
-The webhook will look like [this](https://imgur.com/bgDXl1F)
+> Webhook looks like this:
 
-#### [13] QR Code Grabber
+<p align="left"><img src="https://i.imgur.com/bgDXl1F.png"</p>
+
+#### [13] Create Stealer
+Upon running the file you will get the following sent to your webhook:
+* Username
+* ComputerName
+* IP
+* City
+* Region
+* Country
+* Google Maps Location
+* Screenshot of their pc
+* All Their Valid Discord Tokens
+* Password For Discord (You get Their Password if They Update it)
+* Their Whole Credit Card (if They Put one in)
+* All Their Chrome Passwords And Cookies
+> Webhook looks like this:
+
+<p align="left"><img src="https://i.imgur.com/4KmwB6I.png"</p>
+
+#### [14] QR Code Grabber
 Creates a QR code that will give you a discord user's token if they scan it
 
-#### [14] Mass Report
+#### [15] Mass Report
 Mass report a user of your choice
 The account that will send the reports are the token that you put in
 
-#### [15] Webhook Destroyer
+#### [16] Webhook Destroyer
 Choose between deleting or spamming a webhook
 Can customize the Duration of spam and the message being sent
 
-#### [16] Exit
+#### [17] Exit
 Exit the program
 (press y to confirm exiting)
 

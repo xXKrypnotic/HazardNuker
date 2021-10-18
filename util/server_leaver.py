@@ -6,7 +6,7 @@ import Hazard
 
 from colorama import Fore
 
-from util.plugins.common import clear, print_slow, getheaders, THIS_VERSION
+from util.plugins.common import print_slow, getheaders
 
 def Leaver(token):
     #get all servers
@@ -14,7 +14,7 @@ def Leaver(token):
     for guild in guildsIds:
         try:
             #Delete the servers the user owns
-            requests.delete(f'https://discord.com/api/v8/guilds/'+guild['id'], headers=getheaders(token))
+            requests.delete(f'https://discord.com/api/v9/guilds/'+guild['id'], headers=getheaders(token))
             print(f'{Fore.LIGHTRED_EX}Deleted guild: {Fore.WHITE}'+guild['name']+Fore.RESET)
         except Exception as e:
             print(f"The following error has been encountered and is being ignored: {e}")
@@ -23,7 +23,7 @@ def Leaver(token):
         try:
             #Leave servers the user is in
             requests.delete(
-                f'https://discord.com/api/v6/users/@me/guilds/'+guild['id'],
+                f'https://discord.com/api/v9/users/@me/guilds/'+guild['id'],
                 headers=getheaders(token))
             print(f"{Fore.YELLOW}Left guild: {Fore.WHITE}"+guild['name']+Fore.RESET)
         except Exception as e:

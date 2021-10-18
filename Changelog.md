@@ -1,5 +1,14 @@
 <p align= center</p><a href="https://rdimo.github.io/CheatAway/" target="_blank"><img src="https://cdn.discordapp.com/attachments/853347983639052318/858485202157699092/Hazard_Nuker_Banner.png" alt="HazardNuker"></a>
 
+### 2021-10-16, v1.3.1
+* ` New option! Create Stealer (https://github.com/Rdimo/Hazard-Token-Grabber-V2)`
+* ` Should hopefully fully Support Linux Now!`
+* ` Auto update now works for both compiled and source code users`
+* ` Enabled logs when creating the loggers`
+* ` Updated every api to v9`
+* ` Fixed bug where seizure mode would go on forever after account nuker`
+* ` Fixed bug where the servers wouldn't get deleted/left`
+
 ### 2021-9-26, v1.3.0
 * ` Eyy source code release as promised`
 * ` Fixed some stuff too but don't remember what I fixed`

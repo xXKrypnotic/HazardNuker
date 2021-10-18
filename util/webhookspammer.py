@@ -8,7 +8,7 @@ import Hazard
 from time import sleep
 from colorama import Fore
 
-from util.plugins.common import clear, print_slow, getheaders, THIS_VERSION
+from util.plugins.common import print_slow
 
 def WebhookSpammer(WebHook, Message, Timer):
     #get the amount of time to spam

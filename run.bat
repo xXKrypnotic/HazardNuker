@@ -1,1 +1,2 @@
 python Hazard.py
+pause

@@ -5,12 +5,11 @@ import requests
 import os
 import shutil
 import re
-import ctypes
+import psutil
 
 from tqdm import tqdm
 from zipfile import ZipFile
 from time import sleep
-from selenium import webdriver
 from bs4 import BeautifulSoup
 from colorama import Fore, Style
 
@@ -25,8 +24,8 @@ def search_for_updates():
 
     clear()
     setTitle("Hazard Nuker Checking For Updates. . .")
-    for i in tqdm(range(100), 
-                    desc="Searching for updates. . .", 
+    for i in tqdm(range(100),
+                    desc="Searching for updates. . .",
                     ascii=False, ncols=100):
                     sleep(0.003)
     r = requests.get(url, headers=header)
@@ -51,25 +50,51 @@ def search_for_updates():
         if choice.upper() == 'Y':
             print(f"{Fore.WHITE}\nUpdating. . .{Fore.RESET}")
             setTitle(f'Hazard Nuker Updating...')
-            try:
-                new_version = requests.get("https://github.com/Rdimo/Hazard-Nuker/releases/download/v1.3.0/HazardNuker.zip")
-                with open("HazardNuker.zip", 'wb')as zipfile:
-                    zipfile.write(new_version.content)
-                with ZipFile("HazardNuker.zip", 'r') as filezip:
-                    filezip.extractall()
-                os.remove("HazardNuker.zip")
-                shutil.copyfile(os.getcwd()+'\\Hazard-Nuker-master\\Changelog.md', 'Changelog.md')
-                shutil.copyfile(os.getcwd()+'\\Hazard-Nuker-master\\HazardNuker.exe', 'HazardNuker.exe')
-                shutil.copyfile(os.getcwd()+'\\Hazard-Nuker-master\\README.md', 'README.md')
-                shutil.rmtree('Hazard-Nuker-master')
-                setTitle('Hazard Nuker Update Complete!')
-                print(f"{Fore.GREEN}Update Successfully Finished!{Fore.RESET}")
-                os.startfile("HazardNuker.exe")
-                os._exit(0)
-            except Exception as err:
-                clear()
-                print(f"{Fore.LIGHTRED_EX}{err}")
-                ctypes.windll.user32.MessageBoxW(0, f"Oh no! An error occured while Updating Hazard Nuker-{THIS_VERSION}\n\nIf this keeps occuring try and download it manually here github.com/Rdimo/Hazard-Nuker\n\n\"{err}\"","ERROR", 0x0 | 0x10)
+            #if they are running hazard.exe
+            if psutil.Process(os.getpid()).name() == 'HazardNuker.exe':
+                try:
+                    new_version = requests.get("https://github.com/Rdimo/Hazard-Nuker/releases/download/v1.3.1/HazardNuker.zip")
+                    with open("HazardNuker.zip", 'wb')as zipfile:
+                        zipfile.write(new_version.content)
+                    with ZipFile("HazardNuker.zip", 'r') as filezip:
+                        filezip.extractall()
+                    os.remove("HazardNuker.zip")
+                    cwd = os.getcwd()+'\\Hazard-Nuker-master\\'
+                    shutil.copyfile(cwd+'\\Changelog.md', 'Changelog.md')
+                    shutil.copyfile(cwd+'\\HazardNuker.exe', 'HazardNuker.exe')
+                    shutil.copyfile(cwd+'\\README.md', 'README.md')                   
+                    shutil.rmtree('Hazard-Nuker-master')
+                    setTitle('Hazard Nuker Update Complete!')
+                    print(f"{Fore.GREEN}Update Successfully Finished!{Fore.RESET}")
+                    sleep(1)
+                    os.startfile("HazardNuker.exe")
+                    exit()
+                except Exception as err:
+                    clear()
+                    print(f"{Fore.LIGHTRED_EX}An error occured while Updating Hazard Nuker-{THIS_VERSION}\n\nIf this keeps occuring try and download it manually here github.com/Rdimo/Hazard-Nuker\n\n\"{err}\"")
+                    sleep(5)
+            #if they are running hazard source code
+            else:
+                try:
+                    new_version = requests.get("https://github.com/Rdimo/Hazard-Nuker/archive/refs/heads/master.zip")
+                    with open("Hazard-Nuker-master.zip", 'wb')as zipfile:
+                        zipfile.write(new_version.content)
+                    with ZipFile("Hazard-Nuker-master.zip", 'r') as filezip:
+                        filezip.extractall()
+                    os.remove("Hazard-Nuker-master.zip")
+                    cwd = os.getcwd()+'\\Hazard-Nuker-master'
+                    shutil.copytree(cwd, os.getcwd(), dirs_exist_ok=True)
+                    shutil.rmtree(cwd)
+                    setTitle('Hazard Nuker Update Complete!')
+                    print(f"{Fore.GREEN}Update Successfully Finished!{Fore.RESET}")
+                    sleep(1)
+                    os.startfile("run.bat")
+                    exit()
+                except Exception as err:
+                    clear()
+                    print(f"{Fore.LIGHTRED_EX}An error occured while Updating Hazard Nuker-{THIS_VERSION}\n\nIf this keeps occuring try and download it manually here github.com/Rdimo/Hazard-Nuker\n\n\"{err}\"")
+                    sleep(5)
+
         else:
             input
             return

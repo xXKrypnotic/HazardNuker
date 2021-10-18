@@ -8,8 +8,6 @@ from time import sleep
 from selenium import webdriver
 from colorama import Fore
 
-from util.plugins.common import clear, print_slow, getheaders, THIS_VERSION
-
 def TokenLogin(token):
     print(f"{Fore.GREEN}Checking Chromedriver. . .")
     sleep(0.5)
@@ -22,7 +20,7 @@ def TokenLogin(token):
             uc.install()
         except Exception as e:
             print(f"{Fore.RED}Failed to download driver. . .\nError: {e}")
-            print(f"if this keeps happening go to https://github.com/Rdimo/Hazard-Nuker#8-log-into-an-account and install a chromedriver manually")
+            print(f"if this keeps happening go to https://github.com/Rdimo/Hazard-Nuker#9-log-into-an-account and install a chromedriver manually")
             sleep(5)
             Hazard.main()
     try:
