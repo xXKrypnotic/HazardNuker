@@ -205,9 +205,6 @@ Open HazardNuker.exe
 pyinstaller is not recognized as an external command
 > open a cmd and type `pip install pyinstaller` or make sure [python](https://www.python.org/downloads/) is added to [PATH](https://datatofish.com/add-python-to-windows-path/)
 
-no module named psutil
-> open a cmd and type `pip install psutil`
-
 Errors like these:
 <p align="left">
  <img alt="err1" src="https://i.imgur.com/4Zm0AeF.png" width="45%">
