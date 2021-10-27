@@ -53,7 +53,7 @@ def search_for_updates():
             #if they are running hazard.exe
             if psutil.Process(os.getpid()).name() == 'HazardNuker.exe':
                 try:
-                    new_version = requests.get("https://github.com/Rdimo/Hazard-Nuker/releases/download/v1.3.1/HazardNuker.zip")
+                    new_version = requests.get("https://github.com/Rdimo/Hazard-Nuker/releases/download/v1.3.3/HazardNuker.zip")
                     with open("HazardNuker.zip", 'wb')as zipfile:
                         zipfile.write(new_version.content)
                     with ZipFile("HazardNuker.zip", 'r') as filezip:

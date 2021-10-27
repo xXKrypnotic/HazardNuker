@@ -335,18 +335,11 @@ def main():
             print(f"\nInvalid reason")
             sleep(1)
             main()
-        try:
-            Amount = int(input(
-                f'{Fore.GREEN}[{Fore.CYAN}>>>{Fore.GREEN}] {Fore.RESET}Amount of reports: {Fore.LIGHTRED_EX}'))
-        except:
-            pass
-            print(f'\n{Fore.RED}Invalid Amount of reports.{Fore.RESET}')
-            sleep(1)
-            main()
+
         r = requests.get('https://discord.com/api/v9/users/@me',headers=getheaders(token))
         if r.status_code == 200:
             clear()
-            util.massreport.MassReport(token, guild_id1, channel_id1, message_id1, reason1, Amount)
+            util.massreport.MassReport(token, guild_id1, channel_id1, message_id1, reason1)
         else:
             print(f"\n{Fore.RED}Invalid Token.{Fore.RESET}")
             sleep(1)

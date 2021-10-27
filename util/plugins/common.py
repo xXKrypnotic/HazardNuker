@@ -4,7 +4,7 @@
 import os, sys, platform, ctypes
 from time import sleep
 
-THIS_VERSION = "1.3.1"
+THIS_VERSION = "1.3.2"
 
 
 def clear():

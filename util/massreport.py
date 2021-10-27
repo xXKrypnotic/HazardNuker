@@ -4,40 +4,45 @@
 import requests
 import json
 import Hazard
+import threading
+
+from time import sleep
 from colorama import Fore
 
-from util.plugins.common import print_slow, setTitle, getheaders
+from util.plugins.common import setTitle
 
-def MassReport(token, guild_id1, channel_id1, message_id1, reason1, Amount):
+
+def MassReport(token, guild_id1, channel_id1, message_id1, reason1):
+    for i in range(500, 1000):
+        while True:
+            threading.Thread(target=Report, args=(token, guild_id1, channel_id1, message_id1, reason1)).start()
+
+def Report(token, guild_id1, channel_id1, message_id1, reason1):
     Responses = {
-            '401: Unauthorized': '[!] Invalid Discord token.',
-            'Missing Access': '[!] Missing access to channel or guild.',
-            'You need to verify your account in order to perform this action.': '[!] Unverified.'
+            '401: Unauthorized': f'{Fore.LIGHTRED_EX}Invalid Discord token.',
+            'Missing Access': f'{Fore.LIGHTRED_EX}Missing access to channel or guild.',
+            'You need to verify your account in order to perform this action.': f'{Fore.LIGHTRED_EX} Unverified.'
     }
 
-    payload = {
-        'channel_id': channel_id1,
-        'message_id': message_id1,
-        'guild_id': guild_id1,
-        'reason': reason1
-    }
-
-    sent = 0
-    errors = 0
-
-    for i in range(Amount):
-        r = requests.post('https://discord.com/api/v9/report', headers=getheaders(token), json=payload)
-        setTitle(f'Sent: {sent} | Errors: {errors}')
-        if r.status_code == 201:
-            sent += 1
-            print(f'{Fore.GREEN}Report Sent {Fore.BLUE}|{Fore.GREEN} ID {message_id1}{Fore.RESET}')
-        elif r.status_code in (401, 403):
-            errors += 1
-            print(Responses[r.json()['message']])
-        else:
-            errors += 1
-            print(f'{Fore.RED} > Error {Fore.BLUE}|{Fore.RED} Status Code: {r.status_code}{Fore.RESET}')
-    print_slow(f"\n{Fore.GREEN}Hazardous reporting done! ")
-    print("Enter anything to continue. . . ", end="")
-    input()
-    Hazard.main()
+    report = requests.post(
+        'https://discordapp.com/api/v8/report', json={
+            'channel_id': channel_id1,
+            'message_id': message_id1,
+            'guild_id': guild_id1,
+            'reason': reason1
+        }, headers={
+            'Accept': '*/*',
+            'Accept-Encoding': 'gzip, deflate',
+            'Accept-Language': 'sv-SE',
+            'User-Agent': 'Discord/21295 CFNetwork/1128.0.1 Darwin/19.6.0',
+            'Content-Type': 'application/json',
+            'Authorization': token
+        }
+    )
+    
+    if (status := report.status_code) == 201:
+        print(f"{Fore.GREEN}Report Successfully sent!\n")
+    elif status in (401, 403):
+        print(Responses[report.json()['message']]+"\n")
+    else:
+        print(f"{Fore.RED}Error: {report.text} | Status Code: {status}\n")

