@@ -188,8 +188,8 @@ Upon running the file you will get the following sent to your webhook:
 ```
 git clone https://github.com/Rdimo/Hazard-Nuker.git
 cd Hazard-Nuker
-run install_requirements.cmd
-run run.bat
+start install_requirements.cmd
+start run.bat
 ```
 
 #### 2nd・Installation (compiled)
