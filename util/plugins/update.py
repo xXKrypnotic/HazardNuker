@@ -60,9 +60,9 @@ def search_for_updates():
                         filezip.extractall()
                     os.remove("HazardNuker.zip")
                     cwd = os.getcwd()+'\\Hazard-Nuker-master\\'
-                    shutil.copyfile(cwd+'\\Changelog.md', 'Changelog.md')
-                    shutil.copyfile(cwd+'\\HazardNuker.exe', 'HazardNuker.exe')
-                    shutil.copyfile(cwd+'\\README.md', 'README.md')                   
+                    shutil.copyfile(cwd+'Changelog.md', 'Changelog.md')
+                    shutil.copyfile(cwd+'HazardNuker.exe', 'HazardNuker.exe')
+                    shutil.copyfile(cwd+'README.md', 'README.md')                   
                     shutil.rmtree('Hazard-Nuker-master')
                     setTitle('Hazard Nuker Update Complete!')
                     print(f"{Fore.GREEN}Update Successfully Finished!{Fore.RESET}")

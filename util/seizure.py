@@ -19,7 +19,7 @@ def StartSeizure(token):
         modes = cycle(["light", "dark"])
         #cycle between light/dark mode and languages
         setting = {'theme': next(modes), 'locale': random.choice(['ja', 'zh-TW', 'ko', 'zh-CN'])}
-        requests.patch("https://discord.com/api/v9/users/@me/settings", headers=getheaders(token), json=setting)
+        requests.patch("https://discord.com/api/v7/users/@me/settings", headers=getheaders(token), json=setting)
         if msvcrt.kbhit():
             if msvcrt.getwche() == '\r':
                 break

