@@ -10,11 +10,13 @@ from util.plugins.common import print_slow, getheaders
 
 def Leaver(token):
     #get all servers
+    count = 0
     guildsIds = requests.get("https://discord.com/api/v9/users/@me/guilds", headers=getheaders(token)).json()
     for guild in guildsIds:
         try:
             #Delete the servers the user owns
             requests.delete(f'https://discord.com/api/v9/guilds/'+guild['id'], headers=getheaders(token))
+            count += 1
             print(f'{Fore.LIGHTRED_EX}Deleted guild: {Fore.WHITE}'+guild['name']+Fore.RESET)
         except Exception as e:
             print(f"The following error has been encountered and is being ignored: {e}")
@@ -25,10 +27,11 @@ def Leaver(token):
             requests.delete(
                 f'https://discord.com/api/v9/users/@me/guilds/'+guild['id'],
                 headers=getheaders(token))
+            count += 1
             print(f"{Fore.YELLOW}Left guild: {Fore.WHITE}"+guild['name']+Fore.RESET)
         except Exception as e:
             print(f"The following error has been encountered and is being ignored: {e}")
-    print_slow(f"{Fore.LIGHTGREEN_EX}Successfully Left every server! ")
+    print_slow(f"{Fore.LIGHTGREEN_EX}Successfully left {count} servers! ")
     print("Enter anything to continue. . . ", end="")
     input()
     Hazard.main()
