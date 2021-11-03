@@ -217,7 +217,7 @@ Errors like these:
 |🌟Star This Repository if you liked Hazard Nuker!|
 |-------------------------------------------------|
 
-<a href="https://rdimo.github.io/CheatAway/" target="_blank"><img src="https://discordapp.com/api/guilds/864857288584724500/widget.png?style=banner2" alt="Cheataway"/></a>
+<a href="https://rdimo.github.io/CheatAway/" target="_blank"><img src="https://discordapp.com/api/guilds/899560455993966633/widget.png?style=banner2" alt="Cheataway"/></a>
 
 Created by Rdimo#6969 | https://rdimo.github.io/CheatAway
 |⚠️・Hazard Nuker was made for educational purposes・⚠️|
