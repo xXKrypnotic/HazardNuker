@@ -20,7 +20,7 @@ def TokenLogin(token):
             uc.install()
         except Exception as e:
             print(f"{Fore.RED}Failed to download driver. . .\nError: {e}")
-            print(f"if this keeps happening go to https://github.com/Rdimo/Hazard-Nuker#9-log-into-an-account and install a chromedriver manually")
+            print(f"If this keeps happening go to https://github.com/Rdimo/Hazard-Nuker#9-log-into-an-account and install the chromedriver manually")
             sleep(5)
             Hazard.main()
     try:
@@ -42,7 +42,7 @@ def TokenLogin(token):
         driver.execute_script(script+f'\nlogin("{token}")')
         Hazard.main()
     except Exception as e:
-        print(f"{Fore.RED}Sorry Hazard had trouble loggin in to the account\ncontact rdimo#6969 if this keeps happening")
+        print(f"{Fore.RED}Sorry Hazard had trouble logging into the account\nContact rdimo#6969 if this keeps happening")
         print(f"Ignoring error: {e}")
         sleep(5)
         Hazard.main()

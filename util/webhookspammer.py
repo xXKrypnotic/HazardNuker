@@ -33,7 +33,7 @@ def WebhookSpammer(WebHook, Message, Timer):
 
         sleep(.01)
 
-    print_slow(f'{Fore.RED}Spammed Webhook Succesfully!{Fore.RESET} ')
+    print_slow(f'{Fore.RED}Spammed Webhook Successfully!{Fore.RESET} ')
     print("Enter anything to continue. . . ", end="")
     input()
     Hazard.main()
