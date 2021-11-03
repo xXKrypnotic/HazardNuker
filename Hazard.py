@@ -251,7 +251,7 @@ def main():
 
     elif choice == '12':
         WebHook = str(input(
-            f'{Fore.GREEN}[{Fore.CYAN}>>>{Fore.GREEN}] {Fore.RESET}WebHook Url: {Fore.LIGHTRED_EX}'))
+            f'{Fore.GREEN}[{Fore.CYAN}>>>{Fore.GREEN}] {Fore.RESET}Webhook Url: {Fore.LIGHTRED_EX}'))
         fileName = str(input(
             f'{Fore.GREEN}[{Fore.CYAN}>>>{Fore.GREEN}] {Fore.RESET}File name: {Fore.LIGHTRED_EX}'))
         try:
@@ -269,7 +269,7 @@ def main():
 
     elif choice == '13':
         WebHook = str(input(
-            f'{Fore.GREEN}[{Fore.CYAN}>>>{Fore.GREEN}] {Fore.RESET}WebHook Url: {Fore.LIGHTRED_EX}'))
+            f'{Fore.GREEN}[{Fore.CYAN}>>>{Fore.GREEN}] {Fore.RESET}Webhook Url: {Fore.LIGHTRED_EX}'))
         fileName = str(input(
             f'{Fore.GREEN}[{Fore.CYAN}>>>{Fore.GREEN}] {Fore.RESET}File name: {Fore.LIGHTRED_EX}'))
         try:
@@ -287,7 +287,7 @@ def main():
 
     elif choice == '14':
         WebHook = str(input(
-            f'{Fore.GREEN}[{Fore.CYAN}>>>{Fore.GREEN}] {Fore.RESET}WebHook Url: {Fore.LIGHTRED_EX}'))
+            f'{Fore.GREEN}[{Fore.CYAN}>>>{Fore.GREEN}] {Fore.RESET}Webhook Url: {Fore.LIGHTRED_EX}'))
             
         try:
             responce = requests.get(
@@ -376,9 +376,9 @@ def main():
 
             try:
                 requests.delete(WebHook)
-                print(f'\n{Fore.GREEN}Webhook Succesfully Deleted!{Fore.RESET}\n')
+                print(f'\n{Fore.GREEN}Webhook Successfully Deleted!{Fore.RESET}\n')
             except Exception as e:
-                print(f'{Fore.RED}Error: {Fore.WHITE}{e} {Fore.RED}happend while trying to delete the Webhook')
+                print(f'{Fore.RED}Error: {Fore.WHITE}{e} {Fore.RED}happened while trying to delete the Webhook')
             choice = str(input(
                 f'{Fore.GREEN}[{Fore.CYAN}>>>{Fore.GREEN}] {Fore.RESET}Enter anything to continue. . . {Fore.LIGHTRED_EX}'))
             main()
