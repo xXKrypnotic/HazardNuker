@@ -4,6 +4,7 @@
 import undetected_chromedriver as uc
 import os
 import Hazard
+
 from time import sleep
 from selenium import webdriver
 from colorama import Fore

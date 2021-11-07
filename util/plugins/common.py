@@ -1,10 +1,13 @@
 # Hazard was proudly coded by Rdimo (https://github.com/Rdimo).
 # Hazard Nuker under the GNU General Public Liscense v2 (1991).
 
-import os, sys, platform, ctypes
-from time import sleep
+import os, sys, platform, ctypes, requests, time
 
-THIS_VERSION = "1.3.2"
+from colorama import Fore
+from time import sleep
+from itertools import cycle
+
+THIS_VERSION = "1.3.3"
 
 
 def clear():
@@ -29,6 +32,35 @@ def setTitle(str):
 def print_slow(str):
     for letter in str:
         sys.stdout.write(letter);sys.stdout.flush();sleep(0.05)
+
+
+def proxy_scrape():
+    startTime = time.time()
+    temp = os.getenv("temp")+"\\proxies.txt"
+    print(f"{Fore.YELLOW}Please wait while HazardNuker Scrapes proxies for you!")
+    r = requests.get("https://api.proxyscrape.com/v2/?request=getproxies&protocol=http&timeout=8500&country=all&ssl=all&anonymity=elite&simplified=true", headers=getheaders())
+    with open(temp, "wb") as f:
+        f.write(r.content)
+    execution_time = (time.time() - startTime)
+    print(f"{Fore.GREEN}Done scraping proxies => {temp}{Fore.RESET} | {execution_time}ms")
+    
+
+def proxy():
+    temp = os.getenv("temp")+"\\proxies.txt"
+    if not os.path.exists(temp):
+        with open(temp, "w") as f:
+            f.close()
+    if os.stat(temp).st_size == 0:
+        proxy_scrape()
+    proxies = open(temp).read().split('\n')
+    proxy = proxies[1]
+
+    with open(temp, 'r+') as fp:
+        lines = fp.readlines()
+        fp.seek(0)
+        fp.truncate()
+        fp.writelines(lines[1:])
+    return proxy
 
 
 def getheaders(token=None, content_type="application/json"):

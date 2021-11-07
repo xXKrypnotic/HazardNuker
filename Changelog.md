@@ -1,5 +1,14 @@
 <p align= center</p><a href="https://rdimo.github.io/CheatAway/" target="_blank"><img src="https://cdn.discordapp.com/attachments/853347983639052318/858485202157699092/Hazard_Nuker_Banner.png" alt="HazardNuker"></a>
 
+### 2021-11-7, v1.3.3
+* ` New option! Groupchat Spammer (suggestion from JayH4x (https://github.com/Rdimo/Hazard-Nuker/issues/18))`
+* ` Added proxies! dw it auto scrapes proxies for you so the whole proccess is automated`
+* ` Made it web scrape the download url for auto update`
+* ` New setup to make it easier to start hazard`
+* ` Fixed the qr code scanner, since it got patched`
+* ` Fixed bug where the servers wouldn't get left (they won't be deleted, haven't figured out how to fix that one since discord patched it)`
+> **even though I use proxies you might still get ratelimited and I will fix alot better proxies and proxy system for this in the future!**
+
 ### 2021-10-27, v1.3.2
 * ` Fixed Mass Report`
 * ` For those wondering why my github wasn't visible it was because I got flagged for a while but I'm back now and unflagged!`

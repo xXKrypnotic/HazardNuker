@@ -5,10 +5,11 @@ import requests
 import json
 import time
 import Hazard
+
 from time import sleep
 from colorama import Fore
 
-from util.plugins.common import print_slow
+from util.plugins.common import print_slow, proxy
 
 def WebhookSpammer(WebHook, Message, Timer):
     #get the amount of time to spam
@@ -18,6 +19,7 @@ def WebhookSpammer(WebHook, Message, Timer):
     while time.time() < timeout:
         response = requests.post(
             WebHook,
+            proxies={"ftp": f'{proxy()}'},
             json = {"content" : Message},
             params = {'wait' : True}
         )
