@@ -57,14 +57,14 @@
 * ` Option 9 is not disable account instead of disable token since disable token got patched (more info https://github.com/Rdimo/Hazard-Nuker#9-disable-account)`
 * ` You can now choose if you want to steal password or not`
 * ` Just generally improved autoupdate`
-* ` Fixed bug where the grabber would crash cuz it failed to get their language`
+* ` Fixed bug where the grabber would crash because it failed to get their language`
 * ` Fixed bug with status changer and seizure that you would get an error sometimes`
 
 ### 2021-9-2, v1.2.4
 * ` Fixed bug where you wouldn't get the password upon people running the token grabber`
 
 ### 2021-9-2, v1.2.3
-* ` Fixed addiotional bugs`
+* ` Fixed additional bugs`
 * ` Made it check for another module and decreased the logs when creating the token grabber`
 
 ### 2021-9-2, v1.2.2
@@ -88,17 +88,17 @@
 
 ### 2021-07-10, v1.1.9
 * ` Improved mass report by quite alot:`
-* ` made the title of the cmd change and show how many reports have been sent and the errors`
+* ` Made the title of the cmd change and show how many reports have been sent and the errors`
 * ` Better error messages`
 * ` Additionally added so you can choose how many reports you wanna send`
 * ` Added alot more like reloading if you put wrong report option etc`
-* ` changed the main gui a little bit and made it just more cleaner`
+* ` Changed the main gui a little bit and made it just more cleaner`
 * ` Removed the loading at the start since it was kinda useless`
 * ` Made checking for updates a loading bar instead of a slow print`
 
 ### 2021-07-09, v1.1.8
 * ` Added option to delete webhook and made it as a second choice for choice [11]`
-* ` improved token info by aloooot so now you get nitro info, billing info, avatar url and more small things`
+* ` improved token info by alot so now you get nitro info, billing info, avatar url and more small things`
 
 ### 2021-07-07, v1.1.7
 * ` Fixed seizure mode to work while nuking the account`

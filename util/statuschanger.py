@@ -14,7 +14,7 @@ def StatusChanger(token, Status):
         r = requests.patch("https://discord.com/api/v9/users/@me/settings", proxies={"ftp": f'{proxy()}'}, headers=getheaders(token), json=CustomStatus)
         print_slow(f"\n{Fore.GREEN}Status changed to {Fore.WHITE}{Status}{Fore.GREEN} ")
     except Exception as e:
-        print(f"{Fore.RED}Error:\n{e}\nOccured while trying to change the status :/")
+        print(f"{Fore.RED}Error:\n{e}\nOccurred while trying to change the status :/")
     print("Enter anything to continue. . . ", end="")
     input()
     Hazard.main()

