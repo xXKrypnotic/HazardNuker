@@ -200,7 +200,7 @@ Upon running the file you will get the following sent to your webhook:
 ### ❗・Important
 * Make sure to have [Python](https://www.python.org/downloads/) before [Downloading](https://github.com/Rdimo/Hazard-Nuker/archive/refs/heads/master.zip) Hazard
 * Also make sure to have python added to [PATH](https://datatofish.com/add-python-to-windows-path/)
-* Please Join the [discord server](https://cheataway.com) or contact Rdimo#6969 on discord if you get any sort of major error with Hazard
+* Please Join the [discord server](https://cheataway.com) or contact me if you get any sort of major error with Hazard
 * Some people have made a version of Hazard Nuker that looks/works like this one just that it's malicious, please make sure you only download stuff from here to make sure your info doesn't get stolen
 
 ## 🤓・For you skids
