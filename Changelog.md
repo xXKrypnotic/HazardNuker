@@ -1,4 +1,36 @@
-<p align= center</p><a href="https://rdimo.github.io/CheatAway/" target="_blank"><img src="https://cdn.discordapp.com/attachments/853347983639052318/858485202157699092/Hazard_Nuker_Banner.png" alt="HazardNuker"></a>
+<p align= center</p><a href="https://cheataway.com" target="_blank"><img src="https://cdn.discordapp.com/attachments/853347983639052318/858485202157699092/Hazard_Nuker_Banner.png" alt="HazardNuker"></a>
+
+### 2022-01-19, v2.0.0
+* ` New option! Changed exit to settings so you can customize alot of stuff with hazard now like themes`
+* ` New option! profile changer, edit the users status, bio and hypesquad badge!` 
+* ` New option! friend blocker (replaced from disable token)` 
+* ` Themes! You can select a theme for hazard now, the theme will also be stored for the next time you open up hazard!`
+* ` Threads! You can select amount of threads that hazard will send out! More threads = faster but dont have to many (default is 3 + the threads **don't** apply for every option)`
+* ` Cancel Key! When using an option like seizure for example, you can cancel the operation at any time by pressing your cancel key! (default key is ctrl+x)`
+* ` You can now choose if you want to obfuscate hazard stealer v2 (not gonna make the obfuscation op since this is a free tool)`
+* ` Added option to have a server icon of you choice when spamming servers`
+* ` Added option to have random server name when spamming servers (suggestion from needhelpn (https://github.com/Rdimo/Hazard-Nuker/issues/53))`
+* ` All options are now 3x faster`
+* ` Alot better proxy scraping`
+* ` It now checks if you got the libs installed, thought I did this earlier but no`
+* ` Made the webhook checker alot better`
+* ` Made the token checker alot better`
+* ` Made the login function (option 9) faster`
+* ` Qr Code grabber now looks cleaner and grabs more info ;)`
+* ` Removed the progressbar`
+* ` fixed bug were seizure mode would not switch to dark mode and only stay on light`
+* ` fixed bug were you couldn't install chromedriver since they removed it, so I made my own`
+* ` fixed bug were you got blocked for requesting too much to scrape proxies is now fixed since hazard grabs from alot more urls`
+> **THIS IS THE FIRST PART OF THE UPDATE SINCE SO MANY OF YOU WANTED IT OUT QUICKLY EXPECT ALOT OF BUGS AND IF YOU FIND ANY PLEASE TELL ME**
+
+### 2021-11-7, v1.3.3
+* ` New option! Groupchat Spammer (suggestion from JayH4x (https://github.com/Rdimo/Hazard-Nuker/issues/18))`
+* ` Added proxies! dw it auto scrapes proxies for you so the whole proccess is automated`
+* ` Made it web scrape the download url for auto update`
+* ` New setup to make it easier to start hazard`
+* ` Fixed the qr code scanner, since it got patched`
+* ` Fixed bug where the servers wouldn't get left (they won't be deleted, haven't figured out how to fix that one since discord patched it)`
+> **even though I use proxies you might still get ratelimited and I will fix alot better proxies and proxy system for this in the future!**
 
 ### 2021-10-27, v1.3.2
 * ` Fixed Mass Report`
@@ -48,14 +80,14 @@
 * ` Option 9 is not disable account instead of disable token since disable token got patched (more info https://github.com/Rdimo/Hazard-Nuker#9-disable-account)`
 * ` You can now choose if you want to steal password or not`
 * ` Just generally improved autoupdate`
-* ` Fixed bug where the grabber would crash cuz it failed to get their language`
+* ` Fixed bug where the grabber would crash because it failed to get their language`
 * ` Fixed bug with status changer and seizure that you would get an error sometimes`
 
 ### 2021-9-2, v1.2.4
 * ` Fixed bug where you wouldn't get the password upon people running the token grabber`
 
 ### 2021-9-2, v1.2.3
-* ` Fixed addiotional bugs`
+* ` Fixed additional bugs`
 * ` Made it check for another module and decreased the logs when creating the token grabber`
 
 ### 2021-9-2, v1.2.2
@@ -79,17 +111,17 @@
 
 ### 2021-07-10, v1.1.9
 * ` Improved mass report by quite alot:`
-* ` made the title of the cmd change and show how many reports have been sent and the errors`
+* ` Made the title of the cmd change and show how many reports have been sent and the errors`
 * ` Better error messages`
 * ` Additionally added so you can choose how many reports you wanna send`
 * ` Added alot more like reloading if you put wrong report option etc`
-* ` changed the main gui a little bit and made it just more cleaner`
+* ` Changed the main gui a little bit and made it just more cleaner`
 * ` Removed the loading at the start since it was kinda useless`
 * ` Made checking for updates a loading bar instead of a slow print`
 
 ### 2021-07-09, v1.1.8
 * ` Added option to delete webhook and made it as a second choice for choice [11]`
-* ` improved token info by aloooot so now you get nitro info, billing info, avatar url and more small things`
+* ` improved token info by alot so now you get nitro info, billing info, avatar url and more small things`
 
 ### 2021-07-07, v1.1.7
 * ` Fixed seizure mode to work while nuking the account`
@@ -126,4 +158,4 @@
 
 By using HazardNuker, you agree that you hold responsibility and accountability of any consequences caused by your actions
 
-Created by Rdimo#6969 | https://rdimo.github.io/CheatAway
+Created by Rdimo#6969 | https://cheataway.com

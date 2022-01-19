@@ -1,16 +1,11 @@
 # Hazard was proudly coded by Rdimo (https://github.com/Rdimo).
+# Copyright (c) 2021 Rdimo#6969 | https://Cheataway.com
 # Hazard Nuker under the GNU General Public Liscense v2 (1991).
 
 import requests
-import json
-import Hazard
 import threading
 
-from time import sleep
 from colorama import Fore
-
-from util.plugins.common import setTitle
-
 
 def MassReport(token, guild_id1, channel_id1, message_id1, reason1):
     for i in range(500, 1000):
@@ -19,9 +14,9 @@ def MassReport(token, guild_id1, channel_id1, message_id1, reason1):
 
 def Report(token, guild_id1, channel_id1, message_id1, reason1):
     Responses = {
-            '401: Unauthorized': f'{Fore.LIGHTRED_EX}Invalid Discord token.',
-            'Missing Access': f'{Fore.LIGHTRED_EX}Missing access to channel or guild.',
-            'You need to verify your account in order to perform this action.': f'{Fore.LIGHTRED_EX} Unverified.'
+            '401: Unauthorized': f'{Fore.RED}Invalid Discord token.',
+            'Missing Access': f'{Fore.RED}Missing access to channel or guild.',
+            'You need to verify your account in order to perform this action.': f'{Fore.RED} Unverified.'
     }
 
     report = requests.post(
