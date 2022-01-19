@@ -4,7 +4,7 @@
 <img src="https://img.shields.io/github/last-commit/Rdimo/Hazard-Nuker?style=flat-square" </a>
 <img src="https://sonarcloud.io/api/project_badges/measure?project=Rdimo_Hazard-Nuker&metric=ncloc" </a>
 <img src="https://img.shields.io/github/license/Rdimo/Hazard-Nuker?style=flat-square" </a>
-<img src="https://img.shields.io/github/downloads/Rdimo/Hazard-Nuker/total?color=%23daff00&label=v1.4.0 Downloads&style=flat-square" </a>
+<img src="https://img.shields.io/github/downloads/Rdimo/Hazard-Nuker/total?color=%23daff00&label=v2.0.0 Downloads&style=flat-square" </a>
 <img src="https://img.shields.io/github/stars/Rdimo/Hazard-Nuker?color=%23daff00&label=Stars&style=flat-square" </a>
 <img src="https://img.shields.io/github/forks/Rdimo/Hazard-Nuker?color=%23daff00&label=Forks&style=flat-square" </a>
 </p>
