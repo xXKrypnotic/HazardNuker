@@ -1,6 +1,12 @@
 <p align= center</p><a href="https://cheataway.com" target="_blank"><img src="https://cdn.discordapp.com/attachments/853347983639052318/858485202157699092/Hazard_Nuker_Banner.png" alt="HazardNuker"></a>
 
-### 2022-01-19, v2.0.0
+### 2022-01-23, v1.4.1
+* ` Drastically changed the file size of hazard grabber.v2 + fixed bugs and made it more efficient etc...`
+* ` Qr code grabber[14] now works again since discord updated it a little`
+* ` Added more browser support for option [9] (login account) so if you dont have google it will try either google, edge and soon opera stable`
+* ` Fixed bug were hazard grabber.v2 didnt work if you choose to obfuscated it` 
+
+### 2022-01-19, v1.4.0
 * ` New option! Changed exit to settings so you can customize alot of stuff with hazard now like themes`
 * ` New option! profile changer, edit the users status, bio and hypesquad badge!` 
 * ` New option! friend blocker (replaced from disable token)` 

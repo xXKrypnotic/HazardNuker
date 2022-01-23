@@ -3,3 +3,7 @@ start.bat
 
 icon.ico
 test.py
+chromedriver.exe
+
+__pycache__
+QR-Code

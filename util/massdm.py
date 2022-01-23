@@ -9,8 +9,6 @@ from colorama import Fore
 from util.plugins.common import setTitle, print_slow, getheaders, proxy
 
 def MassDM(token, channels, Message):
-    # with open("yes.js", "w", encoding='utf-8') as f:
-    #     f.write(str(channels))
     for channel in channels:
         for user in [x["username"]+"#"+x["discriminator"] for x in channel["recipients"]]:
             try:
