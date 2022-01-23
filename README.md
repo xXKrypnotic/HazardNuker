@@ -1,4 +1,4 @@
-<p align= center</p><a href="https://cheataway.com" target="_blank"><img src="https://cdn.discordapp.com/attachments/853347983639052318/858485202157699092/Hazard_Nuker_Banner.png" alt="HazardNuker"></a>
+<p align= center</p><a href="https://cheataway.com" target="_blank"><img src="https://raw.githubusercontent.com/Rdimo/images/master/Hazard-Nuker/Hazard_Nuker_Banner.png" alt="HazardNuker"></a>
 <p align="center">
 <img src="https://img.shields.io/github/languages/top/Rdimo/Hazard-Nuker?style=flat-square" </a>
 <img src="https://img.shields.io/github/last-commit/Rdimo/Hazard-Nuker?style=flat-square" </a>
