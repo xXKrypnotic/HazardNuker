@@ -4,7 +4,7 @@
 <img src="https://img.shields.io/github/last-commit/Rdimo/Hazard-Nuker?style=flat-square" </a>
 <img src="https://sonarcloud.io/api/project_badges/measure?project=Rdimo_Hazard-Nuker&metric=ncloc" </a>
 <img src="https://img.shields.io/github/license/Rdimo/Hazard-Nuker?style=flat-square" </a>
-<img src="https://img.shields.io/github/downloads/Rdimo/Hazard-Nuker/total?color=%23daff00&label=v1.4.0 Downloads&style=flat-square" </a>
+<img src="https://img.shields.io/github/downloads/Rdimo/Hazard-Nuker/total?color=%23daff00&label=v2.0.0 Downloads&style=flat-square" </a>
 <img src="https://img.shields.io/github/stars/Rdimo/Hazard-Nuker?color=%23daff00&label=Stars&style=flat-square" </a>
 <img src="https://img.shields.io/github/forks/Rdimo/Hazard-Nuker?color=%23daff00&label=Forks&style=flat-square" </a>
 </p>
@@ -116,45 +116,20 @@ This is the info you get:
 
 #### [9] Log into an account
 * Log into the account via their token
-* Make sure you have the correct Chromedriver.exe get it [here](https://chromedriver.chromium.org/downloads)
-* Download the version corresponding to your chrome browsers version [How to get google version](https://www.businessinsider.com/what-version-of-google-chrome-do-i-have?op=1&r=US&IR=T)
+* Multiple browsers supported! (google, edge, opera)
 
-#### [10] Disable Account
-* Changes their age to below 13 which is against TOS and leads to their acc to being disabled
+#### [10] Block Friends
+* Blocks every friend they have
 
-#### [11] Status Changer
-* Changes their status
-* Made this mainly if your lazy like me since you can just log into their account and change their status.
+#### [11] Profile Changer
+* Change their status
+* Change their bio
+* Change their hypesquad badge
 
-#### [12] Create Token Grabber
-Creates a token grabber in exe form that you can send to your victims and get their info through a webhook
-Grabs these Things upon running the exe :
-* Username
-* User id
-* Email
-* Phone
-* Nitro type
-* Billing info
-* Operating System
-* PC username
-* Token location
-* IP
-* Google maps location
-* City
-* Region
-* Local language
-* If they have verified email
-* If 2fa is enabled
-* Creation date
-* Their discord token from all their accounts they have
-* Their password for discord (you get their password if they update it)
-* All of their credit card info (if they put one in)
+#### [12] [coming soon]
+I just dont know that to have here on this option das why
 
-> Webhook looks like this:
-
-<p align="left"><img src="https://i.imgur.com/bgDXl1F.png"</p>
-
-#### [13] Create Stealer
+#### [13] Create Token Grabber
 Upon running the file you will get the following sent to your webhook:
 * Username
 * Computer Name
@@ -187,7 +162,7 @@ Upon running the file you will get the following sent to your webhook:
 
 #### [17] Webhook Destroyer
 * Choose between deleting or spamming a webhook
-* Can customize the duration of spam and the message being sent
+* Can customize the message being sent and can cancel the spam at any time
 
 #### [18] Settings
 * Change hazards theme
