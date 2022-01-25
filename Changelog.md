@@ -1,5 +1,9 @@
 <p align= center</p><a href="https://cheataway.com" target="_blank"><img src="https://cdn.discordapp.com/attachments/853347983639052318/858485202157699092/Hazard_Nuker_Banner.png" alt="HazardNuker"></a>
 
+### 2022-01-25, v1.4.2
+* ` Finished option 11`
+* ` So now you can change the users bio and hypesquad badge`
+
 ### 2022-01-23, v1.4.1
 * ` Drastically changed the file size of hazard grabber.v2 + fixed bugs and made it more efficient etc...`
 * ` Qr code grabber[14] now works again since discord updated it a little`
