@@ -15,8 +15,6 @@
 <a href="https://cheataway.com">Discord</a>
 </p>
 
-### 🌟Since hazard is free, donations are really appriciate and keeps the development up!
-
 ---
 
 #### Hazard Nuker was made by
