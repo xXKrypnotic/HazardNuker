@@ -267,7 +267,7 @@ def setTitle(_str):
         ctypes.windll.kernel32.SetConsoleTitleW(f"{_str} | Made By Rdimo#6969")
     elif system == 'posix':
         #if its linux
-        os.system(f"\033]0;{_str} | Made By Rdimo#6969\a", end='', flush=True)
+        sys.stdout.write(f"\x1b]0;{_str} | Made By Rdimo#6969\x07")
     else:
         #if its something else or some err happend for some reason, we do nothing
         pass
