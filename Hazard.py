@@ -498,7 +498,7 @@ if __name__ == "__main__":
         sleep(1.5)
         main()
     try:
-        assert sys.version_info >= (3,7)
+        assert sys.version_info >= (3,8)
     except AssertionError:
         print(f"{Fore.RED}Woopsie daisy, your python version ({sys.version_info[0]}.{sys.version_info[1]}.{sys.version_info[2]}) is not compatible with hazard nuker, please download python 3.7+")
         sleep(5)
