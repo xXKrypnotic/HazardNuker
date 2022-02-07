@@ -3,10 +3,9 @@
 # Hazard Nuker under the GNU General Public Liscense v2 (1991).
 
 import requests
-import Hazard
 
 from colorama import Fore
-from util.plugins.common import setTitle, print_slow, getheaders, proxy
+from util.plugins.common import setTitle, proxy
 
 def MassDM(token, channels, Message):
     for channel in channels:

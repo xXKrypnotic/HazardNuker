@@ -3,11 +3,10 @@
 # Hazard Nuker under the GNU General Public Liscense v2 (1991).
 
 import requests
-import Hazard
 
 from colorama import Fore
 
-from util.plugins.common import print_slow, getheaders, proxy
+from util.plugins.common import getheaders, proxy
 
 def Leaver(token, guilds):
     for guild in guilds:

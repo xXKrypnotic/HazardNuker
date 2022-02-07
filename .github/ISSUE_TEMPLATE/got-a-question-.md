@@ -1,6 +1,6 @@
 ---
 name: Got a question?
-about: if you got anything you want to ask, do so here!
+about: If you got anything you want to ask, do so here!
 title: ''
 labels: question
 assignees: ''

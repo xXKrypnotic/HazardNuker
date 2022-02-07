@@ -9,7 +9,7 @@ import Hazard
 from time import sleep
 from colorama import Fore
 
-from util.plugins.common import print_slow, setTitle, getheaders, proxy
+from util.plugins.common import SlowPrint, setTitle, getheaders, proxy
 
 def selector(token, users):
     while True:
@@ -73,7 +73,7 @@ def GcSpammer(token):
             print(f"\n{Fore.RED}You didn't have any commas (,) format is id,id2,id3")
             sleep(3)
             Hazard.main()
-        print_slow("\"ctrl + c\" at anytime to stop\n")
+        SlowPrint("\"ctrl + c\" at anytime to stop\n")
         sleep(1.5)
         selector(token, user)
 
@@ -85,6 +85,6 @@ def GcSpammer(token):
         friendIds = requests.get("https://discord.com/api/v9/users/@me/relationships", proxies={"http": f'http://{proxy()}'}, headers=getheaders(token)).json()
         for friend in friendIds:
             IDs.append(friend['id'])
-        print_slow("\"ctrl + c\" at anytime to stop\n")
+        SlowPrint("\"ctrl + c\" at anytime to stop\n")
         sleep(1.5)
         randomizer(token, IDs)

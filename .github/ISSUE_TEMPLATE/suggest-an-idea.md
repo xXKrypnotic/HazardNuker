@@ -1,6 +1,6 @@
 ---
 name: Suggest an idea
-about: Got any Ideas to improve Hazard Nuker? Type them here!
+about: Got any Ideas to improve Hazard Nuker? Or want to see a feature getting added? Type them here!
 title: Hazard Nuker [ENHANCEMENT]
 labels: enhancement
 assignees: ''

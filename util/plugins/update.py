@@ -40,8 +40,8 @@ def search_for_updates():
                 ██║ ╚████║███████╗╚███╔███╔╝    ╚██████╔╝██║     ██████╔╝██║  ██║   ██║   ███████╗██╗
                 ╚═╝  ╚═══╝╚══════╝ ╚══╝╚══╝      ╚═════╝ ╚═╝     ╚═════╝ ╚═╝  ╚═╝   ╚═╝   ╚══════╝╚═╝
                               {Fore.RED}Looks like this Hazard Nuker {THIS_VERSION} is outdated '''.replace('█', f'{Fore.WHITE}█{Fore.RED}'), end="\n\n")
-        choice = str(input(
-            f'{Fore.GREEN}[{Fore.YELLOW}>>>{Fore.GREEN}] {Fore.RESET}You want to update to the latest version? (Y to update): {Fore.RED}'))
+        choice = input(
+            f'{Fore.GREEN}[{Fore.YELLOW}>>>{Fore.GREEN}] {Fore.RESET}You want to update to the latest version? (Y to update): {Fore.RED}')
 
         if choice.upper() == 'Y':
             print(f"{Fore.WHITE}\nUpdating. . .")
@@ -70,9 +70,9 @@ def search_for_updates():
                     sleep(10)
             #if they are running hazard source code
             else:
-                new_version_soure = requests.get("https://github.com/Rdimo/Hazard-Nuker/archive/refs/heads/master.zip")
+                new_version_source = requests.get("https://github.com/Rdimo/Hazard-Nuker/archive/refs/heads/master.zip")
                 with open("Hazard-Nuker-master.zip", 'wb')as zipfile:
-                    zipfile.write(new_version_soure.content)
+                    zipfile.write(new_version_source.content)
                 with ZipFile("Hazard-Nuker-master.zip", 'r') as filezip:
                     filezip.extractall()
                 os.remove("Hazard-Nuker-master.zip")
@@ -83,7 +83,7 @@ def search_for_updates():
                     setTitle('Hazard Nuker Update Complete!')
                     print(f"{Fore.GREEN}Update Successfully Finished!")
                     sleep(1)
-                    os.startfile("run.bat")
+                    os.startfile("start.bat")
                     sys.exit()
                 except PermissionError as err:
                     clear()

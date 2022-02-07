@@ -8,10 +8,10 @@ import Hazard
 from time import sleep
 from colorama import Fore
 
-from util.plugins.common import print_slow, proxy
+from util.plugins.common import SlowPrint, proxy
 
 def WebhookSpammer(WebHook, Message):
-    print_slow("\"ctrl + c\" at anytime to stop\n")
+    SlowPrint("\"ctrl + c\" at anytime to stop\n")
     sleep(1.5)
     #spam the webhook with the message 
     while True:
@@ -36,7 +36,7 @@ def WebhookSpammer(WebHook, Message):
         except KeyboardInterrupt:
             break
 
-    print_slow(f'{Fore.RED}Spammed Webhook Successfully!{Fore.RESET} ')
+    SlowPrint(f'{Fore.RED}Spammed Webhook Successfully!{Fore.RESET} ')
     print("Enter anything to continue. . . ", end="")
     input()
     Hazard.main()

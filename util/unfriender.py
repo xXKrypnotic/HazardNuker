@@ -3,12 +3,10 @@
 # Hazard Nuker under the GNU General Public Liscense v2 (1991).
 
 import requests
-import json
-import Hazard
 
 from colorama import Fore
 
-from util.plugins.common import print_slow, getheaders, proxy
+from util.plugins.common import getheaders, proxy
 
 def UnFriender(token, friends):
     for friend in friends:

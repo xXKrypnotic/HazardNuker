@@ -10,7 +10,7 @@ import random
 from itertools import cycle
 from colorama import Fore
 
-from util.plugins.common import print_slow, setTitle, getheaders, proxy
+from util.plugins.common import SlowPrint, setTitle, getheaders, proxy
 
 def Hazard_Nuke(token, Server_Name, message_Content):
     setTitle("Deploying Hazardous Nuke")
@@ -92,7 +92,7 @@ def Hazard_Nuke(token, Server_Name, message_Content):
     j = requests.get("https://discordapp.com/api/v9/users/@me", proxies={"http": f'{proxy()}'}, headers=getheaders(token)).json()
     a = j['username'] + "#" + j['discriminator']
     setTitle(f"Hazard Nuke Successfully Detonated!")
-    print_slow(f"{Fore.GREEN}Succesfully turned {a} into a Hazardous Wasteland ")
+    SlowPrint(f"{Fore.GREEN}Succesfully turned {a} into a Hazardous Wasteland ")
     print("Enter anything to continue. . . ", end="")
     input()
     Hazard.main()

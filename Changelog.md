@@ -1,5 +1,14 @@
 <p align= center</p><a href="https://cheataway.com" target="_blank"><img src="https://cdn.discordapp.com/attachments/853347983639052318/858485202157699092/Hazard_Nuker_Banner.png" alt="HazardNuker"></a>
 
+### 2022-02-07, v1.4.3
+* ` Checks if the token is phone locked now`
+* ` Removed the cancel key for every options except seizure because it really had no use and don't think anyone gonna stop mid server spamming`
+* ` Neon theme looks better now, the old one was ass`
+* ` Some errors are more clearer now, and easier to traceback`
+* ` Added opera stable browser support`
+* ` Fixed the threading a bit and improved it`
+* ` General bug fixes`
+
 ### 2022-01-25, v1.4.2
 * ` Finished option 11`
 * ` So now you can change the users bio and hypesquad badge`
