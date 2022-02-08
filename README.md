@@ -36,6 +36,7 @@ Code ✅
 
 * ` Many options while being compact`
 * ` Auto update`
+* ` Noob friendly (hopefully)`
 * ` Easy and fast`
 * ` Linux Support!`
 * ` Nuke a targetted account`
