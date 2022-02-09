@@ -202,7 +202,9 @@ $ cd Hazard-Nuker
 $ start setup.bat
 ```
 
-|🌟Star This Repository if you liked Hazard Nuker!|
+◤◢◣◥◤◢◣◥◤◢◣◥◤◢◣◥◤◢◣◥◤◢◣◥◤◢◣◥◤◢◣◥◤◢◣◥◤◢◣◥◤◢◣◥◤◢◣◥◤◢◣◥◤◢◣◥◤◢◣◥◤◢◣◥◤◢◣◥◤◢◣◥
+
+|🌟Star This Repository if you liked Hazard Nuker ˙ᵕ˙|
 |-------------------------------------------------|
 
 <a href="https://cheataway.com" target="_blank"><img src="https://discordapp.com/api/guilds/899560455993966633/widget.png?style=banner2" alt="Cheataway"/></a>
