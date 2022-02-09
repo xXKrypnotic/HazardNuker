@@ -23,7 +23,7 @@
 Love ❌
 Code ✅
 
-### Features
+#  ㅤㅤ ㅤㅤ ㅤㅤ ㅤㅤ ㅤㅤFeatures
 * `Settings | Theme changer, Thread amount, Cancel key`
 <p align="left">
  <img alt="theme1" src="https://raw.githubusercontent.com/Rdimo/images/master/Hazard-Nuker/theme1.png" width="10%">
