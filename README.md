@@ -23,17 +23,15 @@
 Love ❌
 Code ✅
 
-#  ㅤㅤ ㅤㅤ ㅤㅤ ㅤㅤ ㅤㅤFeatures
-* `Settings | Theme changer, Thread amount, Cancel key`
-<p align="left">
+#  ㅤㅤ ㅤㅤ ㅤㅤ ㅤㅤ ㅤFeatures
+<p align="center">
  <img alt="theme1" src="https://raw.githubusercontent.com/Rdimo/images/master/Hazard-Nuker/theme1.png" width="10%">
  <img alt="theme2" src="https://raw.githubusercontent.com/Rdimo/images/master/Hazard-Nuker/theme2.png" width="10%">
-</p>
-<p align="left">
  <img alt="theme3" src="https://raw.githubusercontent.com/Rdimo/images/master/Hazard-Nuker/theme3.png" width="10%">
  <img alt="theme4" src="https://raw.githubusercontent.com/Rdimo/images/master/Hazard-Nuker/theme4.png" width="10%">
 </p>
 
+* ` Settings | Theme changer, Thread amount, Cancel key`
 * ` Many options while being compact`
 * ` Auto update`
 * ` Noob friendly (hopefully)`
