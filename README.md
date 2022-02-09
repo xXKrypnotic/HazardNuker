@@ -197,9 +197,9 @@ Open HazardNuker.exe
 ```
 download git: https://git-scm.com/downloads
 open cmd in chosen folder and type:
-git clone https://github.com/Rdimo/Hazard-Nuker.git
-cd Hazard-Nuker
-start setup.bat
+$ git clone https://github.com/Rdimo/Hazard-Nuker.git
+$ cd Hazard-Nuker
+$ start setup.bat
 ```
 
 |🌟Star This Repository if you liked Hazard Nuker!|
