@@ -23,7 +23,7 @@
 Love ❌
 Code ✅
 
-#  ㅤㅤ ㅤㅤ ㅤㅤ ㅤㅤ ㅤFeatures
+#  ㅤㅤ ㅤㅤ ㅤㅤ ㅤㅤ ㅤㅤFeatures
 <p align="center">
  <img alt="theme1" src="https://raw.githubusercontent.com/Rdimo/images/master/Hazard-Nuker/theme1.png" width="20%">
  <img alt="theme2" src="https://raw.githubusercontent.com/Rdimo/images/master/Hazard-Nuker/theme2.png" width="20%">
