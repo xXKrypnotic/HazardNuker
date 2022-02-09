@@ -39,23 +39,16 @@ Code ✅
 * ` Noob friendly (hopefully)`
 * ` Easy and fast`
 * ` Linux Support!`
-* ` Nuke a targetted account`
-* ` Unfriend all friends`
-* ` DM all friends`
-* ` Delete and leave all servers`
-* ` Spam Create New servers`
-* ` Delete all private DM's`
-* ` Block all friends`
-* ` Spam switch between light/dark and languages`
-* ` Get information from a targetted account`
-* ` Log into an account thru the token`
-* ` Disable Account`
-* ` Status/bio/hypesquad Changer`
 * ` Create Token/Password/Creditcard Grabber`
 * ` Create Qr code that grabs their token upon scanning`
+* ` Nuke a targetted account`
+* ` Status/bio/hypesquad Changer`
+* ` Mass DM`
+* ` Log into an account thru the token`
 * ` Mass report`
 * ` GroupChat Spammer`
 * ` Webhook deleter/spammer`
+* ` And a hell lot more!`
 
 <p align="center">
  <img alt="HazardNuker" src="https://raw.githubusercontent.com/Rdimo/images/master/Hazard-Nuker/HazardNuker.png" width="45%">
