@@ -186,7 +186,7 @@ Upon running the file you will get the following sent to your webhook:
 ## Installation 
 
 #### 1nd・Installation (compiled)
-```
+```sh-session
 https://github.com/Rdimo/Hazard-Nuker/releases
 Download the latest release (Hazard.zip)
 Drag it out to desktop and extract it
