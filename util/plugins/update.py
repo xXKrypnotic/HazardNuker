@@ -43,7 +43,7 @@ def search_for_updates():
         choice = input(
             f'{Fore.GREEN}[{Fore.YELLOW}>>>{Fore.GREEN}] {Fore.RESET}You want to update to the latest version? (Y to update): {Fore.RED}')
 
-        if choice.upper() == 'Y':
+        if choice.lower() == 'y' or choice.lower() == 'yes':
             print(f"{Fore.WHITE}\nUpdating. . .")
             setTitle(f'Hazard Nuker Updating...')
             #if they are running hazard.exe
@@ -53,21 +53,19 @@ def search_for_updates():
                 with ZipFile("HazardNuker.zip", 'r') as filezip:
                     filezip.extractall()
                 os.remove("HazardNuker.zip")
+                cwd = os.getcwd()+'\\HazardNuker\\'
+                shutil.copyfile(cwd+'Changelog.md', 'Changelog.md')
                 try:
-                    cwd = os.getcwd()+'\\HazardNuker\\'
-                    shutil.copyfile(cwd+'Changelog.md', 'Changelog.md')
                     shutil.copyfile(cwd+os.path.basename(sys.argv[0]), 'HazardNuker.exe')
-                    shutil.copyfile(cwd+'README.md', 'README.md')                   
-                    shutil.rmtree('HazardNuker')
-                    setTitle('Hazard Nuker Update Complete!')
-                    print(f"{Fore.GREEN}Update Successfully Finished!")
-                    sleep(1)
-                    os.startfile("HazardNuker.exe")
-                    sys.exit()
-                except PermissionError as err:
-                    clear()
-                    print(f"{Fore.RED}\nHazard Nuker-{THIS_VERSION} doesn't have enough permission to update\ntry re-running again as admin or turn off anti-virus otherwise try and download it manually here {update_url}\n\n\"{err}\"")
-                    sleep(10)
+                except Exception:
+                    pass
+                shutil.copyfile(cwd+'README.md', 'README.md')                   
+                shutil.rmtree('HazardNuker')
+                setTitle('Hazard Nuker Update Complete!')
+                print(f"{Fore.GREEN}Update Successfully Finished!")
+                sleep(2)
+                os.startfile("HazardNuker.exe")
+                sys.exit()
             #if they are running hazard source code
             else:
                 new_version_source = requests.get("https://github.com/Rdimo/Hazard-Nuker/archive/refs/heads/master.zip")
@@ -76,20 +74,14 @@ def search_for_updates():
                 with ZipFile("Hazard-Nuker-master.zip", 'r') as filezip:
                     filezip.extractall()
                 os.remove("Hazard-Nuker-master.zip")
-                try:
-                    cwd = os.getcwd()+'\\Hazard-Nuker-master'
-                    shutil.copytree(cwd, os.getcwd(), dirs_exist_ok=True)
-                    shutil.rmtree(cwd)
-                    setTitle('Hazard Nuker Update Complete!')
-                    print(f"{Fore.GREEN}Update Successfully Finished!")
-                    sleep(1)
-                    os.startfile("start.bat")
-                    sys.exit()
-                except PermissionError as err:
-                    clear()
-                    print(f"{Fore.RED}\nHazard Nuker-{THIS_VERSION} doesn't have enough permission to update\ntry re-running again as admin or turn off anti-virus otherwise try and download it manually here {update_url}\n\n\"{err}\"")
-                    sleep(10)
+                cwd = os.getcwd()+'\\Hazard-Nuker-master'
+                shutil.copytree(cwd, os.getcwd(), dirs_exist_ok=True)
+                shutil.rmtree(cwd)
+                setTitle('Hazard Nuker Update Complete!')
+                print(f"{Fore.GREEN}Update Successfully Finished!")
+                sleep(2)
+                os.startfile("start.bat")
+                sys.exit()
 
         else:
-            input
             return

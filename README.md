@@ -17,42 +17,36 @@
 
 ---
 
+### ㅤㅤNOTE・HAZARD IS *NOT* DONE SO EXPECT BUGS AND NON-WORKING FUNCTIONS
+ㅤ
 #### Hazard Nuker was made by
 Love ❌
 Code ✅
 
-### Features
-* `Settings | Theme changer, Thread amount, Cancel key`
-<p align="left">
- <img alt="theme1" src="https://raw.githubusercontent.com/Rdimo/images/master/Hazard-Nuker/theme1.png" width="10%">
- <img alt="theme2" src="https://raw.githubusercontent.com/Rdimo/images/master/Hazard-Nuker/theme2.png" width="10%">
-</p>
-<p align="left">
- <img alt="theme3" src="https://raw.githubusercontent.com/Rdimo/images/master/Hazard-Nuker/theme3.png" width="10%">
- <img alt="theme4" src="https://raw.githubusercontent.com/Rdimo/images/master/Hazard-Nuker/theme4.png" width="10%">
+#  ㅤㅤ ㅤㅤ ㅤㅤ ㅤㅤ ㅤㅤFeatures
+<p align="center">
+ <img alt="theme1" src="https://raw.githubusercontent.com/Rdimo/images/master/Hazard-Nuker/theme1.png" width="20%">
+ <img alt="theme2" src="https://raw.githubusercontent.com/Rdimo/images/master/Hazard-Nuker/theme2.png" width="20%">
+ <img alt="theme3" src="https://raw.githubusercontent.com/Rdimo/images/master/Hazard-Nuker/theme3.png" width="20%">
+ <img alt="theme4" src="https://raw.githubusercontent.com/Rdimo/images/master/Hazard-Nuker/theme4.png" width="20%">
 </p>
 
+* ` Settings | Theme changer, Thread amount, Cancel key`
 * ` Many options while being compact`
 * ` Auto update`
+* ` Noob friendly (hopefully)`
 * ` Easy and fast`
 * ` Linux Support!`
-* ` Nuke a targetted account`
-* ` Unfriend all friends`
-* ` DM all friends`
-* ` Delete and leave all servers`
-* ` Spam Create New servers`
-* ` Delete all private DM's`
-* ` Block all friends`
-* ` Spam switch between light/dark and languages`
-* ` Get information from a targetted account`
-* ` Log into an account thru the token`
-* ` Disable Account`
-* ` Status/bio/hypesquad Changer`
 * ` Create Token/Password/Creditcard Grabber`
 * ` Create Qr code that grabs their token upon scanning`
+* ` Nuke a targetted account`
+* ` Status/bio/hypesquad Changer`
+* ` Mass DM`
+* ` Log into an account thru the token`
 * ` Mass report`
 * ` GroupChat Spammer`
 * ` Webhook deleter/spammer`
+* ` And a hell lot more!`
 
 <p align="center">
  <img alt="HazardNuker" src="https://raw.githubusercontent.com/Rdimo/images/master/Hazard-Nuker/HazardNuker.png" width="45%">
@@ -192,7 +186,7 @@ Upon running the file you will get the following sent to your webhook:
 ## Installation 
 
 #### 1nd・Installation (compiled)
-```
+```sh-session
 https://github.com/Rdimo/Hazard-Nuker/releases
 Download the latest release (Hazard.zip)
 Drag it out to desktop and extract it
@@ -203,12 +197,14 @@ Open HazardNuker.exe
 ```
 download git: https://git-scm.com/downloads
 open cmd in chosen folder and type:
-git clone https://github.com/Rdimo/Hazard-Nuker.git
-cd Hazard-Nuker
-start setup.bat
+$ git clone https://github.com/Rdimo/Hazard-Nuker.git
+$ cd Hazard-Nuker
+$ start setup.bat
 ```
 
-|🌟Star This Repository if you liked Hazard Nuker!|
+◤◢◣◥◤◢◣◥◤◢◣◥◤◢◣◥◤◢◣◥◤◢◣◥◤◢◣◥◤◢◣◥◤◢◣◥◤◢◣◥◤◢◣◥◤◢◣◥◤◢◣◥◤◢◣◥◤◢◣◥
+
+|🌟Star This Repository if you liked Hazard Nuker ˙ᵕ˙|
 |-------------------------------------------------|
 
 <a href="https://cheataway.com" target="_blank"><img src="https://discordapp.com/api/guilds/899560455993966633/widget.png?style=banner2" alt="Cheataway"/></a>

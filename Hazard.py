@@ -3,15 +3,8 @@
 # Hazard Nuker under the GNU General Public Liscense v2 (1991).
 
 import multiprocessing
-import threading
-import requests
 import keyboard
 import base64
-import os
-
-from time import sleep
-from colorama import Fore
-from signal import signal, SIGINT
 
 from util.plugins.common import *
 from util.plugins.update import search_for_updates
@@ -89,6 +82,7 @@ def main():
             processes.append(t)
         for process in processes:
             process.join()
+        input(f'{Fore.GREEN}[{Fore.CYAN}>>>{Fore.GREEN}] {Fore.RESET}Enter anything to continue. . . {Fore.RED}')
         sleep(1.5)
         main()
 
@@ -113,6 +107,7 @@ def main():
             processes.append(t)
         for process in processes:
             process.join()
+        input(f'{Fore.GREEN}[{Fore.CYAN}>>>{Fore.GREEN}] {Fore.RESET}Enter anything to continue. . . {Fore.RED}')
         sleep(1.5)
         main()
                 
@@ -154,6 +149,7 @@ def main():
                 processes.append(t)
             for process in processes:
                 process.join()
+            input(f'{Fore.GREEN}[{Fore.CYAN}>>>{Fore.GREEN}] {Fore.RESET}Enter anything to continue. . . {Fore.RED}')
             sleep(1.5)
             main()
 
@@ -167,6 +163,7 @@ def main():
                 processes.append(t)
             for process in processes:
                 process.join()
+            input(f'{Fore.GREEN}[{Fore.CYAN}>>>{Fore.GREEN}] {Fore.RESET}Enter anything to continue. . . {Fore.RED}')
             sleep(1.5)
             main()
 
@@ -187,6 +184,7 @@ def main():
                 processes.append(t)
         for process in processes:
             process.join()
+        input(f'{Fore.GREEN}[{Fore.CYAN}>>>{Fore.GREEN}] {Fore.RESET}Enter anything to continue. . . {Fore.RED}')
         sleep(1.5)
         main()
 
@@ -207,6 +205,9 @@ def main():
             t = threading.Thread(target=util.massdm.MassDM, args=(token, channel, message))
             t.start()
             processes.append(t)
+        for process in processes:
+            process.join()
+        input(f'{Fore.GREEN}[{Fore.CYAN}>>>{Fore.GREEN}] {Fore.RESET}Enter anything to continue. . . {Fore.RED}')
         sleep(1.5)
         main()
 
@@ -258,6 +259,7 @@ def main():
             processes.append(t)
         for process in processes:
             process.join()
+        input(f'{Fore.GREEN}[{Fore.CYAN}>>>{Fore.GREEN}] {Fore.RESET}Enter anything to continue. . . {Fore.RED}')
         sleep(1.5)
         main()
 
@@ -490,7 +492,7 @@ ctrl, shift, enter, esc, windows, left shift, right shift, left ctrl, right ctrl
             setTitle("Exiting. . .")
             choice = input(
                 f'{Fore.GREEN}[{Fore.CYAN}>>>{Fore.GREEN}] {Fore.RESET}Are you sure you want to exit? (Y to confirm): {Fore.RED}')
-            if choice.upper() == 'Y':
+            if choice.lower() == 'y' or choice.lower() == 'yes':
                 clear()
                 os._exit(0)
             else:
@@ -500,11 +502,6 @@ ctrl, shift, enter, esc, windows, left shift, right shift, left ctrl, right ctrl
         main()
 
 if __name__ == "__main__":
-    def handler(signal, frame):
-        print(Fore.RED + "\n\nGoodbye!" + Fore.RESET)
-        sleep(3)
-        os._exit(0)
-    signal(SIGINT, handler)
     import sys
     if os.path.basename(sys.argv[0]).endswith("exe"):
         search_for_updates()

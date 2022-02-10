@@ -22,7 +22,7 @@ from bs4 import BeautifulSoup
 from colorama import Fore
 from time import sleep
 
-THIS_VERSION = "1.4.3"
+THIS_VERSION = "1.4.4"
 
 
 google_target_ver = 0
@@ -233,10 +233,6 @@ class Opera_Installer(object):
         os.remove(driver_name)
         shutil.rmtree(driver_name[:-4])
 
-# class Error(Exception):
-#     '''Just for clearer errors'''
-#     pass
-
 def getDriver():
     #supported drivers
     drivers = ["chromedriver.exe", "msedgedriver.exe", "operadriver.exe"]
@@ -314,24 +310,13 @@ def installPackage(dependencies):
         if lib not in installed_packages.lower():
             #install the lib if it wasn't found
             print(f"{Fore.BLUE}{lib}{Fore.RED} not found! Installing it for you. . .{Fore.RESET}")
-            process = subprocess.Popen(f"where python", stdout=subprocess.PIPE, stderr=subprocess.STDOUT, stdin=subprocess.DEVNULL)
             try:
-                python = process.communicate()[0].decode().split()[0]
-                #if no python was found, or not installed
-            except (KeyError, IndexError):
-                print(f'{Fore.RESET}[{Fore.RED}Error{Fore.RESET}] : Python was not found or isn\'t installed on this device\n{Fore.YELLOW}Please install it here {Fore.RESET}-> {Fore.BLUE}https://www.python.org{Fore.RESET}')
-                sleep(2)
-                SlowPrint("Enter anything to continue. . . ")
-                input()
-                os._exit(0)
-            try:
-                if "microsoft" in python[0].lower(): python = python[1] #this can easily be improved but too lazy
-                if python == "": python = "python"
-                subprocess.check_call([python, '-m', 'pip', 'install', lib])
+                subprocess.check_call(['pip', 'install', lib])
             #incase something goes wrong we notify the user that something happend
             except Exception as e:
-                print(f'{Fore.RESET}[{Fore.RED}Error{Fore.RESET}] : {e}')
+                print(f"{Fore.RESET}[{Fore.RED}Error{Fore.RESET}] : {e}")
                 sleep(0.5)
+                pass
 
 def hasNitroBoost(token):
     '''return True if they got nitro boost and False if they don't'''
