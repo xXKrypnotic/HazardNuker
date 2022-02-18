@@ -36,7 +36,7 @@ Code ✅
 * ` Auto update`
 * ` Noob friendly (hopefully)`
 * ` Easy and fast`
-* ` Linux Support!`
+* ` Linux Support! (kinda)`
 * ` Create Token/Password/Creditcard Grabber`
 * ` Create Qr code that grabs their token upon scanning`
 * ` Nuke a targetted account`
