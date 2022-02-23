@@ -1,5 +1,8 @@
 <p align= center</p><a href="https://cheataway.com" target="_blank"><img src="https://cdn.discordapp.com/attachments/853347983639052318/858485202157699092/Hazard_Nuker_Banner.png" alt="HazardNuker"></a>
 
+### 2022-02-10, v1.4.5
+* ` Fixed a big bug with the token grabber creator`
+
 ### 2022-02-10, v1.4.4
 * ` Just bug fixes`
 

