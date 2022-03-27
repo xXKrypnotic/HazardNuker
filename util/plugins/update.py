@@ -26,11 +26,6 @@ def search_for_updates():
     result_string = soup[s1.end():s2.start()]
 
     if THIS_VERSION not in result_string:
-        soup = BeautifulSoup(requests.get("https://github.com/Rdimo/Hazard-Nuker/releases").text, 'html.parser')
-        for link in soup.find_all('a'):
-            if "releases/download" in str(link):
-                update_url = f"https://github.com/{link.get('href')}"
-        new_version = requests.get(update_url)
         setTitle("Hazard Nuker New Update Found!")
         print(f'''{Fore.YELLOW}
                 ███╗   ██╗███████╗██╗    ██╗    ██╗   ██╗██████╗ ██████╗  █████╗ ████████╗███████╗██╗
@@ -40,6 +35,10 @@ def search_for_updates():
                 ██║ ╚████║███████╗╚███╔███╔╝    ╚██████╔╝██║     ██████╔╝██║  ██║   ██║   ███████╗██╗
                 ╚═╝  ╚═══╝╚══════╝ ╚══╝╚══╝      ╚═════╝ ╚═╝     ╚═════╝ ╚═╝  ╚═╝   ╚═╝   ╚══════╝╚═╝
                               {Fore.RED}Looks like this Hazard Nuker {THIS_VERSION} is outdated '''.replace('█', f'{Fore.WHITE}█{Fore.RED}'), end="\n\n")
+        soup = BeautifulSoup(requests.get("https://github.com/Rdimo/Hazard-Nuker/releases").text, 'html.parser')
+        for link in soup.find_all('a'):
+            if "releases/download" in str(link):
+                update_url = f"https://github.com/{link.get('href')}"
         choice = input(
             f'{Fore.GREEN}[{Fore.YELLOW}>>>{Fore.GREEN}] {Fore.RESET}You want to update to the latest version? (Y to update): {Fore.RED}')
 
@@ -49,7 +48,7 @@ def search_for_updates():
             #if they are running hazard.exe
             if os.path.basename(sys.argv[0]).endswith("exe"):
                 with open("HazardNuker.zip", 'wb')as zipfile:
-                    zipfile.write(new_version.content)
+                    zipfile.write(requests.get(update_url).content)
                 with ZipFile("HazardNuker.zip", 'r') as filezip:
                     filezip.extractall()
                 os.remove("HazardNuker.zip")
@@ -65,7 +64,7 @@ def search_for_updates():
                 print(f"{Fore.GREEN}Update Successfully Finished!")
                 sleep(2)
                 os.startfile("HazardNuker.exe")
-                sys.exit()
+                os._exit(0)
             #if they are running hazard source code
             else:
                 new_version_source = requests.get("https://github.com/Rdimo/Hazard-Nuker/archive/refs/heads/master.zip")
@@ -80,8 +79,8 @@ def search_for_updates():
                 setTitle('Hazard Nuker Update Complete!')
                 print(f"{Fore.GREEN}Update Successfully Finished!")
                 sleep(2)
-                os.startfile("start.bat")
-                sys.exit()
-
-        else:
-            return
+                if os.path.exists(os.getcwd()+'setup.bat'):
+                    os.startfile("setup.bat")
+                elif os.path.exists(os.getcwd()+'start.bat'):
+                    os.startfile("start.bat")
+                os._exit(0)

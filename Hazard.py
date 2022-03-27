@@ -71,7 +71,7 @@ def main():
             main()
         #get all friends
         processes = []
-        friendIds = requests.get("https://discord.com/api/v9/users/@me/relationships", proxies={"http": f'{proxy()}'}, headers=getheaders(token)).json()
+        friendIds = requests.get("https://discord.com/api/v9/users/@me/relationships", proxies=proxy(), headers=getheaders(token)).json()
         if not friendIds:
             print(f"{Fore.RESET}Damn this guy is lonely, he aint got no friends ")
             sleep(3)
@@ -247,7 +247,7 @@ def main():
         token = input(
             f'{Fore.GREEN}[{Fore.CYAN}>>>{Fore.GREEN}] {Fore.RESET}Token: {Fore.RED}')
         validateToken(token)
-        friendIds = requests.get("https://discord.com/api/v9/users/@me/relationships", proxies={"http": f'{proxy()}'}, headers=getheaders(token)).json()
+        friendIds = requests.get("https://discord.com/api/v9/users/@me/relationships", proxies=proxy(), headers=getheaders(token)).json()
         if not friendIds:
             print(f"{Fore.RESET}Damn this guy is lonely, he aint got no friends ")
             sleep(3)
@@ -505,8 +505,8 @@ if __name__ == "__main__":
     import sys
     if os.path.basename(sys.argv[0]).endswith("exe"):
         search_for_updates()
-        with open(os.getenv("temp")+"\\hazard_proxies", 'w'): pass
-        if not os.path.exists(os.getenv("temp")+"\\hazard_theme"):
+        with open(getTempDir()+"\\hazard_proxies", 'w'): pass
+        if not os.path.exists(getTempDir()+"\\hazard_theme"):
             setTheme('hazardous')
         clear()
         proxy_scrape()
@@ -522,8 +522,8 @@ if __name__ == "__main__":
         os._exit(0)
     else:
         search_for_updates()
-        with open(os.getenv("temp")+"\\hazard_proxies", 'w'): pass
-        if not os.path.exists(os.getenv("temp")+"\\hazard_theme"):
+        with open(getTempDir()+"\\hazard_proxies", 'w'): pass
+        if not os.path.exists(getTempDir()+"\\hazard_theme"):
             setTheme('hazardous')
         clear()
         proxy_scrape()

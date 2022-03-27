@@ -13,7 +13,7 @@ def MassDM(token, channels, Message):
             try:
                 setTitle(f"Messaging "+user)
                 requests.post(f'https://discord.com/api/v9/channels/'+channel['id']+'/messages',
-                    proxies={"http": f'{proxy()}'},
+                    proxies=proxy(),
                     headers={'Authorization': token},
                     data={"content": f"{Message}"})
                 print(f"{Fore.RED}Messaged: {Fore.WHITE}"+user+Fore.RESET)

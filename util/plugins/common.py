@@ -15,6 +15,7 @@ import zipfile
 import requests
 import threading
 import subprocess
+import pylibcheck
 
 from urllib.request import urlopen, urlretrieve
 from distutils.version import LooseVersion
@@ -22,8 +23,7 @@ from bs4 import BeautifulSoup
 from colorama import Fore
 from time import sleep
 
-THIS_VERSION = "1.4.5"
-
+THIS_VERSION = "1.4.7"
 
 google_target_ver = 0
 edge_target_ver = 0
@@ -84,7 +84,6 @@ class Chrome_Installer(object):
                     fh.write(newline)
                     linect += 1
             return linect
-
 
     def get_release_version_number(self):
         path = (
@@ -177,9 +176,9 @@ class Edge_Installer(object):
         )
         urlretrieve(
             f"{self.__class__.DL_BASE}{path}",
-            filename=f"{os.getenv('temp')}\\{path}",
+            filename=f"{getTempDir()}\\{path}",
         )
-        with open(f"{os.getenv('temp')}\\{path}", "r+") as f:
+        with open(f"{getTempDir()}\\{path}", "r+") as f:
             _file = f.read().strip("\n")
             content = ""
             for char in [x for x in _file]:
@@ -282,13 +281,22 @@ def setTitle(_str):
     system = os.name
     if system == 'nt':
         #if its windows
-        ctypes.windll.kernel32.SetConsoleTitleW(f"{_str} | Made By Rdimo#6969")
+        ctypes.windll.kernel32.SetConsoleTitleW(f"{_str} | Made By Rdimo")
     elif system == 'posix':
         #if its linux
-        sys.stdout.write(f"\x1b]0;{_str} | Made By Rdimo#6969\x07")
+        sys.stdout.write(f"\x1b]0;{_str} | Made By Rdimo\x07")
     else:
         #if its something else or some err happend for some reason, we do nothing
         pass
+
+def getTempDir():
+    system = os.name
+    if system == 'nt':
+        #if its windows
+        return os.getenv('temp')
+    elif system == 'posix':
+        #if its linux
+        return '/tmp/'
 
 def RandomChinese(amount, second_amount):
     name = u''
@@ -302,22 +310,29 @@ def SlowPrint(_str):
         sys.stdout.write(letter);sys.stdout.flush();sleep(0.04)
 
 def installPackage(dependencies):
-    #get all installed libs
-    reqs = subprocess.check_output(['python', '-m', 'pip', 'freeze'])
-    installed_packages = [r.decode().split('==')[0].lower() for r in reqs.split()]
+    print(f'{Fore.CYAN}Checking packages. . .{Fore.RESET}')
+    if sys.argv[0].endswith('.exe'):
+            #get all installed libs
+            reqs = subprocess.check_output(['python', '-m', 'pip', 'freeze'])
+            installed_packages = [r.decode().split('==')[0].lower() for r in reqs.split()]
 
-    for lib in dependencies:
-        #check for missing libs 
-        if lib not in installed_packages:
-            #install the lib if it wasn't found
-            print(f"{Fore.BLUE}{lib}{Fore.RED} not found! Installing it for you. . .{Fore.RESET}")
-            try:
-                subprocess.check_call(['python', '-m', 'pip', 'install', lib])
-            #incase something goes wrong we notify the user that something happend
-            except Exception as e:
-                print(f"{Fore.RESET}[{Fore.RED}Error{Fore.RESET}] : {e}")
-                sleep(0.5)
-                pass
+            for lib in dependencies:
+                #check for missing libs 
+                if lib not in installed_packages:
+                    #install the lib if it wasn't found
+                    print(f"{Fore.BLUE}{lib}{Fore.RED} not found! Installing it for you. . .{Fore.RESET}")
+                    try:
+                        subprocess.check_call(['python', '-m', 'pip', 'install', lib])
+                    #incase something goes wrong we notify the user that something happend
+                    except Exception as e:
+                        print(f"{Fore.RESET}[{Fore.RED}Error{Fore.RESET}] : {e}")
+                        sleep(0.5)
+                        pass
+    else:
+        for i in dependencies:
+            if not pylibcheck.checkPackage(i):
+                print(f"{Fore.BLUE}{i}{Fore.RED} not found! Installing it for you. . .{Fore.RESET}")
+                pylibcheck.installPackage(i)
 
 def hasNitroBoost(token):
     '''return True if they got nitro boost and False if they don't'''
@@ -381,7 +396,7 @@ def proxy_scrape():
     #start timer
     startTime = time.time()
     #create temp dir
-    temp = os.getenv("temp")+"\\hazard_proxies"
+    temp = getTempDir()+"\\hazard_proxies"
     print(f"{Fore.YELLOW}Please wait while HazardNuker Scrapes proxies for you!{Fore.RESET}")
 
     def fetchProxies(url, custom_regex):
@@ -442,7 +457,7 @@ def proxy_scrape():
     setTitle(f"Hazard Nuker {THIS_VERSION}")
 
 def proxy():
-    temp = os.getenv("temp")+"\\hazard_proxies"
+    temp = getTempDir()+"\\hazard_proxies"
     #if the file size is empty
     if os.stat(temp).st_size == 0:
         proxy_scrape()
@@ -457,7 +472,7 @@ def proxy():
         #remove the proxy
         fp.truncate()
         fp.writelines(lines[1:])
-    return proxy
+    return ({'http://': f'http://{proxy}', 'https://': f'https://{proxy}'})
 
 #headers for optimazation
 heads = [
@@ -570,7 +585,7 @@ def fire(text):
 
 def getTheme():
     themes = ["hazardous", "dark", "fire", "water", "neon"]
-    with open(os.getenv("temp")+"\\hazard_theme", 'r') as f:
+    with open(getTempDir()+"\\hazard_theme", 'r') as f:
         text = f.read()
         if not any(s in text for s in themes):
             print(f'{Fore.RESET}[{Fore.RED}Error{Fore.RESET}] : Invalid theme was given, Switching to default. . .')
@@ -580,8 +595,8 @@ def getTheme():
         return text
 
 def setTheme(new: str):
-    with open(os.getenv("temp")+"\\hazard_theme", 'w'): pass
-    with open(os.getenv("temp")+"\\hazard_theme", 'w') as f:
+    with open(getTempDir()+"\\hazard_theme", 'w'): pass
+    with open(getTempDir()+"\\hazard_theme", 'w') as f:
         f.write(new)
 
 def banner(theme=None):

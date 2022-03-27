@@ -4,7 +4,7 @@ bs4
 colorama
 pycryptodome
 PIL-Tools
-Pillow
+pylibcheck
 pyinstaller
 psutil
 keyboard
