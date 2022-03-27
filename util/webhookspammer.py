@@ -17,7 +17,7 @@ def WebhookSpammer(WebHook, Message):
     while True:
         response = requests.post(
             WebHook,
-            proxies={"http": f'{proxy()}'},
+            proxies=proxy(),
             json = {"content" : Message},
             params = {'wait' : True}
         )

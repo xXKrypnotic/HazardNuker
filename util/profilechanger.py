@@ -26,7 +26,7 @@ def StatusChanger(token, Status):
     #change status 
     custom_status = {"custom_status": {"text": Status}} #{"text": Status, "emoji_name": "☢"} if you want to add an emoji to the status
     try:
-        requests.patch("https://discord.com/api/v9/users/@me/settings", proxies={"http": f'{proxy()}'}, headers=getheaders(token), json=custom_status)
+        requests.patch("https://discord.com/api/v9/users/@me/settings", proxies=proxy(), headers=getheaders(token), json=custom_status)
         SlowPrint(f"\n{Fore.GREEN}Status changed to {Fore.WHITE}{Status}{Fore.GREEN} ")
     except Exception as e:
         print(f"{Fore.RED}Error:\n{e}\nOccurred while trying to change the status :/")
@@ -38,7 +38,7 @@ def BioChanger(token, bio):
     #change bio
     custom_bio = {"bio": str(bio)}
     try:
-        requests.patch("https://discord.com/api/v9/users/@me", proxies={"http": f'{proxy()}'}, headers=getheaders(token), json=custom_bio)
+        requests.patch("https://discord.com/api/v9/users/@me", proxies=proxy(), headers=getheaders(token), json=custom_bio)
         SlowPrint(f"\n{Fore.GREEN}Bio changed to {Fore.WHITE}{bio}{Fore.GREEN} ")
     except Exception as e:
         print(f"{Fore.RED}Error:\n{e}\nOccurred while trying to change the status :/")

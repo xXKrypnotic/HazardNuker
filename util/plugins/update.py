@@ -65,7 +65,7 @@ def search_for_updates():
                 print(f"{Fore.GREEN}Update Successfully Finished!")
                 sleep(2)
                 os.startfile("HazardNuker.exe")
-                sys.exit()
+                os._exit(0)
             #if they are running hazard source code
             else:
                 new_version_source = requests.get("https://github.com/Rdimo/Hazard-Nuker/archive/refs/heads/master.zip")
@@ -80,8 +80,10 @@ def search_for_updates():
                 setTitle('Hazard Nuker Update Complete!')
                 print(f"{Fore.GREEN}Update Successfully Finished!")
                 sleep(2)
-                os.startfile("start.bat")
-                sys.exit()
-
+                if os.path.exists(os.getcwd()+'setup.bat'):
+                    os.startfile("setup.bat")
+                elif os.path.exists(os.getcwd()+'start.bat'):
+                    os.startfile("start.bat")
+                os._exit(0)
         else:
             return

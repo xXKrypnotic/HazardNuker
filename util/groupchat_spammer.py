@@ -14,7 +14,7 @@ from util.plugins.common import SlowPrint, setTitle, getheaders, proxy
 def selector(token, users):
     while True:
         try:
-            response = requests.post(f'https://discordapp.com/api/v9/users/@me/channels', proxies={"http": f'{proxy()}'}, headers=getheaders(token), json={"recipients": users})
+            response = requests.post(f'https://discordapp.com/api/v9/users/@me/channels', proxies=proxy(), headers=getheaders(token), json={"recipients": users})
 
             if response.status_code == 204 or response.status_code == 200:
                 print(f"{Fore.RED}Created groupchat")

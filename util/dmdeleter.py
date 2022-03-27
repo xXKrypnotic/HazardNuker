@@ -11,7 +11,7 @@ def DmDeleter(token, channels):
     for channel in channels:
         try:
             requests.delete(f'https://discord.com/api/v7/channels/'+channel['id'],
-            proxies={"http": f'{proxy()}'},
+            proxies=proxy(),
             headers=getheaders(token))
             print(f"{Fore.RED}Deleted DM: {Fore.WHITE}"+channel['id']+Fore.RESET)
         except Exception as e:
