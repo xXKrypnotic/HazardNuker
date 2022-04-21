@@ -1,0 +1,10 @@
+requests
+selenium
+bs4
+colorama
+pycryptodome
+PIL-Tools
+pylibcheck
+pyinstaller
+psutil
+keyboard
